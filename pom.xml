@@ -118,7 +118,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>com.rockandcode.redcalc.ui.AppLauncher</mainClass>
+                    <mainClass>com.rockandcode.redcalc.ui.App</mainClass>
                 </configuration>
                 <executions>
                     <execution>

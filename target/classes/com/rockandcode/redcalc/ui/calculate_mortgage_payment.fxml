@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="calculateMortgagePaymentBorderPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.rockandcode.redcalc.controller.CalculateMortgagePaymentController">
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="Tool">
+                    <items>
+                        <MenuItem onAction="#switchToPrimary" text="Home Page" />
+                    </items>
+                </Menu>
+            </MenuBar>
+            <ToolBar>
+                <HBox>
+                    <Button onAction="#switchToPrimary" text="Home Page" />
+                </HBox>
+            </ToolBar>
+        </VBox>
+    </top>
+    
+    <center>
+        <ScrollPane>
+            <GridPane alignment="TOP_LEFT" hgap="10" vgap="10">   
+                <!--Row 1-->
+                <Label text="Principal" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="principalField" editable="true" onKeyReleased="#handleKeyReleased" promptText="185,000" GridPane.columnIndex="1" GridPane.rowIndex="0" />  
+                <!--Row 2-->
+                <Label text="Interest" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="interestField" editable="true" onKeyReleased="#handleKeyReleased" promptText="6.0%" GridPane.columnIndex="1" GridPane.rowIndex="1" /> 
+                <Button fx:id="calcInterestBtn" onAction="#calculateInterest" text="Calculate Interest" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <!--Row 3-->
+                <Label text="Terms" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <TextField fx:id="termsField" editable="true" onKeyReleased="#handleKeyReleased" promptText="Years" GridPane.columnIndex="1" GridPane.rowIndex="2" /> 
+                <Button fx:id="calcTermsBtn" onAction="#calculateTerms" text="Calculate Terms" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+<!--                <Label GridPane.rowIndex="2" GridPane.columnIndex="3"  text="Years"/>-->
+                <!--Row 4-->
+                <Button fx:id="calcPmtBtn" onAction="#calculatePMT" text="Calculate PMT" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <Button fx:id="resetBtn" onAction="#resetFields" text="Reset" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <!--Row 5-->
+                <Label fx:id="pmtLabel" text="Monthly Payment" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                <TextField fx:id="pmtField" onKeyReleased="#handleKeyReleased" GridPane.columnIndex="1" GridPane.rowIndex="5" /> 
+            
+              
+                <padding>
+                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                </padding>
+            </GridPane>
+        </ScrollPane>
+    </center>
+</BorderPane>
