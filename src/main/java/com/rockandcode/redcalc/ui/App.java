@@ -56,7 +56,7 @@ public class App extends Application {
     @Override
     public void init() throws Exception {
         super.init();
-        String CONNECTION_STRING = getConnectionString();
+        String CONNECTION_STRING = getConnectionString(); //YOU CAN SPECIFY THE DESIRE PATH OF THE SQLITE DATABASE FILE HERE!
 
         if (!Datasource.getInstance().open(CONNECTION_STRING)) {
             System.out.println("Fatal Error: Couldn't connect to database");

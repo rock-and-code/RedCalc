@@ -1,14 +1,22 @@
 package com.rockandcode.redcalc.database;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.rockandcode.redcalc.model.City;
 import com.rockandcode.redcalc.model.FairRentRates;
 import com.rockandcode.redcalc.model.Listing;
 import com.rockandcode.redcalc.model.ListingCity;
 import com.rockandcode.redcalc.model.RealEstateState;
 import com.rockandcode.redcalc.model.ZipCode;
-import com.rockandcode.redcalc.util.*;
-import java.sql.*;
-import java.util.*;
+import com.rockandcode.redcalc.util.ConsoleLogger;
 
 /**
  *

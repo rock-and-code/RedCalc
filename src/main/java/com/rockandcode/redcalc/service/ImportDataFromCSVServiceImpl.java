@@ -8,6 +8,7 @@ import com.rockandcode.redcalc.task.ReadMarketRentRatesFromSQLITECSVFileTask;
 import com.rockandcode.redcalc.task.ReadMarketRentsRatesFromCSVFileTask;
 import com.rockandcode.redcalc.task.ReadSalesListingsFromRedfinCSVFileTask;
 import com.rockandcode.redcalc.util.Alerts;
+import com.rockandcode.redcalc.util.ConsoleLogger;
 import java.io.File;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ContextMenu;
@@ -148,6 +149,7 @@ public class ImportDataFromCSVServiceImpl implements ImportDataFromCSVService {
     @Override
     public void readFairRentsFromCSV(TableView table, BorderPane borderPane, 
             ProgressBar progressBar, TextField progressBarMessage) {
+                ConsoleLogger.getInstance().printMessage("readFairRentsFromCSV called");
         Window mainStage = borderPane.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");

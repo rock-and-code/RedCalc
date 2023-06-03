@@ -1,13 +1,15 @@
 package com.rockandcode.redcalc.task;
 
-import com.rockandcode.redcalc.database.Datasource;
-import com.rockandcode.redcalc.model.FairRentRates;
-import com.rockandcode.redcalc.util.ConsoleLogger;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.InputMismatchException;
+
+import com.rockandcode.redcalc.database.Datasource;
+import com.rockandcode.redcalc.model.FairRentRates;
+import com.rockandcode.redcalc.util.ConsoleLogger;
+
 import javafx.concurrent.Task;
 
 /**
@@ -31,10 +33,10 @@ public class ReadFairMarketRentRatesFromCSVFileTask extends Task<Boolean> {
         String input;
         //Reading headers columns
         int columnsInCSVFile = dirFile.readLine().split(",").length;
-        if (columnsInCSVFile != NUM_COLUMNS_EXPECTED_IN_CSV_FILE) {
-            ConsoleLogger.getInstance().printMessage("Error: Entered CSV file does not follows expected format");
-            return false;
-        }
+         if (columnsInCSVFile != NUM_COLUMNS_EXPECTED_IN_CSV_FILE) {
+             ConsoleLogger.getInstance().printMessage("Error: Entered CSV file does not follows expected format");
+             return false;
+         }
         while ((input = dirFile.readLine()) != null) {
             FairRentRates data = null;
             try {

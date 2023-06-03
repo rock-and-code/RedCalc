@@ -1,8 +1,10 @@
 package com.rockandcode.redcalc.util;
 
 import com.rockandcode.redcalc.database.Datasource;
-import com.rockandcode.redcalc.model.*;
-import java.io.*;
+import com.rockandcode.redcalc.model.FairRentRates;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Date;
 import java.util.InputMismatchException;
 
@@ -306,7 +308,6 @@ public class FileDataReader {
             //RentalListing rentListing = null;
             if (data != null) {
                 //INSERT IN DATABASE
-                //rentListing = createRentalListing(data);
                 try {
                     insertMarketRentRate(data);
                 } catch (Exception e) {
@@ -440,7 +441,7 @@ public class FileDataReader {
         fourBedsRentRate = ((data[7].isBlank()) ? 0 : Integer.parseInt(data[7]));   //COLUMN H
 
         //DEBUG
-        ConsoleLogger.getInstance().printMessage(zipcode + ": " + oneBedRentRate);
+        //ConsoleLogger.getInstance().printMessage(zipcode + ": " + oneBedRentRate);
 
         return new Object[]{
             zipcode,
@@ -537,7 +538,6 @@ public class FileDataReader {
                 }
 
             }
-
         }
     }
 

@@ -18,6 +18,7 @@ import com.rockandcode.redcalc.service.UtilityServiceImpl;
 import com.rockandcode.redcalc.service.ZipcodeService;
 import com.rockandcode.redcalc.service.ZipcodeServiceImpl;
 import com.rockandcode.redcalc.ui.App;
+import com.rockandcode.redcalc.util.ConsoleLogger;
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -160,6 +161,7 @@ public class MainScreenController {
 
     @FXML
     public void readFairRentsFromCSV() {
+        ConsoleLogger.getInstance().printMessage("readFairRentsFROMSCV called");
         importDataFromCSVService.readFairRentsFromCSV(table, borderPane, progressBar, progressBarMessage);
     }
 

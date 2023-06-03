@@ -1,9 +1,10 @@
 
 package com.rockandcode.redcalc.repository;
 
+import java.sql.SQLException;
+
 import com.rockandcode.redcalc.database.Datasource;
 import com.rockandcode.redcalc.model.FairRentRates;
-import java.sql.SQLException;
 
 /**
  *

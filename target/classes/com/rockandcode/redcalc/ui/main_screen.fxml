@@ -34,7 +34,7 @@
                         <SeparatorMenuItem />
                         <MenuItem onAction="#readFairRentsFromCSV" text="Fair maket rent from CSV File" accelerator="Ctrl+F"/>
                         <SeparatorMenuItem />
-                        <MenuItem onAction="#readMarketRentsFromSQLITECSV" text="Fair maket rent from SQLITE CSV File" accelerator="Ctrl+Q"/>
+                        <MenuItem onAction="#readMarketRentsFromSQLITECSV" text="Market rent from SQLITE CSV File" accelerator="Ctrl+Q"/>
                     </items>
                 </Menu>
                 <Menu text="Data">

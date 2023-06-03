@@ -1,6 +1,11 @@
 
 package com.rockandcode.redcalc.service;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.util.Optional;
+
 import com.rockandcode.redcalc.controller.GetFairRentRateByZipcodeDialogController;
 import com.rockandcode.redcalc.controller.MainScreenController;
 import com.rockandcode.redcalc.database.Datasource;
@@ -11,10 +16,7 @@ import com.rockandcode.redcalc.ui.App;
 import com.rockandcode.redcalc.util.Alerts;
 import com.rockandcode.redcalc.util.ConsoleLogger;
 import com.rockandcode.redcalc.util.Dialogs;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.util.Optional;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
