@@ -1,0 +1,10 @@
+
+
+#borderPane, #updateCityDialogPane, #insertListingDialogPane, #calculateNOIAndDebtServiceBorderPane,
+#calculateMortgagePaymentBorderPane{
+    -fx-font-family: helvetica;
+}
+
+.dialogs, .alerts {
+    -fx-font-family: helvetica;
+}
