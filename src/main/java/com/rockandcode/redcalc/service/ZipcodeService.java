@@ -12,7 +12,7 @@ import javafx.scene.layout.HBox;
 public interface ZipcodeService {
     public void listListingsForZipCodeId(TableView table, BorderPane borderPane, HBox buttonsContainer);
     public void listListingForZipCodeNumber(int zipcode, TableView table, HBox buttonsContainer);
-    public void getAverageListPriceByZipcodeNumBedsBaths(TableView table, BorderPane borderPane);
-    public void getAverageRentByZipcodeNumBedsBaths(TableView table, BorderPane borderPane);
+    public void getAverageListPriceByZipcodeNumBedsAndBaths(TableView table, BorderPane borderPane);
+    public void getAverageRentByZipcodeNumBedsAndBaths(TableView table, BorderPane borderPane);
     public void getListingByZipcodeAndUnderwrittenVal(TableView table, BorderPane borderPane, HBox buttonsContainer);
 }

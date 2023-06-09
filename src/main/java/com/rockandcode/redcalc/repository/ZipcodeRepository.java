@@ -1,10 +1,11 @@
 
 package com.rockandcode.redcalc.repository;
 
+import java.util.List;
+
 import com.rockandcode.redcalc.database.Datasource;
 import com.rockandcode.redcalc.model.Listing;
 import com.rockandcode.redcalc.model.ZipCode;
-import java.util.List;
 
 /**
  *
@@ -42,11 +43,11 @@ public class ZipcodeRepository {
     }
     
     public double findAverageListPriceByZipcodeBedsBaths(int zipcodeNumber, int numBeds, double numBaths) throws Exception {
-        return source.findAverageListPriceByZipcodeBedsBaths(zipcodeNumber, numBeds, numBaths);
+        return source.findAverageListPriceByBedsBathsAndZipcode(zipcodeNumber, numBeds, numBaths);
     }
     
     public double findAverageRentByZipcodeBedsBaths(int zipcodeNumber, int numBeds, double numBaths) throws Exception {
-        return source.findAverageRentByZipcodeBedsBaths(zipcodeNumber, numBeds, numBaths);
+        return source.findAverageRentByBedsBathsAndZipcode(zipcodeNumber, numBeds, numBaths);
     }
     
     public List<Listing> findListingsByZipcodeAndUnderwrittenValue(int zipcodeNumber, int numBeds, double numBaths, double capRate) throws Exception {

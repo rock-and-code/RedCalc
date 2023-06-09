@@ -15,11 +15,11 @@ public class MarketRentRepository {
     }
     
     public double findAverageRentByCityBedsBaths(String city, int numBeds, double numBaths) throws Exception {
-        return source.findAverageRentByCityBedsBaths(city, numBeds, numBaths);
+        return source.findAverageRentByBedsBathsAndCity(city, numBeds, numBaths);
     }
     
     public double findAverageRentByZipcodeBedsBaths(int zipcode, int numBeds, double numBaths) throws Exception {
-        return source.findAverageRentByZipcodeBedsBaths(zipcode, numBeds, numBaths);
+        return source.findAverageRentByBedsBathsAndZipcode(zipcode, numBeds, numBaths);
     }
     
     public boolean saveRentRate(

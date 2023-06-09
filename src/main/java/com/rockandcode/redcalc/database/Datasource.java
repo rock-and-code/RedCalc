@@ -24,7 +24,6 @@ import com.rockandcode.redcalc.util.ConsoleLogger;
  */
 public class Datasource {
 
-
     /* Inner class that defines the states table contents */
     public static class States {
 
@@ -161,115 +160,178 @@ public class Datasource {
     public static final int ORDER_BY_ASC = 2;
     public static final int ORDER_BY_DESC = 3;
 
-    /* SQL QUERIES  */
-    private static final String QUERY_ZIP_CODE_BY_CITY_START = "SELECT " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER
-            + " FROM " + Zipcodes.TABLE_NAME + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY
-            + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID + " WHERE " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_NAME + " = ?";
+    /* SQL QUERIES */
+    private static final String QUERY_ZIP_CODE_BY_CITY_START = "SELECT " + Zipcodes.TABLE_NAME + '.'
+            + Zipcodes.COLUMN_NAME_NUMBER
+            + " FROM " + Zipcodes.TABLE_NAME + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.'
+            + Zipcodes.COLUMN_NAME_CITY
+            + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID + " WHERE " + Cities.TABLE_NAME + '.'
+            + Cities.COLUMN_NAME_NAME + " = ?";
 
-    private static final String QUERY_ZIP_CODE_BY_CITY_SORT = " ORDER BY " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_NAME
+    private static final String QUERY_ZIP_CODE_BY_CITY_SORT = " ORDER BY " + Cities.TABLE_NAME + '.'
+            + Cities.COLUMN_NAME_NAME
             + " COLLATE NOCASE ";
 
-    private static final String QUERY_LISTINGS_BY_ZIP_CODE_NUMBER = "SELECT * FROM " + Listings.TABLE_NAME + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE
-            + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID + " WHERE " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + " = ? "
+    private static final String QUERY_LISTINGS_BY_ZIP_CODE_NUMBER = "SELECT * FROM " + Listings.TABLE_NAME
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE
+            + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID + " WHERE " + Zipcodes.TABLE_NAME + '.'
+            + Zipcodes.COLUMN_NAME_NUMBER + " = ? "
             + "ORDER BY " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ADDRESS
             + " COLLATE NOCASE ";
 
-    private static final String QUERY_LISTINGS_BY_CITIES_START = "SELECT DISTINCT " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ADDRESS
-            + " FROM " + Listings.TABLE_NAME + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
-            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
+    private static final String QUERY_LISTINGS_BY_CITIES_START = "SELECT DISTINCT " + Listings.TABLE_NAME + '.'
+            + Listings.COLUMN_NAME_ADDRESS
+            + " FROM " + Listings.TABLE_NAME + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.'
+            + Listings.COLUMN_NAME_ZIP_CODE + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
+            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY
+            + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
             + " WHERE " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_NAME + " = ?";
 
-    private static final String QUERY_LISTINGS_BY_CITIES_SORT = " ORDER BY " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ADDRESS
+    private static final String QUERY_LISTINGS_BY_CITIES_SORT = " ORDER BY " + Listings.TABLE_NAME + '.'
+            + Listings.COLUMN_NAME_ADDRESS
             + " COLLATE NOCASE ";
 
-    //TODO fix the name it is querying address for listings fix it to query listings by city
-    private static final String QUERY_CITY_FOR_LISTING_START = "SELECT " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_NAME + ", "
-            + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ADDRESS + ", " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_PROPERTY_TYPE + ", " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + ", "
-            + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_LIST_PRICE + ", " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_NUM_BED + ", " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_NUM_BATH + ", "
-            + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_SQFT + ", " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_YEAR_BUILT
-            + " FROM " + Listings.TABLE_NAME + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
-            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
+    // TODO fix the name it is querying address for listings fix it to query
+    // listings by city
+    private static final String QUERY_CITY_FOR_LISTING_START = "SELECT " + Cities.TABLE_NAME + '.'
+            + Cities.COLUMN_NAME_NAME + ", "
+            + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ADDRESS + ", " + Listings.TABLE_NAME + '.'
+            + Listings.COLUMN_NAME_PROPERTY_TYPE + ", " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + ", "
+            + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_LIST_PRICE + ", " + Listings.TABLE_NAME + '.'
+            + Listings.COLUMN_NAME_NUM_BED + ", " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_NUM_BATH + ", "
+            + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_SQFT + ", " + Listings.TABLE_NAME + '.'
+            + Listings.COLUMN_NAME_YEAR_BUILT
+            + " FROM " + Listings.TABLE_NAME + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.'
+            + Listings.COLUMN_NAME_ZIP_CODE + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
+            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY
+            + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
             + " WHERE " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_NAME + " = ?";
-    //+ " WHERE " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ADDRESS + " = ?";
+    // + " WHERE " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ADDRESS + " =
+    // ?";
 
-    private static final String QUERY_CITY_FOR_LISTING_SORT = " ORDER BY " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_NAME + ", " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + ", "
+    private static final String QUERY_CITY_FOR_LISTING_SORT = " ORDER BY " + Cities.TABLE_NAME + '.'
+            + Cities.COLUMN_NAME_NAME + ", " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + ", "
             + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ADDRESS
             + " COLLATE NOCASE ";
 
     /* QUERY AVERAGE RENT RATES BY ZIPCODE, CITY, STATE */
-    private static final String QUERY_AVG_RENT_BY_ZIPCODE_BEDS_AND_BATHS = "SELECT AVG(" + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_RENT + ")"
-            + " FROM " + MarketRents.TABLE_NAME + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_ZIP_CODE + " = "
-            + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + " WHERE " + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_ZIP_CODE + " = ? AND "
-            + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_NUM_BED + " = ? AND " + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_NUM_BATH + " = ?";
+    private static final String QUERY_AVG_RENT_BY_ZIPCODE_BEDS_AND_BATHS = "SELECT AVG(" + MarketRents.TABLE_NAME + '.'
+            + MarketRents.COLUMN_NAME_RENT + ")"
+            + " FROM " + MarketRents.TABLE_NAME + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + MarketRents.TABLE_NAME
+            + '.' + MarketRents.COLUMN_NAME_ZIP_CODE + " = "
+            + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + " WHERE " + MarketRents.TABLE_NAME + '.'
+            + MarketRents.COLUMN_NAME_ZIP_CODE + " = ? AND "
+            + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_NUM_BED + " = ? AND " + MarketRents.TABLE_NAME
+            + '.' + MarketRents.COLUMN_NAME_NUM_BATH + " = ?";
 
-    private static final String QUERY_AVG_RENT_BY_CITY_BEDS_AND_BATHS = "SELECT AVG(" + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_RENT + ")"
-            + " FROM " + MarketRents.TABLE_NAME + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_ZIP_CODE + " = "
-            + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + " = "
-            + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID + " WHERE " + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_CITY + " = ? AND "
-            + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_NUM_BED + " = ? AND " + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_NUM_BATH + " = ?";
+    private static final String QUERY_AVG_RENT_BY_CITY_BEDS_AND_BATHS = "SELECT AVG(" + MarketRents.TABLE_NAME + '.'
+            + MarketRents.COLUMN_NAME_RENT + ")"
+            + " FROM " + MarketRents.TABLE_NAME + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + MarketRents.TABLE_NAME
+            + '.' + MarketRents.COLUMN_NAME_ZIP_CODE + " = "
+            + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + " INNER JOIN " + Cities.TABLE_NAME + " ON "
+            + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + " = "
+            + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID + " WHERE " + MarketRents.TABLE_NAME + '.'
+            + MarketRents.COLUMN_NAME_CITY + " = ? AND "
+            + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_NUM_BED + " = ? AND " + MarketRents.TABLE_NAME
+            + '.' + MarketRents.COLUMN_NAME_NUM_BATH + " = ?";
 
     private static final String TABLE_STATE_LISTING_VIEW = "state_list";
 
-    private static final String CREATE_STATE_FOR_LISTING_VIEW = "CREATE VIEW IF NOT EXISTS " + TABLE_STATE_LISTING_VIEW + " AS SELECT "
+    private static final String CREATE_STATE_FOR_LISTING_VIEW = "CREATE VIEW IF NOT EXISTS " + TABLE_STATE_LISTING_VIEW
+            + " AS SELECT "
             + States.TABLE_NAME + '.' + States.COLUMN_NAME_NAME + " AS " + COLUMN_STATE + ", "
             + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_NAME + " AS " + COLUMN_CITY + ", "
-            + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + " AS " + COLUMN_ZIPCODE + ", " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ADDRESS + ", "
-            + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_PROPERTY_TYPE + ", " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_LIST_PRICE + ", "
-            + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_NUM_BED + ", " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_NUM_BATH + ", " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_SQFT + ", "
+            + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + " AS " + COLUMN_ZIPCODE + ", "
+            + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ADDRESS + ", "
+            + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_PROPERTY_TYPE + ", " + Listings.TABLE_NAME + '.'
+            + Listings.COLUMN_NAME_LIST_PRICE + ", "
+            + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_NUM_BED + ", " + Listings.TABLE_NAME + '.'
+            + Listings.COLUMN_NAME_NUM_BATH + ", " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_SQFT + ", "
             + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_YEAR_BUILT
             + " FROM " + Listings.TABLE_NAME
-            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
-            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
-            + " INNER JOIN " + States.TABLE_NAME + " ON " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_STATE + " = " + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID
-            + " ORDER BY " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_NAME + ", " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + ", " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ADDRESS;
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE
+            + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
+            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY
+            + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
+            + " INNER JOIN " + States.TABLE_NAME + " ON " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_STATE + " = "
+            + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID
+            + " ORDER BY " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_NAME + ", " + Zipcodes.TABLE_NAME + '.'
+            + Zipcodes.COLUMN_NAME_NUMBER + ", " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ADDRESS;
 
-    private static final String QUERY_CITY_FOR_LISTING_VIEW = "SELECT * FROM " + TABLE_STATE_LISTING_VIEW + " WHERE " + COLUMN_CITY + " = ?";
+    private static final String QUERY_CITY_FOR_LISTING_VIEW = "SELECT * FROM " + TABLE_STATE_LISTING_VIEW + " WHERE "
+            + COLUMN_CITY + " = ?";
 
-    private static final String QUERY_CITY_FOR_LISTING_VIEW_SORT = " ORDER BY " + COLUMN_CITY + ", " + COLUMN_ZIPCODE + ", "
+    private static final String QUERY_CITY_FOR_LISTING_VIEW_SORT = " ORDER BY " + COLUMN_CITY + ", " + COLUMN_ZIPCODE
+            + ", "
             + " COLLATE NOCASE ";
 
     /* SQL INSERT STATEMENTS */
-    private static final String INSERT_STATE = "INSERT INTO " + States.TABLE_NAME + " (" + States.COLUMN_NAME_NAME + ", " + States.COLUMN_NAME_HAS_SALES_LISTINGS + ", " + States.COLUMN_NAME_HAS_RENT_LISTINGS + ") VALUES (?, ?, ?)";
+    private static final String INSERT_STATE = "INSERT INTO " + States.TABLE_NAME + " (" + States.COLUMN_NAME_NAME
+            + ", " + States.COLUMN_NAME_HAS_SALES_LISTINGS + ", " + States.COLUMN_NAME_HAS_RENT_LISTINGS
+            + ") VALUES (?, ?, ?)";
 
-    private static final String INSERT_CITY = "INSERT INTO " + Cities.TABLE_NAME + " (" + Cities.COLUMN_NAME_NAME + ", " + Cities.COLUMN_NAME_STATE + ", " + Cities.COLUMN_NAME_HAS_SALE_LISTINGS + ", " + Cities.COLUMN_NAME_HAS_RENT_LISTINGS + ") VALUES (?, ?, ?, ?)";
+    private static final String INSERT_CITY = "INSERT INTO " + Cities.TABLE_NAME + " (" + Cities.COLUMN_NAME_NAME + ", "
+            + Cities.COLUMN_NAME_STATE + ", " + Cities.COLUMN_NAME_HAS_SALE_LISTINGS + ", "
+            + Cities.COLUMN_NAME_HAS_RENT_LISTINGS + ") VALUES (?, ?, ?, ?)";
 
-    private static final String INSERT_ZIP_CODE = "INSERT INTO " + Zipcodes.TABLE_NAME + " (" + Zipcodes.COLUMN_NAME_NUMBER + ", " + Zipcodes.COLUMN_NAME_CITY + ", " + Zipcodes.COLUMN_NAME_HAS_SALE_LISTINGS + ", " + Zipcodes.COLUMN_NAME_HAS_RENT_LISTINGS + ") VALUES (?, ?, ?, ?)";
+    private static final String INSERT_ZIP_CODE = "INSERT INTO " + Zipcodes.TABLE_NAME + " ("
+            + Zipcodes.COLUMN_NAME_NUMBER + ", " + Zipcodes.COLUMN_NAME_CITY + ", "
+            + Zipcodes.COLUMN_NAME_HAS_SALE_LISTINGS + ", " + Zipcodes.COLUMN_NAME_HAS_RENT_LISTINGS
+            + ") VALUES (?, ?, ?, ?)";
 
-    private static final String INSERT_LISTING = "INSERT INTO " + Listings.TABLE_NAME + " (" + Listings.COLUMN_NAME_ADDRESS + ", " + Listings.COLUMN_NAME_PROPERTY_TYPE + ", " + Listings.COLUMN_NAME_ZIP_CODE + ", "
-            + Listings.COLUMN_NAME_LIST_PRICE + ", " + Listings.COLUMN_NAME_NUM_BED + ", " + Listings.COLUMN_NAME_NUM_BATH + ", " + Listings.COLUMN_NAME_SQFT + ", " + Listings.COLUMN_NAME_YEAR_BUILT + ", " + Listings.COLUMN_NAME_LATITUDE + ", "
-            + Listings.COLUMN_NAME_LONGITUDE + ", " + Listings.COLUMN_NAME_URL + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_LISTING = "INSERT INTO " + Listings.TABLE_NAME + " ("
+            + Listings.COLUMN_NAME_ADDRESS + ", " + Listings.COLUMN_NAME_PROPERTY_TYPE + ", "
+            + Listings.COLUMN_NAME_ZIP_CODE + ", "
+            + Listings.COLUMN_NAME_LIST_PRICE + ", " + Listings.COLUMN_NAME_NUM_BED + ", "
+            + Listings.COLUMN_NAME_NUM_BATH + ", " + Listings.COLUMN_NAME_SQFT + ", " + Listings.COLUMN_NAME_YEAR_BUILT
+            + ", " + Listings.COLUMN_NAME_LATITUDE + ", "
+            + Listings.COLUMN_NAME_LONGITUDE + ", " + Listings.COLUMN_NAME_URL
+            + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    private static final String INSERT_MARKET_RENT = "INSERT INTO " + MarketRents.TABLE_NAME + " (" + MarketRents.COLUMN_NAME_ADDRESS + ", " + MarketRents.COLUMN_NAME_PROPERTY_TYPE + ", " + MarketRents.COLUMN_NAME_LISTED_DATE + ", " + MarketRents.COLUMN_NAME_ZIP_CODE + ", "
-            + MarketRents.COLUMN_NAME_RENT + ", " + MarketRents.COLUMN_NAME_NUM_BED + ", " + MarketRents.COLUMN_NAME_NUM_BATH + ", " + MarketRents.COLUMN_NAME_SQFT + ", " + MarketRents.COLUMN_NAME_CITY + ", " + MarketRents.COLUMN_NAME_STATE
+    private static final String INSERT_MARKET_RENT = "INSERT INTO " + MarketRents.TABLE_NAME + " ("
+            + MarketRents.COLUMN_NAME_ADDRESS + ", " + MarketRents.COLUMN_NAME_PROPERTY_TYPE + ", "
+            + MarketRents.COLUMN_NAME_LISTED_DATE + ", " + MarketRents.COLUMN_NAME_ZIP_CODE + ", "
+            + MarketRents.COLUMN_NAME_RENT + ", " + MarketRents.COLUMN_NAME_NUM_BED + ", "
+            + MarketRents.COLUMN_NAME_NUM_BATH + ", " + MarketRents.COLUMN_NAME_SQFT + ", "
+            + MarketRents.COLUMN_NAME_CITY + ", " + MarketRents.COLUMN_NAME_STATE
             + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    private static final String INSERT_FAIR_RENT = "INSERT INTO " + FairRents.TABLE_NAME + " (" + FairRents.COLUMN_NAME_ZIP_CODE + ", " + FairRents.COLUMN_NAME_STUDIO + ", "
-            + FairRents.COLUMN_NAME_ONE_BED + ", " + FairRents.COLUMN_NAME_TWO_BED + ", " + FairRents.COLUMN_NAME_THREE_BED + ", " + FairRents.COLUMN_NAME_FOUR_BED
+    private static final String INSERT_FAIR_RENT = "INSERT INTO " + FairRents.TABLE_NAME + " ("
+            + FairRents.COLUMN_NAME_ZIP_CODE + ", " + FairRents.COLUMN_NAME_STUDIO + ", "
+            + FairRents.COLUMN_NAME_ONE_BED + ", " + FairRents.COLUMN_NAME_TWO_BED + ", "
+            + FairRents.COLUMN_NAME_THREE_BED + ", " + FairRents.COLUMN_NAME_FOUR_BED
             + ") VALUES (?, ?, ?, ?, ?, ?)";
 
     /* QUERYING DATA FROM TABLES */
-    private static final String QUERY_STATE_ID = "SELECT " + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID + " FROM " + States.TABLE_NAME
+    private static final String QUERY_STATE_ID = "SELECT " + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID + " FROM "
+            + States.TABLE_NAME
             + " WHERE " + States.TABLE_NAME + '.' + States.COLUMN_NAME_NAME + " = ?";
 
     private static final String QUERY_STATE = "SELECT * FROM " + States.TABLE_NAME
             + " WHERE " + States.TABLE_NAME + '.' + States.COLUMN_NAME_NAME + " = ?";
 
-    private static final String QUERY_STATE_HAS_SALES_LISTING_BY_ID = "SELECT " + States.TABLE_NAME + '.' + States.COLUMN_NAME_HAS_SALES_LISTINGS
+    private static final String QUERY_STATE_HAS_SALES_LISTING_BY_ID = "SELECT " + States.TABLE_NAME + '.'
+            + States.COLUMN_NAME_HAS_SALES_LISTINGS
             + " FROM " + States.TABLE_NAME + " WHERE " + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID + " = ?";
 
-    private static final String QUERY_CITY_HAS_SALES_LISTING_BY_ID = "SELECT " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_HAS_SALE_LISTINGS
+    private static final String QUERY_CITY_HAS_SALES_LISTING_BY_ID = "SELECT " + Cities.TABLE_NAME + '.'
+            + Cities.COLUMN_NAME_HAS_SALE_LISTINGS
             + " FROM " + Cities.TABLE_NAME + " WHERE " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID + " = ?";
 
-    private static final String QUERY_ZIPCODE_HAS_SALES_LISTING_BY_ID = "SELECT " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_HAS_SALE_LISTINGS
+    private static final String QUERY_ZIPCODE_HAS_SALES_LISTING_BY_ID = "SELECT " + Zipcodes.TABLE_NAME + '.'
+            + Zipcodes.COLUMN_NAME_HAS_SALE_LISTINGS
             + " FROM " + Zipcodes.TABLE_NAME + " WHERE " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID + " = ?";
 
-    private static final String QUERY_STATE_HAS_RENT_LISTING_BY_ID = "SELECT " + States.TABLE_NAME + '.' + States.COLUMN_NAME_HAS_RENT_LISTINGS
+    private static final String QUERY_STATE_HAS_RENT_LISTING_BY_ID = "SELECT " + States.TABLE_NAME + '.'
+            + States.COLUMN_NAME_HAS_RENT_LISTINGS
             + " FROM " + States.TABLE_NAME + " WHERE " + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID + " = ?";
 
-    private static final String QUERY_CITY_HAS_RENT_LISTING_BY_ID = "SELECT " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_HAS_RENT_LISTINGS
+    private static final String QUERY_CITY_HAS_RENT_LISTING_BY_ID = "SELECT " + Cities.TABLE_NAME + '.'
+            + Cities.COLUMN_NAME_HAS_RENT_LISTINGS
             + " FROM " + Cities.TABLE_NAME + " WHERE " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID + " = ?";
 
-    private static final String QUERY_ZIPCODE_HAS_RENT_LISTING_BY_ID = "SELECT " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_HAS_RENT_LISTINGS
+    private static final String QUERY_ZIPCODE_HAS_RENT_LISTING_BY_ID = "SELECT " + Zipcodes.TABLE_NAME + '.'
+            + Zipcodes.COLUMN_NAME_HAS_RENT_LISTINGS
             + " FROM " + Zipcodes.TABLE_NAME + " WHERE " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID + " = ?";
 
     private static final String QUERY_CITY = "SELECT * FROM " + Cities.TABLE_NAME
@@ -278,7 +340,8 @@ public class Datasource {
     private static final String QUERY_ZIPCODE_BY_NUMBER = "SELECT * FROM " + Zipcodes.TABLE_NAME
             + " WHERE " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + " = ?";
 
-    private static final String QUERY_ZIPCODE_NUMBER_BY_ID = "SELECT " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + " FROM " + Zipcodes.TABLE_NAME
+    private static final String QUERY_ZIPCODE_NUMBER_BY_ID = "SELECT " + Zipcodes.TABLE_NAME + '.'
+            + Zipcodes.COLUMN_NAME_NUMBER + " FROM " + Zipcodes.TABLE_NAME
             + " WHERE " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID + " = ?";
 
     private static final String QUERY_CITY_BY_NAME_AND_STATE_ID = "SELECT * FROM " + Cities.TABLE_NAME
@@ -290,32 +353,41 @@ public class Datasource {
             + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + " = ?";
 
     private static final String QUERY_LISTING = "SELECT * FROM " + Listings.TABLE_NAME
-            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE + " = " + Zipcodes.TABLE_NAME + '.' + Listings.COLUMN_NAME_ID
-            + " WHERE " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ADDRESS + " = ? AND " + Zipcodes.TABLE_NAME + '.' + Listings.COLUMN_NAME_ID + " = ?";
-    
-     private static final String QUERY_RENT_RATES = "SELECT * FROM " + MarketRents.TABLE_NAME
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE
+            + " = " + Zipcodes.TABLE_NAME + '.' + Listings.COLUMN_NAME_ID
+            + " WHERE " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ADDRESS + " = ? AND " + Zipcodes.TABLE_NAME
+            + '.' + Listings.COLUMN_NAME_ID + " = ?";
+
+    private static final String QUERY_RENT_RATES = "SELECT * FROM " + MarketRents.TABLE_NAME
             + " WHERE " + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_ADDRESS + " = ?";
 
     private static final String QUERY_CITIES_BY_STATE_ID = "SELECT * FROM " + Cities.TABLE_NAME
-            + " WHERE " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_STATE + " = ? ORDER BY " + Cities.COLUMN_NAME_NAME + " COLLATE NOCASE";
+            + " WHERE " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_STATE + " = ? ORDER BY "
+            + Cities.COLUMN_NAME_NAME + " COLLATE NOCASE";
 
-    private static final String QUERY_ZIP_CODES_BY_CITY_ID = "SELECT * FROM " + Zipcodes.TABLE_NAME + " WHERE " + Zipcodes.TABLE_NAME + '.'
+    private static final String QUERY_ZIP_CODES_BY_CITY_ID = "SELECT * FROM " + Zipcodes.TABLE_NAME + " WHERE "
+            + Zipcodes.TABLE_NAME + '.'
             + Zipcodes.COLUMN_NAME_CITY + " = ? ORDER BY " + Zipcodes.COLUMN_NAME_NUMBER + " COLLATE NOCASE";
 
     private static final String QUERY_LISTINGS_BY_ZIP_CODE_ID = "SELECT * FROM " + Listings.TABLE_NAME
-            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE + " = "
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE
+            + " = "
             + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID + " WHERE " + Zipcodes.TABLE_NAME + '.'
             + Zipcodes.COLUMN_NAME_ID + " = ? ORDER BY " + Listings.COLUMN_NAME_ADDRESS + " COLLATE NOCASE";
 
     private static final String QUERY_LISTINGS_BY_CITY_NAME = "SELECT * FROM " + Listings.TABLE_NAME
-            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
-            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE
+            + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
+            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY
+            + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
             + " WHERE " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_NAME
-            + " = ? ORDER BY " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE + ", " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ADDRESS + " COLLATE NOCASE";
+            + " = ? ORDER BY " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE + ", " + Listings.TABLE_NAME
+            + '.' + Listings.COLUMN_NAME_ADDRESS + " COLLATE NOCASE";
 
     private static final String QUERY_FAIR_RENTS_BY_ZIP_CODE = "SELECT " + FairRents.COLUMN_NAME_ZIP_CODE + ", "
             + FairRents.COLUMN_NAME_STUDIO + ", "
-            + FairRents.COLUMN_NAME_ONE_BED + ", " + FairRents.COLUMN_NAME_TWO_BED + ", " + FairRents.COLUMN_NAME_THREE_BED + ", "
+            + FairRents.COLUMN_NAME_ONE_BED + ", " + FairRents.COLUMN_NAME_TWO_BED + ", "
+            + FairRents.COLUMN_NAME_THREE_BED + ", "
             + FairRents.COLUMN_NAME_FOUR_BED + " FROM " + FairRents.TABLE_NAME
             + " WHERE " + FairRents.TABLE_NAME + '.' + FairRents.COLUMN_NAME_ZIP_CODE + " = ?";
 
@@ -331,7 +403,7 @@ public class Datasource {
 
     /* QUERY TABLES FOR TABLE VIEW GUI */
     private static final String QUERY_STATES_FOR_TABLE_VIEW = "SELECT * FROM " + States.TABLE_NAME
-            + " WHERE " + States.TABLE_NAME + '.' + States.COLUMN_NAME_HAS_SALES_LISTINGS + " =1 ORDER BY " 
+            + " WHERE " + States.TABLE_NAME + '.' + States.COLUMN_NAME_HAS_SALES_LISTINGS + " =1 ORDER BY "
             + States.TABLE_NAME + '.' + States.COLUMN_NAME_NAME + " ASC";
 
     private static final String QUERY_CITIES_FOR_STATE_ID_AND_TABLE_VIEW = "SELECT * FROM " + Cities.TABLE_NAME
@@ -343,7 +415,6 @@ public class Datasource {
             + " WHERE " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + " = ? AND "
             + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_HAS_SALE_LISTINGS + " =1 ORDER BY "
             + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + " ASC";
-
 
     /* UPDATING DATA FROM TABLES */
     private static final String UPDATE_LISTING_PRICE_BY_ADDRESS = "UPDATE " + Listings.TABLE_NAME + " SET "
@@ -366,14 +437,15 @@ public class Datasource {
 
     private static final String UPDATE_ZIPCODE_HAS_RENT_LISTINGS_BY_ID = "UPDATE " + Zipcodes.TABLE_NAME + " SET "
             + Zipcodes.COLUMN_NAME_HAS_RENT_LISTINGS + " = 1 WHERE " + Zipcodes.COLUMN_NAME_ID + " = ?";
-    
+
     private static final String UPDATE_STATES_AFTER_CLEARING_MARKET_RENT_DBA = "UPDATE " + States.TABLE_NAME + " SET "
             + States.COLUMN_NAME_HAS_RENT_LISTINGS + " = 0";
-    
+
     private static final String UPDATE_CITIES_AFTER_CLEARING_MARKET_RENT_DBA = "UPDATE " + Cities.TABLE_NAME + " SET "
             + Cities.COLUMN_NAME_HAS_RENT_LISTINGS + " = 0";
-    
-    private static final String UPDATE_ZIPCODES_AFTER_CLEARING_MARKET_RENT_DBA = "UPDATE " + Zipcodes.TABLE_NAME + " SET "
+
+    private static final String UPDATE_ZIPCODES_AFTER_CLEARING_MARKET_RENT_DBA = "UPDATE " + Zipcodes.TABLE_NAME
+            + " SET "
             + Zipcodes.COLUMN_NAME_HAS_RENT_LISTINGS + " = 0";
 
     /* DELETE TABLE'S DATA */
@@ -402,31 +474,39 @@ public class Datasource {
     private static final String DELETE_LISTING_BY_ID = "DELETE FROM " + Listings.TABLE_NAME
             + " WHERE " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ID + " = ?";
 
-
-    private static final String DELETE_LISTINGS_BY_ZIPCODE_NUMBER_AND_ZIPCODE_CITY = "DELETE FROM " + Listings.TABLE_NAME
+    private static final String DELETE_LISTINGS_BY_ZIPCODE_NUMBER_AND_ZIPCODE_CITY = "DELETE FROM "
+            + Listings.TABLE_NAME
             + " WHERE " + Listings.COLUMN_NAME_ID + " IN ("
             + " SELECT " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ID + " FROM " + Listings.TABLE_NAME
-            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
-            + " WHERE " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + " = ? AND " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + "=?);";
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE
+            + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
+            + " WHERE " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + " = ? AND " + Zipcodes.TABLE_NAME
+            + '.' + Zipcodes.COLUMN_NAME_CITY + "=?);";
 
-    private static final String DELETE_ZIPCODES_BY_ZIPCODE_NUMBER_AND_ZIPCODE_CITY = "DELETE FROM " + Zipcodes.TABLE_NAME
+    private static final String DELETE_ZIPCODES_BY_ZIPCODE_NUMBER_AND_ZIPCODE_CITY = "DELETE FROM "
+            + Zipcodes.TABLE_NAME
             + " WHERE " + Zipcodes.COLUMN_NAME_ID + " IN ("
             + " SELECT " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID + " FROM " + Zipcodes.TABLE_NAME
-            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
-            + " WHERE " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + " = ? AND " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + "=?);";
+            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY
+            + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
+            + " WHERE " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + " = ? AND " + Zipcodes.TABLE_NAME
+            + '.' + Zipcodes.COLUMN_NAME_CITY + "=?);";
 
     /* DELETING listings, zipcodes, and city by CITIES.NAME */
     private static final String DELETE_LISTINGS_BY_CITY_NAME = "DELETE FROM " + Listings.TABLE_NAME
             + " WHERE " + Listings.COLUMN_NAME_ID + " IN ("
             + " SELECT " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ID + " FROM " + Listings.TABLE_NAME
-            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
-            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE
+            + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
+            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY
+            + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
             + " WHERE " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_NAME + " = ?);";
 
     private static final String DELETE_ZIPCODES_BY_CITY_NAME = "DELETE FROM " + Zipcodes.TABLE_NAME
             + " WHERE " + Zipcodes.COLUMN_NAME_ID + " IN ("
             + " SELECT " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID + " FROM " + Zipcodes.TABLE_NAME
-            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
+            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY
+            + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
             + " WHERE " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_NAME + " = ?);";
 
     private static final String DELETE_CITY_BY_NAME = "DELETE FROM " + Cities.TABLE_NAME
@@ -438,22 +518,28 @@ public class Datasource {
     private static final String DELETE_LISTINGS_BY_STATE_NAME = "DELETE FROM " + Listings.TABLE_NAME
             + " WHERE " + Listings.COLUMN_NAME_ID + " IN ("
             + " SELECT " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ID + " FROM " + Listings.TABLE_NAME
-            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
-            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
-            + " INNER JOIN " + States.TABLE_NAME + " ON " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_STATE + " + " + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE
+            + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
+            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY
+            + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
+            + " INNER JOIN " + States.TABLE_NAME + " ON " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_STATE + " + "
+            + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID
             + " WHERE " + States.TABLE_NAME + '.' + States.COLUMN_NAME_NAME + " = ?);";
 
     private static final String DELETE_ZIPCODES_BY_STATE_NAME = "DELETE FROM " + Zipcodes.TABLE_NAME
             + " WHERE " + Zipcodes.COLUMN_NAME_ID + " IN ("
             + " SELECT " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID + " FROM " + Zipcodes.TABLE_NAME
-            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
-            + " INNER JOIN " + States.TABLE_NAME + " ON " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_STATE + " + " + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID
+            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY
+            + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
+            + " INNER JOIN " + States.TABLE_NAME + " ON " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_STATE + " + "
+            + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID
             + " WHERE " + States.TABLE_NAME + '.' + States.COLUMN_NAME_NAME + " = ?);";
 
     private static final String DELETE_CITY_BY_STATE_NAME = "DELETE FROM " + Cities.TABLE_NAME
             + " WHERE " + Cities.COLUMN_NAME_ID + " IN ("
             + " SELECT " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID + " FROM " + Cities.TABLE_NAME
-            + " INNER JOIN " + States.TABLE_NAME + " ON " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_STATE + " + " + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID
+            + " INNER JOIN " + States.TABLE_NAME + " ON " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_STATE + " + "
+            + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID
             + " WHERE " + States.TABLE_NAME + '.' + States.COLUMN_NAME_NAME + " = ?);";
 
     private static final String DELETE_STATE_BY_NAME = "DELETE FROM " + States.TABLE_NAME
@@ -462,7 +548,7 @@ public class Datasource {
             + " WHERE " + States.TABLE_NAME + '.' + States.COLUMN_NAME_NAME + " = ?);";
 
     /*
-    ADD QUERY TO DELETE LISTINGS, ZIPCODE, CITIES, AND STATE FROM A CONTEXT MENU
+     * ADD QUERY TO DELETE LISTINGS, ZIPCODE, CITIES, AND STATE FROM A CONTEXT MENU
      */
     /**
      * SELECT AVG(listings.listPrice) FROM listings WHERE listings.numBeds =3
@@ -470,7 +556,8 @@ public class Datasource {
      */
     private static final String GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_ZIPCODE = "SELECT AVG("
             + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_LIST_PRICE + ") FROM " + Listings.TABLE_NAME
-            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE + " = "
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE
+            + " = "
             + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
             + " WHERE " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_NUM_BED + " = ? AND "
             + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_NUM_BATH + " = ? AND "
@@ -478,17 +565,32 @@ public class Datasource {
 
     private static final String GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_CITY = "SELECT AVG("
             + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_LIST_PRICE + ") FROM " + Listings.TABLE_NAME
-            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE + " = "
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE
+            + " = "
             + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
-            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + " = "
+            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY
+            + " = "
             + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
             + " WHERE " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_NUM_BED + " = ? AND "
             + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_NUM_BATH + " = ? AND "
             + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_NAME + " = ?";
 
+    private static final String GET_AVERAGE_LISTINGS_PRICE_FOR_STATE_BY_ID_BEDS_AND_BATHS = "SELECT AVG("
+            + Listings.COLUMN_NAME_LIST_PRICE + ") FROM " + Listings.TABLE_NAME
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE
+            + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
+            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY
+            + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
+            + " INNER JOIN " + States.TABLE_NAME + " ON " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_STATE + " = "
+            + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID
+            + " WHERE " + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID + " = ? AND " + Listings.TABLE_NAME + '.'
+            + Listings.COLUMN_NAME_NUM_BED + " = ? AND "
+            + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_NUM_BATH + " = ?";
+
     private static final String GET_AVERAGE_RENT_BY_ZIPCODE_BEDS_BATHS = "SELECT AVG("
             + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_RENT + ") FROM " + MarketRents.TABLE_NAME
-            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_ZIP_CODE + " = "
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + MarketRents.TABLE_NAME + '.'
+            + MarketRents.COLUMN_NAME_ZIP_CODE + " = "
             + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
             + " WHERE " + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_NUM_BED + " = ? AND "
             + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_NUM_BATH + " = ? AND "
@@ -496,61 +598,92 @@ public class Datasource {
 
     private static final String GET_AVERAGE_RENT_BY_CITY_BEDS_BATHS = "SELECT AVG("
             + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_RENT + ") FROM " + MarketRents.TABLE_NAME
-            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_ZIP_CODE + " = "
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + MarketRents.TABLE_NAME + '.'
+            + MarketRents.COLUMN_NAME_ZIP_CODE + " = "
             + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
-            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + " = "
+            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY
+            + " = "
             + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
             + " WHERE " + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_NUM_BED + " = ? AND "
             + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_NUM_BATH + " = ? AND "
             + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_NAME + " = ?";
 
+    private static final String GET_AVERAGE_RENT_FOR_STATE_BY_ID_BEDS_AND_BATHS = "SELECT AVG("
+            + MarketRents.COLUMN_NAME_RENT + ") FROM " + MarketRents.TABLE_NAME
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + MarketRents.TABLE_NAME + '.'
+            + MarketRents.COLUMN_NAME_ZIP_CODE + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
+            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY
+            + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
+            + " INNER JOIN " + States.TABLE_NAME + " ON " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_STATE + " = "
+            + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID
+            + " WHERE " + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID + " = ? AND " + MarketRents.TABLE_NAME + '.'
+            + MarketRents.COLUMN_NAME_NUM_BED + " = ? AND "
+            + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_NUM_BATH + " = ?";
+
     /*
-    GET AVERAGE RENT PRICE GIVEN CITY NAME, NUM BEDS, AND BATHS
-    
-    SELECT * FROM listings
-    INNER JOIN zipcodes ON listings.zipcode = zipcodes._id
-    INNER JOIN cities ON zipcodes.city = cities._id
-    INNER JOIN states ON cities.state = states._id
-    WHERE listings.numBeds = ? AND listings.numBaths = ? AND cities.name = ?
-    AND states.name = "FL" AND listings.listPrice <= (SELECT AVG(listings.listPrice) FROM listings
-    INNER JOIN zipcodes ON listings.zipcode = zipcodes._id
-    INNER JOIN cities ON zipcodes.city = cities._id
-    INNER JOIN states ON cities.state = states._id
-    WHERE listings.numBeds = ? AND listings.numBaths = ? AND cities.name = ? AND states.name = ? );
-    
-    
-    GET LISTING THAT ARE LESS OR EQUAL TO ITS UNDERWRITTEN VALUE
-    
-    SELECT * FROM listings
-    INNER JOIN zipcodes ON listings.zipcode = zipcodes._id
-    INNER JOIN cities ON zipcodes.city = cities._id
-    INNER JOIN states ON cities.state = states._id
-    WHERE listings.numBeds = ? AND listings.numBaths = ? AND cities.name = ?
-    AND listings.listPrice <= ((((SELECT AVG(market_rents.rent) FROM market_rents
-    INNER JOIN zipcodes ON market_rents.zipcode = zipcodes._id
-    INNER JOIN cities ON zipcodes.city = cities._id
-    WHERE market_rents.numBeds = ? AND market_rents.numBaths = ?
-    AND cities.name = ?;) * 12) * 0.5 (less expensess estimated as 50% of the rent revenues))/ CAP_RATE);
+     * GET AVERAGE RENT PRICE GIVEN CITY NAME, NUM BEDS, AND BATHS
+     * 
+     * SELECT * FROM listings
+     * INNER JOIN zipcodes ON listings.zipcode = zipcodes._id
+     * INNER JOIN cities ON zipcodes.city = cities._id
+     * INNER JOIN states ON cities.state = states._id
+     * WHERE listings.numBeds = ? AND listings.numBaths = ? AND cities.name = ?
+     * AND states.name = "FL" AND listings.listPrice <= (SELECT
+     * AVG(listings.listPrice) FROM listings
+     * INNER JOIN zipcodes ON listings.zipcode = zipcodes._id
+     * INNER JOIN cities ON zipcodes.city = cities._id
+     * INNER JOIN states ON cities.state = states._id
+     * WHERE listings.numBeds = ? AND listings.numBaths = ? AND cities.name = ? AND
+     * states.name = ? );
+     * 
+     * 
+     * GET LISTING THAT ARE LESS OR EQUAL TO ITS UNDERWRITTEN VALUE
+     * 
+     * SELECT * FROM listings
+     * INNER JOIN zipcodes ON listings.zipcode = zipcodes._id
+     * INNER JOIN cities ON zipcodes.city = cities._id
+     * INNER JOIN states ON cities.state = states._id
+     * WHERE listings.numBeds = ? AND listings.numBaths = ? AND cities.name = ?
+     * AND listings.listPrice <= ((((SELECT AVG(market_rents.rent) FROM market_rents
+     * INNER JOIN zipcodes ON market_rents.zipcode = zipcodes._id
+     * INNER JOIN cities ON zipcodes.city = cities._id
+     * WHERE market_rents.numBeds = ? AND market_rents.numBaths = ?
+     * AND cities.name = ?;) * 12) * 0.5 (less expensess estimated as 50% of the
+     * rent revenues))/ CAP_RATE);
      */
-    private static final String GET_LISTINGS_BY_CITY_WITH_LIST_PRICE_LESS_EQUAL_TO_UNDERWRITTEN_VALUE = "SELECT * FROM " + Listings.TABLE_NAME
-            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
-            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
-            + " INNER JOIN " + States.TABLE_NAME + " ON " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_STATE + " = " + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID
-            + " WHERE " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_NUM_BED + " = ? AND " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_NUM_BATH + " = ? AND " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_NAME
+    private static final String GET_LISTINGS_BY_CITY_WITH_LIST_PRICE_LESS_EQUAL_TO_UNDERWRITTEN_VALUE = "SELECT * FROM "
+            + Listings.TABLE_NAME
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE
+            + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
+            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY
+            + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
+            + " INNER JOIN " + States.TABLE_NAME + " ON " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_STATE + " = "
+            + States.TABLE_NAME + '.' + States.COLUMN_NAME_ID
+            + " WHERE " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_NUM_BED + " = ? AND " + Listings.TABLE_NAME
+            + '.' + Listings.COLUMN_NAME_NUM_BATH + " = ? AND " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_NAME
             + " = ? AND " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_LIST_PRICE + " <= "
-            + "((((SELECT AVG(" + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_RENT + ") FROM " + MarketRents.TABLE_NAME
-            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_ZIP_CODE + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
-            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
+            + "((((SELECT AVG(" + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_RENT + ") FROM "
+            + MarketRents.TABLE_NAME
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + MarketRents.TABLE_NAME + '.'
+            + MarketRents.COLUMN_NAME_ZIP_CODE + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
+            + " INNER JOIN " + Cities.TABLE_NAME + " ON " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_CITY
+            + " = " + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_ID
             + " WHERE " + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_NUM_BED + " = ? AND "
             + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_NUM_BATH + " = ? AND "
             + Cities.TABLE_NAME + '.' + Cities.COLUMN_NAME_NAME + " = ?) * 12) * 0.5)/ ?)";
 
-    private static final String GET_LISTINGS_BY_ZIPCODE_WITH_LIST_PRICE_LESS_EQUAL_TO_UNDERWRITTEN_VALUE = "SELECT * FROM " + Listings.TABLE_NAME
-            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
-            + " WHERE " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_NUM_BED + " = ? AND " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_NUM_BATH + " = ? AND " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER
+    private static final String GET_LISTINGS_BY_ZIPCODE_WITH_LIST_PRICE_LESS_EQUAL_TO_UNDERWRITTEN_VALUE = "SELECT * FROM "
+            + Listings.TABLE_NAME
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_ZIP_CODE
+            + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
+            + " WHERE " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_NUM_BED + " = ? AND " + Listings.TABLE_NAME
+            + '.' + Listings.COLUMN_NAME_NUM_BATH + " = ? AND " + Zipcodes.TABLE_NAME + '.'
+            + Zipcodes.COLUMN_NAME_NUMBER
             + " = ? AND " + Listings.TABLE_NAME + '.' + Listings.COLUMN_NAME_LIST_PRICE + " <= "
-            + "((((SELECT AVG(" + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_RENT + ") FROM " + MarketRents.TABLE_NAME
-            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_ZIP_CODE + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
+            + "((((SELECT AVG(" + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_RENT + ") FROM "
+            + MarketRents.TABLE_NAME
+            + " INNER JOIN " + Zipcodes.TABLE_NAME + " ON " + MarketRents.TABLE_NAME + '.'
+            + MarketRents.COLUMN_NAME_ZIP_CODE + " = " + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_ID
             + " WHERE " + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_NUM_BED + " = ? AND "
             + MarketRents.TABLE_NAME + '.' + MarketRents.COLUMN_NAME_NUM_BATH + " = ? AND "
             + Zipcodes.TABLE_NAME + '.' + Zipcodes.COLUMN_NAME_NUMBER + " = ?) * 12) * 0.5)/ ?)";
@@ -624,10 +757,12 @@ public class Datasource {
     private PreparedStatement deleteZipcodesByStateName;
     private PreparedStatement deleteCityByStateName;
     private PreparedStatement deleteStateByName;
-    private PreparedStatement getAverageListPriceByBedsBathsZipcode;
-    private PreparedStatement getAverageListPriceByCityBedsBaths;
-    private PreparedStatement getAverageRentByZipcodeBedsBaths;
-    private PreparedStatement getAverageRentByCityBedsBaths;
+    private PreparedStatement getAverageListPriceByBedsBathsAndZipcode;
+    private PreparedStatement getAverageListPriceByBedsBathsAndCity;
+    private PreparedStatement getAverageListPriceByStateIdBedsAndBaths;
+    private PreparedStatement getAverageRentByBedsBathsAndZipcode;
+    private PreparedStatement getAverageRentByBedsBathsAndCity;
+    private PreparedStatement getAverageRentByStateIdBedsAndBaths;
     private PreparedStatement getFairMarketRentByZipcode;
     private PreparedStatement getListingByZipcodeAndUnderWrittenValue;
     private PreparedStatement getListingByCityAndUnderWrittenValue;
@@ -637,26 +772,26 @@ public class Datasource {
     public static Datasource getInstance() {
         return instance;
     }
-    
+
     private static String CONNECTION_STRING;
-    
+
     private void resetDBAConnection() {
         Datasource.getInstance().close();
-        //Resetting dba connection to unloak dba
+        // Resetting dba connection to unloak dba
         Datasource.getInstance().open(CONNECTION_STRING);
     }
 
     public boolean open(String CONNECTION_STRING) {
         try {
             if (CONNECTION_STRING == null) {
-               return false;
+                return false;
             } else {
                 Datasource.CONNECTION_STRING = CONNECTION_STRING;
                 conn = DriverManager.getConnection("jdbc:sqlite:" + CONNECTION_STRING);
             }
             statement = conn.createStatement();
 
-            //CREATING TABLES LISTINGS, ZIPCODES, CIIIES, STATES, MARKET_RENT IF NOT EXITS
+            // CREATING TABLES LISTINGS, ZIPCODES, CIIIES, STATES, MARKET_RENT IF NOT EXITS
             statement.execute("CREATE TABLE IF NOT EXISTS " + Listings.TABLE_NAME + " ("
                     + Listings.COLUMN_NAME_ID + " INTEGER PRIMARY KEY, "
                     + Listings.COLUMN_NAME_ADDRESS + " TEXT NOT NULL, "
@@ -721,8 +856,9 @@ public class Datasource {
 
             createStateForListingView();
 
-            //PREPARING STATEMENT WHEN STARTING THE APP INSTEAD OF COMPILING ON RUNNING TIME EACH SQL QUERY
-            //ConsoleLogger.getInstance().printMessage(INSERT_FAIR_RENT);
+            // PREPARING STATEMENT WHEN STARTING THE APP INSTEAD OF COMPILING ON RUNNING
+            // TIME EACH SQL QUERY
+            // ConsoleLogger.getInstance().printMessage(INSERT_FAIR_RENT);
             queryCityForListingView = conn.prepareStatement(QUERY_CITY_FOR_LISTING_VIEW);
             insertIntoStates = conn.prepareStatement(INSERT_STATE, Statement.RETURN_GENERATED_KEYS);
             insertIntoCities = conn.prepareStatement(INSERT_CITY, Statement.RETURN_GENERATED_KEYS);
@@ -737,10 +873,15 @@ public class Datasource {
             queryZipcodeHasSalesListingsById = conn.prepareStatement(QUERY_ZIPCODE_HAS_SALES_LISTING_BY_ID);
             queryStateHasRentListingsById = conn.prepareStatement(QUERY_STATE_HAS_RENT_LISTING_BY_ID);
             queryCityHasRentListingsById = conn.prepareStatement(QUERY_CITY_HAS_RENT_LISTING_BY_ID);
-            queryZipcodeHasRentListingsById = conn.prepareStatement(QUERY_ZIPCODE_HAS_RENT_LISTING_BY_ID);           
+            queryZipcodeHasRentListingsById = conn.prepareStatement(QUERY_ZIPCODE_HAS_RENT_LISTING_BY_ID);
             queryZipCodeByNumber = conn.prepareStatement(QUERY_ZIPCODE_BY_NUMBER);
             queryZipCodeNumberById = conn.prepareStatement(QUERY_ZIPCODE_NUMBER_BY_ID);
-            queryCityByNameAndStateId = conn.prepareStatement(QUERY_CITY_BY_NAME_AND_STATE_ID); //THERE CAN BE SEVERAL CITIES WITH THE SAME NAME ACROSS DIFERENET STATES; THEREFORE, WE NEED TO QUERY CITY BY NAME AND STATE ID
+            queryCityByNameAndStateId = conn.prepareStatement(QUERY_CITY_BY_NAME_AND_STATE_ID); // THERE CAN BE SEVERAL
+                                                                                                // CITIES WITH THE SAME
+                                                                                                // NAME ACROSS DIFERENET
+                                                                                                // STATES; THEREFORE, WE
+                                                                                                // NEED TO QUERY CITY BY
+                                                                                                // NAME AND STATE ID
             queryZipCodeByNumberAndCityId = conn.prepareStatement(QUERY_ZIPCODE_BY_ZIPCODE_AND_CITY_ID);
             queryZipCodeByCityName = conn.prepareStatement(QUERY_ZIP_CODE_BY_CITY_START);
             queryListing = conn.prepareStatement(QUERY_LISTING);
@@ -764,9 +905,12 @@ public class Datasource {
             updateStateHasRentListingsById = conn.prepareStatement(UPDATE_STATE_HAS_RENT_LISTINGS_BY_ID);
             updateCityHasRentListingsById = conn.prepareStatement(UPDATE_CITY_HAS_RENT_LISTINGS_BY_ID);
             updateZipcodeHasRentListingsById = conn.prepareStatement(UPDATE_ZIPCODE_HAS_RENT_LISTINGS_BY_ID);
-            updateStatesAfterClearingMarketRentsDba = conn.prepareStatement(UPDATE_STATES_AFTER_CLEARING_MARKET_RENT_DBA);
-            updateCitiesAfterClearingMarketRentsDba = conn.prepareStatement(UPDATE_CITIES_AFTER_CLEARING_MARKET_RENT_DBA);
-            updateZipcodesAfterClearingMarketRentsDba = conn.prepareStatement(UPDATE_ZIPCODES_AFTER_CLEARING_MARKET_RENT_DBA);
+            updateStatesAfterClearingMarketRentsDba = conn
+                    .prepareStatement(UPDATE_STATES_AFTER_CLEARING_MARKET_RENT_DBA);
+            updateCitiesAfterClearingMarketRentsDba = conn
+                    .prepareStatement(UPDATE_CITIES_AFTER_CLEARING_MARKET_RENT_DBA);
+            updateZipcodesAfterClearingMarketRentsDba = conn
+                    .prepareStatement(UPDATE_ZIPCODES_AFTER_CLEARING_MARKET_RENT_DBA);
             deleteListingsTableData = conn.prepareStatement(DELETE_LISTINGS_TABLE_DATA);
             deleteZipcodesTableData = conn.prepareStatement(DELETE_ZIPCODES_TABLE_DATA);
             deleteCitiesTableData = conn.prepareStatement(DELETE_CITIES_TABLE_DATA);
@@ -775,8 +919,10 @@ public class Datasource {
             deleteCityById = conn.prepareStatement(DELETE_CITY_BY_ID);
             deleteZipcodeById = conn.prepareStatement(DELETE_ZIPCODE_BY_ID);
             deleteListingById = conn.prepareStatement(DELETE_LISTING_BY_ID);
-            deleteListingsByZipcodeNumberAndZipcodeCity = conn.prepareStatement(DELETE_LISTINGS_BY_ZIPCODE_NUMBER_AND_ZIPCODE_CITY);
-            deleteZipcodeByZipcodeNumberAndZipcodeCity = conn.prepareStatement(DELETE_ZIPCODES_BY_ZIPCODE_NUMBER_AND_ZIPCODE_CITY);
+            deleteListingsByZipcodeNumberAndZipcodeCity = conn
+                    .prepareStatement(DELETE_LISTINGS_BY_ZIPCODE_NUMBER_AND_ZIPCODE_CITY);
+            deleteZipcodeByZipcodeNumberAndZipcodeCity = conn
+                    .prepareStatement(DELETE_ZIPCODES_BY_ZIPCODE_NUMBER_AND_ZIPCODE_CITY);
             deleteListingByCityName = conn.prepareStatement(DELETE_LISTINGS_BY_CITY_NAME);
             deleteZipcodesByCityName = conn.prepareStatement(DELETE_ZIPCODES_BY_CITY_NAME);
             deleteCityByName = conn.prepareStatement(DELETE_CITY_BY_NAME);
@@ -786,23 +932,30 @@ public class Datasource {
             deleteStateByName = conn.prepareStatement(DELETE_STATE_BY_NAME);
             deleteMarketRentTableData = conn.prepareStatement(DELETE_MARKET_RENT_TABLE_DATA);
             deleteFairMarketRentTableData = conn.prepareStatement(DELETE_FAIR_RENT_TABLE_DATA);
-            getAverageListPriceByBedsBathsZipcode = conn.prepareStatement(GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_ZIPCODE);
-            getAverageListPriceByCityBedsBaths = conn.prepareStatement(GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_CITY);
-            getAverageRentByZipcodeBedsBaths = conn.prepareStatement(GET_AVERAGE_RENT_BY_ZIPCODE_BEDS_BATHS);
-            getAverageRentByCityBedsBaths = conn.prepareStatement(GET_AVERAGE_RENT_BY_CITY_BEDS_BATHS);
+            getAverageListPriceByBedsBathsAndZipcode = conn
+                    .prepareStatement(GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_ZIPCODE);
+            getAverageListPriceByBedsBathsAndCity = conn
+                    .prepareStatement(GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_CITY);
+            getAverageListPriceByStateIdBedsAndBaths = conn.prepareStatement(GET_AVERAGE_LISTINGS_PRICE_FOR_STATE_BY_ID_BEDS_AND_BATHS);
+            getAverageRentByBedsBathsAndZipcode = conn.prepareStatement(GET_AVERAGE_RENT_BY_ZIPCODE_BEDS_BATHS);
+            getAverageRentByBedsBathsAndCity = conn.prepareStatement(GET_AVERAGE_RENT_BY_CITY_BEDS_BATHS);
+            getAverageRentByStateIdBedsAndBaths = conn.prepareStatement(GET_AVERAGE_RENT_FOR_STATE_BY_ID_BEDS_AND_BATHS);
             getFairMarketRentByZipcode = conn.prepareStatement(QUERY_FAIR_RENTS_BY_ZIP_CODE);
-            getListingByZipcodeAndUnderWrittenValue = conn.prepareStatement(GET_LISTINGS_BY_ZIPCODE_WITH_LIST_PRICE_LESS_EQUAL_TO_UNDERWRITTEN_VALUE);
-            getListingByCityAndUnderWrittenValue = conn.prepareStatement(GET_LISTINGS_BY_CITY_WITH_LIST_PRICE_LESS_EQUAL_TO_UNDERWRITTEN_VALUE);
+            getListingByZipcodeAndUnderWrittenValue = conn
+                    .prepareStatement(GET_LISTINGS_BY_ZIPCODE_WITH_LIST_PRICE_LESS_EQUAL_TO_UNDERWRITTEN_VALUE);
+            getListingByCityAndUnderWrittenValue = conn
+                    .prepareStatement(GET_LISTINGS_BY_CITY_WITH_LIST_PRICE_LESS_EQUAL_TO_UNDERWRITTEN_VALUE);
             return true;
         } catch (SQLException e) {
-            //ConsoleLogger.getInstance().printErrorMessage("Coudn't connect to the database: ", e);
+            // ConsoleLogger.getInstance().printErrorMessage("Coudn't connect to the
+            // database: ", e);
             System.err.println("Coudn't connect to the database: " + e.getMessage());
             return false;
         }
     }
 
     public void close() {
-        try {  //ORDER IS IMPORTANT!
+        try { // ORDER IS IMPORTANT!
             if (queryCityForListingView != null) {
                 queryCityForListingView.close();
             }
@@ -989,17 +1142,23 @@ public class Datasource {
             if (deleteStateByName != null) {
                 deleteStateByName.close();
             }
-            if (getAverageListPriceByBedsBathsZipcode != null) {
-                getAverageListPriceByBedsBathsZipcode.close();
+            if (getAverageListPriceByBedsBathsAndZipcode != null) {
+                getAverageListPriceByBedsBathsAndZipcode.close();
             }
-            if (getAverageListPriceByCityBedsBaths != null) {
-                getAverageListPriceByCityBedsBaths.close();
+            if (getAverageListPriceByBedsBathsAndCity != null) {
+                getAverageListPriceByBedsBathsAndCity.close();
             }
-            if (getAverageRentByZipcodeBedsBaths != null) {
-                getAverageRentByZipcodeBedsBaths.close();
+            if (getAverageListPriceByStateIdBedsAndBaths != null) {
+                getAverageListPriceByStateIdBedsAndBaths.close();
             }
-            if (getAverageRentByCityBedsBaths != null) {
-                getAverageRentByCityBedsBaths.close();
+            if (getAverageRentByBedsBathsAndZipcode != null) {
+                getAverageRentByBedsBathsAndZipcode.close();
+            }
+            if (getAverageRentByBedsBathsAndCity != null) {
+                getAverageRentByBedsBathsAndCity.close();
+            }
+            if (getAverageRentByStateIdBedsAndBaths != null) {
+                getAverageRentByStateIdBedsAndBaths.close();
             }
             if (getFairMarketRentByZipcode != null) {
                 getFairMarketRentByZipcode.close();
@@ -1027,16 +1186,17 @@ public class Datasource {
      * @param numBaths
      * @param zipcode
      * @return averagelistPrice considering the parameters (numBeds, numBaths,
-     * zipcode)
+     *         zipcode)
      * @throws Exception
      */
-    public double findAverageListPriceByZipcodeBedsBaths(int zipcode, int numBeds, double numBaths) throws Exception {
-        //ConsoleLogger.getInstance().printMessage("DEBUGGER: " + GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_ZIPCODE);
-        getAverageListPriceByBedsBathsZipcode.setInt(1, numBeds);
-        getAverageListPriceByBedsBathsZipcode.setDouble(2, numBaths);
-        getAverageListPriceByBedsBathsZipcode.setInt(3, zipcode);
+    public double findAverageListPriceByBedsBathsAndZipcode(int zipcode, int numBeds, double numBaths) throws Exception {
+        // ConsoleLogger.getInstance().printMessage("DEBUGGER: " +
+        // GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_ZIPCODE);
+        getAverageListPriceByBedsBathsAndZipcode.setInt(1, numBeds);
+        getAverageListPriceByBedsBathsAndZipcode.setDouble(2, numBaths);
+        getAverageListPriceByBedsBathsAndZipcode.setInt(3, zipcode);
 
-        ResultSet resultSet = getAverageListPriceByBedsBathsZipcode.executeQuery();
+        ResultSet resultSet = getAverageListPriceByBedsBathsAndZipcode.executeQuery();
         if (resultSet.next()) {
             return resultSet.getDouble(1);
         } else {
@@ -1044,12 +1204,13 @@ public class Datasource {
         }
     }
 
-    public double findAverageListPriceByCityBedsBaths(String city, int numBeds, double numBaths) throws Exception {
-        //ConsoleLogger.getInstance().printMessage("DEBUGGER: " + GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_ZIPCODE);
-        getAverageListPriceByCityBedsBaths.setInt(1, numBeds);
-        getAverageListPriceByCityBedsBaths.setDouble(2, numBaths);
-        getAverageListPriceByCityBedsBaths.setString(3, city);
-        ResultSet resultSet = getAverageListPriceByCityBedsBaths.executeQuery();
+    public double findAverageListPriceByBedsBathsAndCity(String city, int numBeds, double numBaths) throws Exception {
+        // ConsoleLogger.getInstance().printMessage("DEBUGGER: " +
+        // GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_ZIPCODE);
+        getAverageListPriceByBedsBathsAndCity.setInt(1, numBeds);
+        getAverageListPriceByBedsBathsAndCity.setDouble(2, numBaths);
+        getAverageListPriceByBedsBathsAndCity.setString(3, city);
+        ResultSet resultSet = getAverageListPriceByBedsBathsAndCity.executeQuery();
         if (resultSet.next()) {
             return resultSet.getDouble(1);
         } else {
@@ -1057,12 +1218,13 @@ public class Datasource {
         }
     }
 
-    public double findAverageRentByZipcodeBedsBaths(int zipcode, int numBeds, double numBaths) throws Exception {
-        //ConsoleLogger.getInstance().printMessage("DEBUGGER: " + GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_ZIPCODE);
-        getAverageRentByZipcodeBedsBaths.setInt(1, numBeds);
-        getAverageRentByZipcodeBedsBaths.setDouble(2, numBaths);
-        getAverageRentByZipcodeBedsBaths.setInt(3, zipcode);
-        ResultSet resultSet = getAverageRentByZipcodeBedsBaths.executeQuery();
+    public double findAverageListPriceByStateIdBedsAndBaths(int id, int numBeds, double numBaths) throws Exception {
+        //ConsoleLogger.getInstance().printMessage("DEBUGGER: " + GET_AVERAGE_LISTINGS_FOR_STATE_BY_ID_BEDS_AND_BATHS);
+        //ConsoleLogger.getInstance().printMessage("id=" + id + " numBeds=" + numBeds + " numBaths=" + numBaths);
+        getAverageListPriceByStateIdBedsAndBaths.setInt(1, id);
+        getAverageListPriceByStateIdBedsAndBaths.setInt(2, numBeds);
+        getAverageListPriceByStateIdBedsAndBaths.setDouble(3, numBaths);
+        ResultSet resultSet = getAverageListPriceByStateIdBedsAndBaths.executeQuery();
         if (resultSet.next()) {
             return resultSet.getDouble(1);
         } else {
@@ -1070,12 +1232,41 @@ public class Datasource {
         }
     }
 
-    public double findAverageRentByCityBedsBaths(String city, int numBeds, double numBaths) throws Exception {
-        //ConsoleLogger.getInstance().printMessage("DEBUGGER: " + GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_ZIPCODE);
-        getAverageRentByCityBedsBaths.setInt(1, numBeds);
-        getAverageRentByCityBedsBaths.setDouble(2, numBaths);
-        getAverageRentByCityBedsBaths.setString(3, city);
-        ResultSet resultSet = getAverageRentByCityBedsBaths.executeQuery();
+    public double findAverageRentByBedsBathsAndZipcode(int zipcode, int numBeds, double numBaths) throws Exception {
+        // ConsoleLogger.getInstance().printMessage("DEBUGGER: " +
+        // GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_ZIPCODE);
+        getAverageRentByBedsBathsAndZipcode.setInt(1, numBeds);
+        getAverageRentByBedsBathsAndZipcode.setDouble(2, numBaths);
+        getAverageRentByBedsBathsAndZipcode.setInt(3, zipcode);
+        ResultSet resultSet = getAverageRentByBedsBathsAndZipcode.executeQuery();
+        if (resultSet.next()) {
+            return resultSet.getDouble(1);
+        } else {
+            return -1;
+        }
+    }
+
+    public double findAverageRentByBedsBathsAndCity(String city, int numBeds, double numBaths) throws Exception {
+        // ConsoleLogger.getInstance().printMessage("DEBUGGER: " +
+        // GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_ZIPCODE);
+        getAverageRentByBedsBathsAndCity.setInt(1, numBeds);
+        getAverageRentByBedsBathsAndCity.setDouble(2, numBaths);
+        getAverageRentByBedsBathsAndCity.setString(3, city);
+        ResultSet resultSet = getAverageRentByBedsBathsAndCity.executeQuery();
+        if (resultSet.next()) {
+            return resultSet.getDouble(1);
+        } else {
+            return -1;
+        }
+    }
+
+    public double findAverageRentByStateIdBedsAndBaths(int id, int numBeds, double numBaths) throws Exception {
+        //ConsoleLogger.getInstance().printMessage("DEBUGGER: " + GET_AVERAGE_RENT_FOR_STATE_BY_ID_BEDS_AND_BATHS);
+        //ConsoleLogger.getInstance().printMessage("id=" + id + " numBeds=" + numBeds + " numBaths=" + numBaths);
+        getAverageRentByStateIdBedsAndBaths.setInt(1, id);
+        getAverageRentByStateIdBedsAndBaths.setInt(2, numBeds);
+        getAverageRentByStateIdBedsAndBaths.setDouble(3, numBaths);
+        ResultSet resultSet = getAverageRentByStateIdBedsAndBaths.executeQuery();
         if (resultSet.next()) {
             return resultSet.getDouble(1);
         } else {
@@ -1084,18 +1275,19 @@ public class Datasource {
     }
 
     public FairRentRates findFairMarketRentByZipcode(int zipcode) throws SQLException {
-        //ConsoleLogger.getInstance().printMessage("DEBUGGER: " + GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_ZIPCODE);
+        // ConsoleLogger.getInstance().printMessage("DEBUGGER: " +
+        // GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_ZIPCODE);
         getFairMarketRentByZipcode.setInt(1, zipcode);
         ResultSet resultSet = getFairMarketRentByZipcode.executeQuery();
         FairRentRates fmr = null;
         if (resultSet.next()) {
             fmr = new FairRentRates(
-                    resultSet.getInt(1), //zipcode
-                    resultSet.getInt(2), //studio
-                    resultSet.getInt(3), //one bed
-                    resultSet.getInt(4), //two bed
-                    resultSet.getInt(5), //three bed
-                    resultSet.getInt(6) //four bed
+                    resultSet.getInt(1), // zipcode
+                    resultSet.getInt(2), // studio
+                    resultSet.getInt(3), // one bed
+                    resultSet.getInt(4), // two bed
+                    resultSet.getInt(5), // three bed
+                    resultSet.getInt(6) // four bed
             );
             return fmr;
         } else {
@@ -1103,8 +1295,10 @@ public class Datasource {
         }
     }
 
-    public List<Listing> findListingsByZipcodeAndUnderwrittenValue(int zipcode, int numBeds, double numBaths, double capRate) throws Exception {
-        //ConsoleLogger.getInstance().printMessage("DEBUGGER: " + GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_ZIPCODE);
+    public List<Listing> findListingsByZipcodeAndUnderwrittenValue(int zipcode, int numBeds, double numBaths,
+            double capRate) throws Exception {
+        // ConsoleLogger.getInstance().printMessage("DEBUGGER: " +
+        // GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_ZIPCODE);
         getListingByZipcodeAndUnderWrittenValue.setInt(1, numBeds);
         getListingByZipcodeAndUnderWrittenValue.setDouble(2, numBaths);
         getListingByZipcodeAndUnderWrittenValue.setInt(3, zipcode);
@@ -1139,8 +1333,10 @@ public class Datasource {
         }
     }
 
-    public List<Listing> findListingsByCityAndTheUnderwrittenValue(String city, int numBeds, double numBaths, double capRate) throws Exception {
-        //ConsoleLogger.getInstance().printMessage("DEBUGGER: " + GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_ZIPCODE);
+    public List<Listing> findListingsByCityAndTheUnderwrittenValue(String city, int numBeds, double numBaths,
+            double capRate) throws Exception {
+        // ConsoleLogger.getInstance().printMessage("DEBUGGER: " +
+        // GET_AVERAGE_LISTING_PRICE_BY_NUM_BEDS_BATHS_ZIPCODE);
         getListingByCityAndUnderWrittenValue.setInt(1, numBeds);
         getListingByCityAndUnderWrittenValue.setDouble(2, numBaths);
         getListingByCityAndUnderWrittenValue.setString(3, city);
@@ -1210,7 +1406,8 @@ public class Datasource {
                 state.setName(results.getString(States.INDEX_NAME));
                 int has_sales_listings = results.getInt(States.COLUMN_NAME_HAS_SALES_LISTINGS);
                 state.setHasRentListings(results.getInt(States.COLUMN_NAME_HAS_RENT_LISTINGS));
-                // Uneccesary has the query incluedes a WHERE statements including has_sales_listings = 1
+                // Uneccesary has the query incluedes a WHERE statements including
+                // has_sales_listings = 1
                 if (has_sales_listings == 1) {
                     states.add(state);
                 }
@@ -1254,7 +1451,7 @@ public class Datasource {
                 zipcode.setCityId(results.getInt(Zipcodes.INDEX_CITY));
                 zipcode.setHasRentListings(results.getInt(Zipcodes.INDEX_HAS_RENT_LISTINGS));
                 zipcodes.add(zipcode);
-               
+
             }
             return zipcodes;
         } catch (SQLException ex) {
@@ -1419,7 +1616,8 @@ public class Datasource {
     public void deleteListingsTableData() {
         try {
             deleteListingsTableData.execute();
-            //ConsoleLogger.getInstance().printMessage("Listings table data deleted succesfully");
+            // ConsoleLogger.getInstance().printMessage("Listings table data deleted
+            // succesfully");
         } catch (SQLException e) {
             ConsoleLogger.getInstance().printErrorMessage("Table data couldn't be deleted: ", e);
         }
@@ -1428,7 +1626,8 @@ public class Datasource {
     public void deleteZipcodesTableData() {
         try {
             deleteZipcodesTableData.execute();
-            //ConsoleLogger.getInstance().printMessage("Zipcodes table data deleted succesfully");
+            // ConsoleLogger.getInstance().printMessage("Zipcodes table data deleted
+            // succesfully");
         } catch (SQLException e) {
             ConsoleLogger.getInstance().printErrorMessage("Table data couldn't be deleted: ", e);
         }
@@ -1454,15 +1653,16 @@ public class Datasource {
 
     public void deleteMarketRentTableData() {
         try {
-            //Removes data from the Markets rents table
+            // Removes data from the Markets rents table
             deleteMarketRentTableData.execute();
-            //Updates the has_market_rent field to zero from state table
+            // Updates the has_market_rent field to zero from state table
             updateStatesAfterClearingMarketRentsDba.execute();
-            //Updates the has_market_rent field to zero from cities table
+            // Updates the has_market_rent field to zero from cities table
             updateCitiesAfterClearingMarketRentsDba.execute();
-            //Updates the has_market_rent field to zero from zipcode table
+            // Updates the has_market_rent field to zero from zipcode table
             updateZipcodesAfterClearingMarketRentsDba.execute();
-            //ConsoleLogger.getInstance().printMessage("Market rent table data deleted succesfully");
+            // ConsoleLogger.getInstance().printMessage("Market rent table data deleted
+            // succesfully");
         } catch (SQLException e) {
             ConsoleLogger.getInstance().printErrorMessage("Table data couldn't be deleted: ", e);
         }
@@ -1471,7 +1671,8 @@ public class Datasource {
     public void deleteFairMarketRentTableData() {
         try {
             deleteFairMarketRentTableData.execute();
-            //ConsoleLogger.getInstance().printMessage("Fair Market rent table data deleted succesfully");
+            // ConsoleLogger.getInstance().printMessage("Fair Market rent table data deleted
+            // succesfully");
         } catch (SQLException e) {
             ConsoleLogger.getInstance().printErrorMessage("Table data couldn't be deleted: ", e);
         }
@@ -1481,7 +1682,8 @@ public class Datasource {
         try {
             deleteStateById.setInt(1, stateID);
             deleteStateById.execute();
-            //ConsoleLogger.getInstance().printMessage("State with id " + stateID + " was deleted succesfully");
+            // ConsoleLogger.getInstance().printMessage("State with id " + stateID + " was
+            // deleted succesfully");
         } catch (SQLException e) {
             ConsoleLogger.getInstance().printErrorMessage("State couldn't be deleted: ", e);
         }
@@ -1491,7 +1693,8 @@ public class Datasource {
         try {
             deleteCityById.setInt(1, cityID);
             deleteCityById.execute();
-            //ConsoleLogger.getInstance().printMessage("City with id " + cityID + " was deleted succesfully");
+            // ConsoleLogger.getInstance().printMessage("City with id " + cityID + " was
+            // deleted succesfully");
         } catch (SQLException e) {
             ConsoleLogger.getInstance().printErrorMessage("City couldn't be deleted: ", e);
         }
@@ -1527,9 +1730,11 @@ public class Datasource {
             deleteZipcodeByZipcodeNumberAndZipcodeCity.setInt(2, zipcodeCity);
             deleteListingsByZipcodeNumberAndZipcodeCity.execute();
             deleteZipcodeByZipcodeNumberAndZipcodeCity.execute();
-            //ConsoleLogger.getInstance().printMessage(zipcodeNumber + " zipcode was deleted succesfully");
+            // ConsoleLogger.getInstance().printMessage(zipcodeNumber + " zipcode was
+            // deleted succesfully");
         } catch (SQLException e) {
-            //ConsoleLogger.getInstance().printErrorMessage("Zipcode couldn't be deleted: ", e);
+            // ConsoleLogger.getInstance().printErrorMessage("Zipcode couldn't be deleted:
+            // ", e);
         }
     }
 
@@ -1544,7 +1749,8 @@ public class Datasource {
             deleteListingByCityName.execute();
             deleteZipcodesByCityName.execute();
             deleteCityByName.execute();
-            //ConsoleLogger.getInstance().printMessage(cityName + " city was deleted succesfully");
+            // ConsoleLogger.getInstance().printMessage(cityName + " city was deleted
+            // succesfully");
         } catch (SQLException e) {
             ConsoleLogger.getInstance().printErrorMessage("City couldn't be deleted: ", e);
         }
@@ -1563,7 +1769,8 @@ public class Datasource {
             deleteZipcodesByStateName.execute();
             deleteCityByStateName.execute();
             deleteStateByName.execute();
-            //ConsoleLogger.getInstance().printMessage(stateName + " state was deleted succesfully");
+            // ConsoleLogger.getInstance().printMessage(stateName + " state was deleted
+            // succesfully");
         } catch (SQLException e) {
             ConsoleLogger.getInstance().printErrorMessage("State couldn't be deleted: ", e);
         }
@@ -1677,7 +1884,7 @@ public class Datasource {
             return statement.execute(CREATE_STATE_FOR_LISTING_VIEW);
         } catch (SQLException e) {
             System.out.println("Create View failed: " + e.getMessage());
-            //System.err.println("SQL Debug: " + CREATE_ARTISTS_FOR_SONG_VIEW);
+            // System.err.println("SQL Debug: " + CREATE_ARTISTS_FOR_SONG_VIEW);
             return false;
         }
     }
@@ -1709,92 +1916,93 @@ public class Datasource {
 
     public int findStateIdByName(String name) throws SQLException {
         queryStateId.setString(1, name);
-        ResultSet results = queryStateId.executeQuery(); //RETURNS ONLY THE ID COLUMN
+        ResultSet results = queryStateId.executeQuery(); // RETURNS ONLY THE ID COLUMN
         return results.getInt(1);
     }
 
     private int findStateHasSalesListingsById(int Id) throws SQLException {
         queryStateHasSalesListingsById.setInt(1, Id);
-        ResultSet results = queryStateHasSalesListingsById.executeQuery(); //RETURNS ONLY THE ID COLUMN
+        ResultSet results = queryStateHasSalesListingsById.executeQuery(); // RETURNS ONLY THE ID COLUMN
         return results.getInt(1);
     }
 
     private int findCityHasSalesListingsById(int Id) throws SQLException {
         queryCityHasSalesListingsById.setInt(1, Id);
-        ResultSet results = queryCityHasSalesListingsById.executeQuery(); //RETURNS ONLY THE ID COLUMN
+        ResultSet results = queryCityHasSalesListingsById.executeQuery(); // RETURNS ONLY THE ID COLUMN
         return results.getInt(1);
     }
 
     private int findZipcodeHasSalesListingsById(int Id) throws SQLException {
         queryZipcodeHasSalesListingsById.setInt(1, Id);
-        ResultSet results = queryZipcodeHasSalesListingsById.executeQuery(); //RETURNS ONLY THE ID COLUMN
+        ResultSet results = queryZipcodeHasSalesListingsById.executeQuery(); // RETURNS ONLY THE ID COLUMN
         return results.getInt(1);
     }
 
     private int findStateHasRentListingsById(int Id) throws SQLException {
         queryStateHasRentListingsById.setInt(1, Id);
-        ResultSet results = queryStateHasRentListingsById.executeQuery(); //RETURNS ONLY THE ID COLUMN
+        ResultSet results = queryStateHasRentListingsById.executeQuery(); // RETURNS ONLY THE ID COLUMN
         return results.getInt(1);
     }
 
     private int findCityHasRentListingsById(int Id) throws SQLException {
         queryCityHasRentListingsById.setInt(1, Id);
-        ResultSet results = queryCityHasRentListingsById.executeQuery(); //RETURNS ONLY THE ID COLUMN
+        ResultSet results = queryCityHasRentListingsById.executeQuery(); // RETURNS ONLY THE ID COLUMN
         return results.getInt(1);
     }
 
     private int findZipcodeHasRentListingsById(int Id) throws SQLException {
         queryZipcodeHasRentListingsById.setInt(1, Id);
-        ResultSet results = queryZipcodeHasRentListingsById.executeQuery(); //RETURNS ONLY THE ID COLUMN
+        ResultSet results = queryZipcodeHasRentListingsById.executeQuery(); // RETURNS ONLY THE ID COLUMN
         return results.getInt(1);
     }
 
     private boolean updateStateHasSalesListingsById(int Id) throws SQLException {
         updateStateHasSalesListingsById.setInt(1, Id);
-        int rowsAffected = updateStateHasSalesListingsById.executeUpdate(); //RETURNS ONLY THE ID COLUMN
+        int rowsAffected = updateStateHasSalesListingsById.executeUpdate(); // RETURNS ONLY THE ID COLUMN
         return rowsAffected == 1;
     }
 
     private boolean updateCityHasSalesListingsById(int Id) throws SQLException {
         updateCityHasSalesListingsById.setInt(1, Id);
-        int rowsAffected = updateCityHasSalesListingsById.executeUpdate(); //RETURNS ONLY THE ID COLUMN
+        int rowsAffected = updateCityHasSalesListingsById.executeUpdate(); // RETURNS ONLY THE ID COLUMN
         return rowsAffected == 1;
     }
 
     private boolean updateZipcodeHasSalesListingsById(int Id) throws SQLException {
         updateZipcodeHasSalesListingsById.setInt(1, Id);
-        int rowsAffected = updateZipcodeHasSalesListingsById.executeUpdate(); //RETURNS ONLY THE ID COLUMN
+        int rowsAffected = updateZipcodeHasSalesListingsById.executeUpdate(); // RETURNS ONLY THE ID COLUMN
         return rowsAffected == 1;
     }
 
     private boolean updateStateHasRentListingsById(int Id) throws SQLException {
         updateStateHasRentListingsById.setInt(1, Id);
-        int rowsAffected = updateStateHasRentListingsById.executeUpdate(); //RETURNS ONLY THE ID COLUMN
+        int rowsAffected = updateStateHasRentListingsById.executeUpdate(); // RETURNS ONLY THE ID COLUMN
         return rowsAffected == 1;
     }
 
     private boolean updateCityHasRentListingsById(int Id) throws SQLException {
         updateCityHasRentListingsById.setInt(1, Id);
-        int rowsAffected = updateCityHasRentListingsById.executeUpdate(); //RETURNS ONLY THE ID COLUMN
+        int rowsAffected = updateCityHasRentListingsById.executeUpdate(); // RETURNS ONLY THE ID COLUMN
         return rowsAffected == 1;
     }
 
     private boolean updateZipcodeHasRentListingsById(int Id) throws SQLException {
         updateZipcodeHasRentListingsById.setInt(1, Id);
-        int rowsAffected = updateZipcodeHasRentListingsById.executeUpdate(); //RETURNS ONLY THE ID COLUMN
+        int rowsAffected = updateZipcodeHasRentListingsById.executeUpdate(); // RETURNS ONLY THE ID COLUMN
         return rowsAffected == 1;
     }
 
-    //INSERTS INTO STATE, CITY, ZIPCODE, LISTING METHODS
+    // INSERTS INTO STATE, CITY, ZIPCODE, LISTING METHODS
     private int insertState(String name, int updateHasSalesListings, int updateHasRentListings) throws SQLException {
-        //Checking if state exists in the db
+        // Checking if state exists in the db
         queryState.setString(1, name);
-        ResultSet results = queryState.executeQuery(); //RETURNS ALL THE COLUMNS FROM STATE TABLE (ID, NAME)
+        ResultSet results = queryState.executeQuery(); // RETURNS ALL THE COLUMNS FROM STATE TABLE (ID, NAME)
         if (results.next()) {
             int stateId = results.getInt(1);
-            //Updates states has listing field since we are inserting a sales listings
+            // Updates states has listing field since we are inserting a sales listings
             if (updateHasSalesListings == 1) {
-                //Check if state has sales listing by state id. Returns 1 for true or 0 for false
+                // Check if state has sales listing by state id. Returns 1 for true or 0 for
+                // false
                 int doesStateTableHasSalesListings = findStateHasSalesListingsById(stateId);
                 if (doesStateTableHasSalesListings == 0) {
                     boolean wasUpdated = updateStateHasSalesListingsById(stateId);
@@ -1805,7 +2013,7 @@ public class Datasource {
                     }
                 }
             }
-            //Updates state has rent listing field since we are inserting a rent listings
+            // Updates state has rent listing field since we are inserting a rent listings
             if (updateHasRentListings == 1) {
                 int doesStateTableHasRentListings = findStateHasRentListingsById(stateId);
                 if (doesStateTableHasRentListings == 0) {
@@ -1819,7 +2027,7 @@ public class Datasource {
             }
             return stateId;
         } else {
-            //state is not in the db, then insert the state
+            // state is not in the db, then insert the state
             insertIntoStates.setString(1, name.toUpperCase());
             insertIntoStates.setInt(2, updateHasSalesListings);
             insertIntoStates.setInt(3, updateHasRentListings);
@@ -1827,7 +2035,7 @@ public class Datasource {
             if (affectedRows != 1) {
                 throw new SQLException("Couldn't insert state!");
             }
-            //Get the id of the inserted state field to return it to insert sales listings
+            // Get the id of the inserted state field to return it to insert sales listings
             ResultSet generatedKeys = insertIntoStates.getGeneratedKeys();
             if (generatedKeys.next()) {
                 return generatedKeys.getInt(1);
@@ -1838,14 +2046,16 @@ public class Datasource {
 
     }
 
-    private int insertCity(String name, int stateId, int updateHasSalesListings, int updateHasRentListings) throws SQLException {
-        //Checking if city exists in the db
+    private int insertCity(String name, int stateId, int updateHasSalesListings, int updateHasRentListings)
+            throws SQLException {
+        // Checking if city exists in the db
         queryCityByNameAndStateId.setString(1, name);
         queryCityByNameAndStateId.setInt(2, stateId);
-        ResultSet results = queryCityByNameAndStateId.executeQuery(); //RETURNS ALL THE COLUMNS FROM CITY TABLE (ID, NAME)
+        ResultSet results = queryCityByNameAndStateId.executeQuery(); // RETURNS ALL THE COLUMNS FROM CITY TABLE (ID,
+                                                                      // NAME)
         if (results.next()) {
             int cityId = results.getInt(1);
-            //Cheking if city has sales listings
+            // Cheking if city has sales listings
             if (updateHasSalesListings == 1) {
                 int doesCityTableHasSalesListings = findCityHasSalesListingsById(cityId);
                 if (doesCityTableHasSalesListings == 0) {
@@ -1857,7 +2067,7 @@ public class Datasource {
                     }
                 }
             }
-            //Checking if city has rent listings
+            // Checking if city has rent listings
             if (updateHasRentListings == 1) {
                 int doesCityTableHasRentListings = findCityHasRentListingsById(cityId);
                 if (doesCityTableHasRentListings == 0) {
@@ -1871,7 +2081,7 @@ public class Datasource {
             }
             return cityId;
         } else {
-            //city is not in the db, then insert the city
+            // city is not in the db, then insert the city
             insertIntoCities.setString(1, name);
             insertIntoCities.setInt(2, stateId);
             insertIntoCities.setInt(3, updateHasSalesListings);
@@ -1891,11 +2101,14 @@ public class Datasource {
 
     }
 
-    private int insertZipCode(int zipcode, int cityId, int updateHasSalesListings, int updateHasRentListings) throws SQLException {
-        //Checking if zipcode exists in the db
-        queryZipCodeByNumberAndCityId.setInt(1, zipcode);       //Replacing placeholde with provided name string to avoid SQL injection attacks
+    private int insertZipCode(int zipcode, int cityId, int updateHasSalesListings, int updateHasRentListings)
+            throws SQLException {
+        // Checking if zipcode exists in the db
+        queryZipCodeByNumberAndCityId.setInt(1, zipcode); // Replacing placeholde with provided name string to avoid SQL
+                                                          // injection attacks
         queryZipCodeByNumberAndCityId.setInt(2, cityId);
-        ResultSet results = queryZipCodeByNumberAndCityId.executeQuery();//RETURNS ALL THE COLUMNS OF ZIPCODE TABLE (ID, ZIPCODE NUM, CITY_ID
+        ResultSet results = queryZipCodeByNumberAndCityId.executeQuery();// RETURNS ALL THE COLUMNS OF ZIPCODE TABLE
+                                                                         // (ID, ZIPCODE NUM, CITY_ID
         if (results.next()) {
             int zipcodeId = results.getInt(1);
             if (updateHasSalesListings == 1) {
@@ -1922,20 +2135,21 @@ public class Datasource {
             }
             return zipcodeId;
         } else {
-            //Zip Code is not in the db, then insert the Album
+            // Zip Code is not in the db, then insert the Album
             insertIntoZipCodes.setInt(1, zipcode);
             insertIntoZipCodes.setInt(2, cityId);
             insertIntoZipCodes.setInt(3, updateHasSalesListings);
             insertIntoZipCodes.setInt(4, updateHasRentListings);
             int affectedRows = insertIntoZipCodes.executeUpdate();
-            //ConsoleLogger.getInstance().printMessage("INSERT QUERY EXECUTED: affectedRows " + affectedRows);
+            // ConsoleLogger.getInstance().printMessage("INSERT QUERY EXECUTED: affectedRows
+            // " + affectedRows);
             if (affectedRows != 1) {
                 ConsoleLogger.getInstance().printMessage("Couldn't insert zip code!");
                 throw new SQLException("Couldn't insert zip code!");
             }
             ResultSet generatedKeys = insertIntoZipCodes.getGeneratedKeys();
             if (generatedKeys.next()) {
-                //ConsoleLogger.getInstance().printMessage("HAS GENERATED KEYS!");
+                // ConsoleLogger.getInstance().printMessage("HAS GENERATED KEYS!");
                 return generatedKeys.getInt(1);
             } else {
                 throw new SQLException("Couldn't get _id for zip code!");
@@ -1944,27 +2158,29 @@ public class Datasource {
     }
 
     public boolean insertListing(
-            String state, //1
-            String city, //2
-            String address, //3
-            String propertyType, //4
-            int zipCode, //5
-            double listPrice, //6
-            int numBed, //7
-            double numBath, //8
-            int sqft, //9
-            int yearBuilt, //10
-            double latitude, //11
-            double longitude, //12
-            String url) {                                           //13
+            String state, // 1
+            String city, // 2
+            String address, // 3
+            String propertyType, // 4
+            int zipCode, // 5
+            double listPrice, // 6
+            int numBed, // 7
+            double numBath, // 8
+            int sqft, // 9
+            int yearBuilt, // 10
+            double latitude, // 11
+            double longitude, // 12
+            String url) { // 13
         try {
             conn.setAutoCommit(false);
-            //ConsoleLogger.getInstance().printMessage("INSIDE INSERT");
-            int stateId = insertState(state, 1, 0); //1 and 0 as a boolean for hasSalesListings since we are inserting a sale listings
+            // ConsoleLogger.getInstance().printMessage("INSIDE INSERT");
+            int stateId = insertState(state, 1, 0); // 1 and 0 as a boolean for hasSalesListings since we are inserting
+                                                    // a sale listings
             int cityId = insertCity(city, stateId, 1, 0);
-            int zipCodeId = insertZipCode(zipCode, cityId, 1, 0); //FIXME HERE
-            //ConsoleLogger.getInstance().printMessage("CITY ID: " + cityId + " ZIPCODE ID: " + zipCodeId);
-            //Checking if a listing exits in the db with the same address and zipcode
+            int zipCodeId = insertZipCode(zipCode, cityId, 1, 0); // FIXME HERE
+            // ConsoleLogger.getInstance().printMessage("CITY ID: " + cityId + " ZIPCODE ID:
+            // " + zipCodeId);
+            // Checking if a listing exits in the db with the same address and zipcode
             queryListing.setString(1, address);
             queryListing.setInt(2, zipCodeId);
             ResultSet results = queryListing.executeQuery();
@@ -1972,7 +2188,7 @@ public class Datasource {
                 ConsoleLogger.getInstance().printMessage("Address: " + address + " already in " + zipCode + " zipcode");
                 return false;
             }
-            //Replacing placeholders to avoid SQL injection attacks
+            // Replacing placeholders to avoid SQL injection attacks
             insertIntoListings.setString(1, address);
             insertIntoListings.setString(2, propertyType);
             insertIntoListings.setInt(3, zipCodeId);
@@ -2028,20 +2244,22 @@ public class Datasource {
             String state) {
         try {
             conn.setAutoCommit(false);
-            //ConsoleLogger.getInstance().printMessage("INSIDE INSERT");
-            int stateId = insertState(state, 0, 1); // as false boolean to hasSalesListings and 1 as true hasRentListings since we are inserting rent listings
+            // ConsoleLogger.getInstance().printMessage("INSIDE INSERT");
+            int stateId = insertState(state, 0, 1); // as false boolean to hasSalesListings and 1 as true
+                                                    // hasRentListings since we are inserting rent listings
             int cityId = insertCity(city, stateId, 0, 1);
-            int zipCodeId = insertZipCode(zipCode, cityId, 0, 1); //FIXME HERE
-            //ConsoleLogger.getInstance().printMessage("CITY ID: " + cityId + " ZIPCODE ID: " + zipCodeId);
-            //Checking if listing exits in the db
-            //FIX IT
+            int zipCodeId = insertZipCode(zipCode, cityId, 0, 1); // FIXME HERE
+            // ConsoleLogger.getInstance().printMessage("CITY ID: " + cityId + " ZIPCODE ID:
+            // " + zipCodeId);
+            // Checking if listing exits in the db
+            // FIX IT
             queryRentRate.setString(1, address);
             ResultSet results = queryRentRate.executeQuery();
             if (results.next()) {
                 ConsoleLogger.getInstance().printMessage("Address: " + address + " already in market rents table");
                 return false;
             }
-            //Replacing placeholders to avoid SQL injection attacks
+            // Replacing placeholders to avoid SQL injection attacks
             insertIntoMarketRents.setString(1, address);
             insertIntoMarketRents.setString(2, propertyType);
             insertIntoMarketRents.setString(3, listedDate);
@@ -2090,7 +2308,7 @@ public class Datasource {
             int fourBedRate) {
         try {
             conn.setAutoCommit(false);
-            //Replacing placeholders to avoid SQL injection attacks
+            // Replacing placeholders to avoid SQL injection attacks
             insertIntoFairRents.setInt(1, zipCode);
             insertIntoFairRents.setInt(2, studioRate);
             insertIntoFairRents.setInt(3, oneBedRate);
@@ -2123,7 +2341,7 @@ public class Datasource {
                 ConsoleLogger.getInstance().printMessage("Couldn't reset auto-commit! " + e.getMessage());
             }
             resetDBAConnection();
-            //Datasource.getInstance().close();
+            // Datasource.getInstance().close();
         }
 
     }

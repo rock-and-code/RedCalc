@@ -1,13 +1,14 @@
 package com.rockandcode.redcalc.util;
 
+import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.util.List;
+
 import com.rockandcode.redcalc.database.Datasource;
 import com.rockandcode.redcalc.model.City;
 import com.rockandcode.redcalc.model.Listing;
 import com.rockandcode.redcalc.model.ListingCity;
 import com.rockandcode.redcalc.model.RealEstateState;
-import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.util.List;
 
 
 public class DatabaseInquerier {
@@ -168,7 +169,7 @@ public class DatabaseInquerier {
         int numBeds = InputValidator.getInstance().getInteger("Enter the number of beds: ");
         double numBaths = InputValidator.getInstance().getDouble("Enter the number of baths: ");
         int zipcode = InputValidator.getInstance().getInteger("Enter the zipcode: ");
-        Double avg = Datasource.getInstance().findAverageListPriceByZipcodeBedsBaths(zipcode, numBeds, numBaths);
+        Double avg = Datasource.getInstance().findAverageListPriceByBedsBathsAndZipcode(zipcode, numBeds, numBaths);
         DecimalFormat myFormatter = new DecimalFormat("$###,###.##");
         String output = myFormatter.format(avg);
         ConsoleLogger.getInstance().printMessage("The average list price is " + output);
@@ -178,7 +179,7 @@ public class DatabaseInquerier {
         int numBeds = InputValidator.getInstance().getInteger("Enter the number of beds: ");
         double numBaths = InputValidator.getInstance().getDouble("Enter the number of baths: ");
         String city = InputValidator.getInstance().getString("zipcode");
-        Double avg = Datasource.getInstance().findAverageListPriceByCityBedsBaths(city, numBeds, numBaths);
+        Double avg = Datasource.getInstance().findAverageListPriceByBedsBathsAndCity(city, numBeds, numBaths);
         DecimalFormat myFormatter = new DecimalFormat("$###,###.##");
         String output = myFormatter.format(avg);
         ConsoleLogger.getInstance().printMessage("The average list price is " + output);

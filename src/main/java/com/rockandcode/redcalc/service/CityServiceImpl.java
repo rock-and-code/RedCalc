@@ -1,11 +1,16 @@
 
 package com.rockandcode.redcalc.service;
 
+import static com.rockandcode.redcalc.controller.MainScreenController.GET_AVG_LIST_PRICE_BY_CITY_BEDS_BATHS_DIALOG_FXML;
+import static com.rockandcode.redcalc.controller.MainScreenController.GET_LISTINGS_BY_ZIPCODE_AND_UNDERWRITTEN_VAL_DIALOG_FXML;
+
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.Optional;
+
 import com.rockandcode.redcalc.controller.GetAvgListPriceByCityBedsBathsDialogController;
 import com.rockandcode.redcalc.controller.GetListingByZipcodeAndUnderwrittenValDialogController;
 import com.rockandcode.redcalc.controller.MainScreenController;
-import static com.rockandcode.redcalc.controller.MainScreenController.GET_AVG_LIST_PRICE_BY_CITY_BEDS_BATHS_DIALOG_FXML;
-import static com.rockandcode.redcalc.controller.MainScreenController.GET_LISTINGS_BY_ZIPCODE_AND_UNDERWRITTEN_VAL_DIALOG_FXML;
 import com.rockandcode.redcalc.controller.UpdateCityDialogController;
 import com.rockandcode.redcalc.database.Datasource;
 import com.rockandcode.redcalc.model.BedsAndBathsDTO;
@@ -22,9 +27,7 @@ import com.rockandcode.redcalc.util.ConsoleLogger;
 import com.rockandcode.redcalc.util.Dialogs;
 import com.rockandcode.redcalc.util.RedCalcContextMenu;
 import com.rockandcode.redcalc.util.TableViewEditor;
-import java.io.IOException;
-import java.text.DecimalFormat;
-import java.util.Optional;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -88,7 +91,7 @@ public class CityServiceImpl implements CityService {
     }
     
     @Override
-    public void getAverageListPriceByCityNumBedsBaths(TableView table, BorderPane borderPane) {
+    public void getAverageListPriceByCityNumBedsAndBaths(TableView table, BorderPane borderPane) {
         final int numBeds = 0, numBaths = 1;
         int beds;
         double baths;
@@ -155,7 +158,7 @@ public class CityServiceImpl implements CityService {
     }
     
     @Override
-    public void getAverageRentByCityNumBedsBaths(TableView table, BorderPane borderPane) {
+    public void getAverageRentByCityNumBedsAndBaths(TableView table, BorderPane borderPane) {
         final int numBeds = 0, numBaths = 1;
         int beds;
         double baths;

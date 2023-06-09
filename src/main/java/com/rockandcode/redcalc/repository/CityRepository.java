@@ -1,10 +1,11 @@
 
 package com.rockandcode.redcalc.repository;
 
+import java.util.List;
+
 import com.rockandcode.redcalc.database.Datasource;
 import com.rockandcode.redcalc.model.City;
 import com.rockandcode.redcalc.model.Listing;
-import java.util.List;
 
 /**
  *
@@ -46,11 +47,11 @@ public class CityRepository {
     }
     
     public double findAverageListPriceByCityBedsBaths(String cityName, int numBeds, double numBaths) throws Exception {
-        return source.findAverageListPriceByCityBedsBaths(cityName, numBeds, numBaths);
+        return source.findAverageListPriceByBedsBathsAndCity(cityName, numBeds, numBaths);
     }
     
     public double findAverageRentByCityBedsBaths(String cityName, int numBeds, double numBaths) throws Exception {
-        return source.findAverageRentByCityBedsBaths(cityName, numBeds, numBaths);
+        return source.findAverageRentByBedsBathsAndCity(cityName, numBeds, numBaths);
     }
     
     public List<Listing> findListingsByCityAndTheUnderwrittenValue(String cityName, int numBeds, double numBaths, 

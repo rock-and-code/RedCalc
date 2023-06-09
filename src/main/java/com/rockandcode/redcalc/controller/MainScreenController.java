@@ -1,5 +1,7 @@
 package com.rockandcode.redcalc.controller;
 
+import java.io.IOException;
+
 import com.rockandcode.redcalc.model.City;
 import com.rockandcode.redcalc.service.CityService;
 import com.rockandcode.redcalc.service.CityServiceImpl;
@@ -19,11 +21,15 @@ import com.rockandcode.redcalc.service.ZipcodeService;
 import com.rockandcode.redcalc.service.ZipcodeServiceImpl;
 import com.rockandcode.redcalc.ui.App;
 import com.rockandcode.redcalc.util.ConsoleLogger;
-import java.io.IOException;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 
 public class MainScreenController {
 
@@ -181,14 +187,19 @@ public class MainScreenController {
     }
 
     @FXML
-    public void getAverageListPriceByZipcodeNumBedsBaths() {
-        zipcodeService.getAverageListPriceByZipcodeNumBedsBaths(table, borderPane);
+    public void getAverageListPriceByZipcodeNumBedsAndBaths() {
+        zipcodeService.getAverageListPriceByZipcodeNumBedsAndBaths(table, borderPane);
 
     }
 
     @FXML
-    public void getAverageListPriceByCityNumBedsBaths() {
-        cityService.getAverageListPriceByCityNumBedsBaths(table, borderPane);
+    public void getAverageListPriceByCityNumBedsAndBaths() {
+        cityService.getAverageListPriceByCityNumBedsAndBaths(table, borderPane);
+    }
+
+    @FXML
+    public void getAverageListPriceByStateNumBedsAndBaths() {
+        stateService.findAverageListPriceByStateIdBedsAndBaths(table, borderPane);
     }
 
     @FXML
@@ -197,13 +208,18 @@ public class MainScreenController {
     }
 
     @FXML
-    public void getAverageRentByCityNumBedsBaths() {
-        cityService.getAverageRentByCityNumBedsBaths(table, borderPane);
+    public void getAverageRentByStateNumBedsAndBaths() {
+        stateService.findAverageRentByStateIdBedsAndBaths(table, borderPane);
     }
 
     @FXML
-    public void getAverageRentByZipcodeNumBedsBaths() {
-        zipcodeService.getAverageRentByZipcodeNumBedsBaths(table, borderPane);
+    public void getAverageRentByCityNumBedsAndBaths() {
+        cityService.getAverageRentByCityNumBedsAndBaths(table, borderPane);
+    }
+
+    @FXML
+    public void getAverageRentByZipcodeNumBedsAndBaths() {
+        zipcodeService.getAverageRentByZipcodeNumBedsAndBaths(table, borderPane);
     }
 
     @FXML

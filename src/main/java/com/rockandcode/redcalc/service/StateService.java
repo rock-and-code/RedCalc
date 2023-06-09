@@ -14,4 +14,9 @@ public interface StateService {
     public void listStates(TableView table, ProgressBar progressBar, HBox buttonsContainer);
     public void listCitiesForState(TableView table, BorderPane borderPane, HBox buttonsContainer);
     public void listCitiesForState(TableView table, BorderPane borderPane, HBox buttonsContainer, Object previous);
+    public void findAverageListPriceByStateIdBedsAndBaths(TableView table, BorderPane borderPane);
+    public void findAverageRentByStateIdBedsAndBaths(TableView table, BorderPane borderPane);
+    public void deleteStateById(int stateID);
+    public void deleteStateByName(String stateName);
+    public void deleteStates();
 }

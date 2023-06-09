@@ -73,6 +73,18 @@ public class Dialogs {
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
         return dialog;
     }
+
+    public Dialog getAvgListPriceByStateBedsBathsDialog(){
+        dialog = new Dialog<>();
+        /* to change font to helvetica, this affects buttons fonts */
+        dialog.getDialogPane().setStyle(STYLE);
+        dialog.setTitle("Get Average List Price of a State");
+        dialog.setHeaderText("Use this dialog to get the average list price");
+        //Adding buttons to the dialog pane
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+        return dialog;
+    }
     
     public Dialog getAvgRentByZipcodeBedsBathsDialog(){
         dialog = new Dialog<>();
@@ -91,6 +103,18 @@ public class Dialogs {
         /* to change font to helvetica, this affects buttons fonts */
         dialog.getDialogPane().setStyle(STYLE);
         dialog.setTitle("Get Average Rent");
+        dialog.setHeaderText("Use this dialog to get the average rent");
+        //Adding buttons to the dialog pane
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+        return dialog;
+    }
+
+    public Dialog getAvgRentByStateBedsBathsDialog(){
+        dialog = new Dialog<>();
+        /* to change font to helvetica, this affects buttons fonts */
+        dialog.getDialogPane().setStyle(STYLE);
+        dialog.setTitle("Get Average Rent of a State");
         dialog.setHeaderText("Use this dialog to get the average rent");
         //Adding buttons to the dialog pane
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);

@@ -1,10 +1,11 @@
 
 package com.rockandcode.redcalc.repository;
 
+import java.util.List;
+
 import com.rockandcode.redcalc.database.Datasource;
 import com.rockandcode.redcalc.model.City;
 import com.rockandcode.redcalc.model.RealEstateState;
-import java.util.List;
 
 /**
  *
@@ -35,6 +36,14 @@ public class StateRepository {
     
     public List<City> findCitiesByStateIdForTableView(int stateId) throws Exception {
         return source.findCitiesByStateIdForTableView(stateId);
+    }
+
+    public double findAverageListPriceByStateBedsAndBaths(int id, int numBeds, double numBaths) throws Exception {
+        return source.findAverageListPriceByStateIdBedsAndBaths(id, numBeds, numBaths);
+    }
+
+    public double findAverageRentByStateBedsAndBaths(int id, int numBeds, double numBaths) throws Exception {
+        return source.findAverageRentByStateIdBedsAndBaths(id, numBeds, numBaths);
     }
     
     public void deleteStateById(int stateID) {

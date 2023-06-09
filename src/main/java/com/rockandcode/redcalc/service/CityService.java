@@ -11,8 +11,8 @@ import javafx.scene.layout.HBox;
  */
 public interface CityService {
     public void listZipcodesForCity(TableView table, BorderPane borderPane, HBox buttonsContainer);
-    public void getAverageListPriceByCityNumBedsBaths(TableView table, BorderPane borderPane);
-    public void getAverageRentByCityNumBedsBaths(TableView table, BorderPane borderPane);
+    public void getAverageListPriceByCityNumBedsAndBaths(TableView table, BorderPane borderPane);
+    public void getAverageRentByCityNumBedsAndBaths(TableView table, BorderPane borderPane);
     public void getListingByCityAndUnderwrittenVal(TableView table, BorderPane borderPane, HBox buttonsContainer);
     public void updateCity(TableView table, BorderPane borderPane, HBox buttonsContainer);
     public void deleteCity(TableView table, BorderPane borderPane);

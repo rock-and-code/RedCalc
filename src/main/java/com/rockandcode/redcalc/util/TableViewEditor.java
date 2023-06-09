@@ -16,27 +16,6 @@ public class TableViewEditor {
         return instance;
     }
 
-    private void setColumnText(TableView table, String newName, int columnIndex) {
-        table.getVisibleLeafColumn(columnIndex).setText(newName);
-    }
-
-    private void setColumnCellValueFactory(TableView table, String newName, int columnIndex) {
-        table.getVisibleLeafColumn(columnIndex).setCellValueFactory(new PropertyValueFactory(newName));
-    }
-
-    private void setOneColumnTable(TableView table, String columnName, String propertyValueFactory) {
-        if (table.getColumns().size() > 1) {
-            table.getColumns().clear();
-            TableColumn column = new TableColumn(columnName);
-            column.setPrefWidth(200);
-            column.setCellValueFactory(new PropertyValueFactory(propertyValueFactory));
-            table.getColumns().add(column);
-        } else {
-            TableViewEditor.getInstance().setColumnText(table, columnName, 0);
-            TableViewEditor.getInstance().setColumnCellValueFactory(table, propertyValueFactory, 0);
-        }
-    }
-
     public void setColumnsForListingsTable(TableView table) {
             table.getColumns().clear();
             TableColumn column = new TableColumn("Address");
@@ -92,7 +71,15 @@ public class TableViewEditor {
     }
 
     public void setColumnsForStatesTable(TableView table) {
-        setOneColumnTable(table, "Name", "name");
+        table.getColumns().clear();
+        TableColumn column = new TableColumn("Name");
+        column.setCellValueFactory(new PropertyValueFactory("name"));
+        column.setPrefWidth(300);
+        table.getColumns().add(column);
+        column = new TableColumn("Has Rent Listings");
+        column.setCellValueFactory(new PropertyValueFactory("hasRentListings"));
+        column.setPrefWidth(200);
+        table.getColumns().add(column);
 
     }
 }

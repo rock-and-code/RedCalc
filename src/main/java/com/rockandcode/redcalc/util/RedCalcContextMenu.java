@@ -11,6 +11,7 @@ import com.rockandcode.redcalc.task.GetAllCitiesForAStateTask;
 import com.rockandcode.redcalc.task.GetAllStatesTask;
 import com.rockandcode.redcalc.task.GetAllZipcodesForACityTask;
 import com.rockandcode.redcalc.task.GetListingsForAZipcodeTask;
+
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -40,6 +41,8 @@ public class RedCalcContextMenu {
         ContextMenu menu = new ContextMenu();
         MenuItem copy = new MenuItem("Copy");
         MenuItem listCities = new MenuItem("List Cities");
+        MenuItem averageListPrice = new MenuItem("Get Average List Price");
+        MenuItem averageRentPrice = new MenuItem("Get Average Rent");
         MenuItem delete = new MenuItem("Delete");
 
         copy.setOnAction((ActionEvent e) -> {
@@ -48,6 +51,12 @@ public class RedCalcContextMenu {
             ClipboardContent content = new ClipboardContent();
             content.putString(state.getName());
             clipboard.setContent(content);
+        });
+        averageListPrice.setOnAction((ActionEvent e) -> {
+            mainScreenController.getAverageListPriceByStateNumBedsAndBaths();
+        });
+        averageRentPrice.setOnAction((ActionEvent e) -> {
+            mainScreenController.getAverageRentByStateNumBedsAndBaths();
         });
         
         listCities.setOnAction((ActionEvent e) -> mainScreenController.listCitiesForState());
@@ -80,6 +89,8 @@ public class RedCalcContextMenu {
 
         menu.getItems().addAll(copy);
         menu.getItems().addAll(listCities);
+        menu.getItems().addAll(averageListPrice);
+        menu.getItems().addAll(averageRentPrice);
         menu.getItems().addAll(delete);
         table.getSelectionModel().getTableView().setContextMenu(menu);
         return menu;
@@ -101,10 +112,10 @@ public class RedCalcContextMenu {
             clipboard.setContent(content);
         });
         averageListPrice.setOnAction((ActionEvent e) -> {
-            mainScreenController.getAverageListPriceByCityNumBedsBaths();
+            mainScreenController.getAverageListPriceByCityNumBedsAndBaths();
         });
         averageRentPrice.setOnAction((ActionEvent e) -> {
-            mainScreenController.getAverageRentByCityNumBedsBaths();
+            mainScreenController.getAverageRentByCityNumBedsAndBaths();
         });
         listZipcodes.setOnAction((ActionEvent e) -> {
             mainScreenController.listZipcodesForCity();
@@ -163,10 +174,10 @@ public class RedCalcContextMenu {
             clipboard.setContent(content);
         });
         averageListPrice.setOnAction((ActionEvent e) -> {
-           MainScreenController.getAverageListPriceByZipcodeNumBedsBaths();
+           MainScreenController.getAverageListPriceByZipcodeNumBedsAndBaths();
         });
         averageRentPrice.setOnAction((ActionEvent e) -> {
-           MainScreenController.getAverageRentByZipcodeNumBedsBaths();
+           MainScreenController.getAverageRentByZipcodeNumBedsAndBaths();
         });
         listListings.setOnAction((ActionEvent e) -> {
             MainScreenController.listListingsForZipCodeId();
