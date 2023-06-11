@@ -7,10 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
-/**
- *
- * @author riost02
- */
 public class InsertListingDialogController {
 
     @FXML

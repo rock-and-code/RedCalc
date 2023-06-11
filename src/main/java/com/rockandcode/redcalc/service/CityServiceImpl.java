@@ -1,15 +1,16 @@
 
 package com.rockandcode.redcalc.service;
 
-import static com.rockandcode.redcalc.controller.MainScreenController.GET_AVG_LIST_PRICE_BY_CITY_BEDS_BATHS_DIALOG_FXML;
-import static com.rockandcode.redcalc.controller.MainScreenController.GET_LISTINGS_BY_ZIPCODE_AND_UNDERWRITTEN_VAL_DIALOG_FXML;
+import static com.rockandcode.redcalc.controller.MainScreenController.GET_AVG_LIST_PRICE_BY_BEDS_BATHS_DIALOG_FXML;
+import static com.rockandcode.redcalc.controller.MainScreenController.GET_LISTINGS_BY_UNDERWRITTEN_VAL_DIALOG_FXML;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Optional;
 
-import com.rockandcode.redcalc.controller.GetAvgListPriceByCityBedsBathsDialogController;
-import com.rockandcode.redcalc.controller.GetListingByZipcodeAndUnderwrittenValDialogController;
+import com.rockandcode.redcalc.controller.GetAvgListPriceByBedsBathsDialogController;
+import com.rockandcode.redcalc.controller.GetListingByUnderwrittenValDialogController;
 import com.rockandcode.redcalc.controller.MainScreenController;
 import com.rockandcode.redcalc.controller.UpdateCityDialogController;
 import com.rockandcode.redcalc.database.Datasource;
@@ -41,10 +42,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Window;
 
-/**
- *
- * @author riost02
- */
 public class CityServiceImpl implements CityService {
     
     private final MainScreenController mc;
@@ -91,7 +88,7 @@ public class CityServiceImpl implements CityService {
     }
     
     @Override
-    public void getAverageListPriceByCityNumBedsAndBaths(TableView table, BorderPane borderPane) {
+    public void findAverageListPriceByCityNumBedsAndBaths(TableView table, BorderPane borderPane) {
         final int numBeds = 0, numBaths = 1;
         int beds;
         double baths;
@@ -111,7 +108,7 @@ public class CityServiceImpl implements CityService {
 
         FXMLLoader fxmLoader = new FXMLLoader();
         //System.out.println("getClass=" + getClass());
-        fxmLoader.setLocation(App.class.getResource(GET_AVG_LIST_PRICE_BY_CITY_BEDS_BATHS_DIALOG_FXML));
+        fxmLoader.setLocation(App.class.getResource(GET_AVG_LIST_PRICE_BY_BEDS_BATHS_DIALOG_FXML));
         try {
             /* SETTING DIALOG CONTENT FROM DIALOG FXML */
             dialog.getDialogPane().setContent(fxmLoader.load());
@@ -122,7 +119,7 @@ public class CityServiceImpl implements CityService {
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             /* To use methods from Dialog Controller */
-            GetAvgListPriceByCityBedsBathsDialogController controller = fxmLoader.getController();
+            GetAvgListPriceByBedsBathsDialogController controller = fxmLoader.getController();
             data = controller.getBedsAndBaths();
             //ConsoleLogger.getInstance().printMessage("OK pressed" + " : numBeds= " + data[numBeds].toString());
         } else {
@@ -158,7 +155,7 @@ public class CityServiceImpl implements CityService {
     }
     
     @Override
-    public void getAverageRentByCityNumBedsAndBaths(TableView table, BorderPane borderPane) {
+    public void findAverageRentByCityNumBedsAndBaths(TableView table, BorderPane borderPane) {
         final int numBeds = 0, numBaths = 1;
         int beds;
         double baths;
@@ -177,7 +174,7 @@ public class CityServiceImpl implements CityService {
         dialog.initOwner(borderPane.getScene().getWindow());
 
         FXMLLoader fxmLoader = new FXMLLoader();
-        fxmLoader.setLocation(App.class.getResource(GET_AVG_LIST_PRICE_BY_CITY_BEDS_BATHS_DIALOG_FXML));
+        fxmLoader.setLocation(App.class.getResource(GET_AVG_LIST_PRICE_BY_BEDS_BATHS_DIALOG_FXML));
         try {
             /* SETTING DIALOG CONTENT FROM DIALOG FXML */
             dialog.getDialogPane().setContent(fxmLoader.load());
@@ -189,7 +186,7 @@ public class CityServiceImpl implements CityService {
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             /* To use methods from Dialog Controller */
-            GetAvgListPriceByCityBedsBathsDialogController controller = fxmLoader.getController();
+            GetAvgListPriceByBedsBathsDialogController controller = fxmLoader.getController();
             data = controller.getBedsAndBaths();
             //ConsoleLogger.getInstance().printMessage("OK pressed" + " : numBeds= " + data[numBeds].toString());
         } else {
@@ -225,7 +222,7 @@ public class CityServiceImpl implements CityService {
     }
     
     @Override
-    public void getListingByCityAndUnderwrittenVal(TableView table, BorderPane borderPane, HBox buttonsContainer) {
+    public void findListingByCityAndUnderwrittenVal(TableView table, BorderPane borderPane, HBox buttonsContainer) {
         int numBeds = 0, numBaths = 1, capRateData = 2, beds;
         double baths, capRate;
         boolean run = false;
@@ -247,7 +244,7 @@ public class CityServiceImpl implements CityService {
         dialog.initOwner(borderPane.getScene().getWindow());
 
         FXMLLoader fxmLoader = new FXMLLoader();
-        fxmLoader.setLocation(App.class.getResource(GET_LISTINGS_BY_ZIPCODE_AND_UNDERWRITTEN_VAL_DIALOG_FXML));
+        fxmLoader.setLocation(App.class.getResource(GET_LISTINGS_BY_UNDERWRITTEN_VAL_DIALOG_FXML));
         try {
             dialog.getDialogPane().setContent(fxmLoader.load());
         } catch (IOException e) {
@@ -258,7 +255,7 @@ public class CityServiceImpl implements CityService {
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             /* To use methods from Dialog Controller */
-            GetListingByZipcodeAndUnderwrittenValDialogController controller = fxmLoader.getController();
+            GetListingByUnderwrittenValDialogController controller = fxmLoader.getController();
             data = controller.getBedsBathsAndCapRate();
             beds = data.getNumBeds();
             baths = data.getNumBaths();
@@ -295,6 +292,11 @@ public class CityServiceImpl implements CityService {
         table.itemsProperty().bind(task.valueProperty());
         task.setOnSucceeded(e-> contextMenu = RedCalcContextMenu.getInstance().getContextMenuForListingTable(table, mc));
         new Thread(task).start();
+    }
+
+    @Override
+    public List<City> findCitiesByStateIdForTableView(int stateId) {
+        return cityRepository.findCitiesByStateIdForTableView(stateId);
     }
 
     @Override
@@ -375,6 +377,11 @@ public class CityServiceImpl implements CityService {
             a.show();
         } else {
         }
+    }
+
+    @Override
+    public void deleteCities() {
+        cityRepository.deleteCities();
     }
 
 }

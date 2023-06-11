@@ -72,6 +72,8 @@ public class ReadMarketRentsRatesFromCSVFileTask extends Task<Boolean> {
             updateProgress(progressCounter, numberOfListingsToRead);
             ++progressCounter;
         }
+        // Close the CSV file.
+        dirFile.close();
         return true;
     }
 
@@ -101,6 +103,8 @@ public class ReadMarketRentsRatesFromCSVFileTask extends Task<Boolean> {
         while ((input = dirFile.readLine()) != null) {
             ++numberOfLines;
         }
+        // Close the CSV file.
+        dirFile.close();
 
         return numberOfLines;
     }

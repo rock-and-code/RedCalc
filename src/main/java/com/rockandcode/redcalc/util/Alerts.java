@@ -2,10 +2,6 @@ package com.rockandcode.redcalc.util;
 
 import javafx.scene.control.Alert;
 
-/**
- *
- * @author riost02
- */
 public class Alerts {
 
     private static final String ALERT_STYLE = "-fx-font-family: helvetica;";
@@ -16,9 +12,9 @@ public class Alerts {
         return instance;
     }
 
-    public Alert getInsertListingDialogNumbericErrorAlert() {
+    public Alert getInsertListingDialogNumericErrorAlert() {
         Alert a = new Alert(Alert.AlertType.ERROR);
-        a.setContentText("Unable to add listing to the database: Some fields must contains numberic values only");
+        a.setContentText("Unable to add listing to the database: Some fields must contains numeric values only");
         a.getDialogPane().setStyle(ALERT_STYLE);
         return a;
     }

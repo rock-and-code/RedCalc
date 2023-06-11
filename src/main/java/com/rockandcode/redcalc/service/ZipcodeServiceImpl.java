@@ -1,15 +1,16 @@
 
 package com.rockandcode.redcalc.service;
 
-import static com.rockandcode.redcalc.controller.MainScreenController.GET_AVG_LIST_PRICE_BY_ZIPCODE_BEDS_BATHS_DIALOG_FXML;
-import static com.rockandcode.redcalc.controller.MainScreenController.GET_LISTINGS_BY_ZIPCODE_AND_UNDERWRITTEN_VAL_DIALOG_FXML;
+import static com.rockandcode.redcalc.controller.MainScreenController.GET_AVG_LIST_PRICE_BY_BEDS_BATHS_DIALOG_FXML;
+import static com.rockandcode.redcalc.controller.MainScreenController.GET_LISTINGS_BY_UNDERWRITTEN_VAL_DIALOG_FXML;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Optional;
 
 import com.rockandcode.redcalc.controller.GetAverageListPriceByZipcodeBedsBathsDialogController;
-import com.rockandcode.redcalc.controller.GetListingByZipcodeAndUnderwrittenValDialogController;
+import com.rockandcode.redcalc.controller.GetListingByUnderwrittenValDialogController;
 import com.rockandcode.redcalc.controller.MainScreenController;
 import com.rockandcode.redcalc.database.Datasource;
 import com.rockandcode.redcalc.model.BedsAndBathsDTO;
@@ -37,10 +38,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
-/**
- *
- * @author riost02
- */
 public class ZipcodeServiceImpl implements ZipcodeService {
     
     private final MainScreenController mc;
@@ -101,7 +98,7 @@ public class ZipcodeServiceImpl implements ZipcodeService {
     }
 
     @Override
-    public void getAverageListPriceByZipcodeNumBedsAndBaths(TableView table, BorderPane borderPane) {
+    public void findAverageListPriceByZipcodeNumBedsAndBaths(TableView table, BorderPane borderPane) {
         final int numBeds = 0, numBaths = 1;
         int beds;
         double baths;
@@ -120,7 +117,7 @@ public class ZipcodeServiceImpl implements ZipcodeService {
         dialog.initOwner(borderPane.getScene().getWindow());
 
         FXMLLoader fxmLoader = new FXMLLoader();
-        fxmLoader.setLocation(App.class.getResource(GET_AVG_LIST_PRICE_BY_ZIPCODE_BEDS_BATHS_DIALOG_FXML));
+        fxmLoader.setLocation(App.class.getResource(GET_AVG_LIST_PRICE_BY_BEDS_BATHS_DIALOG_FXML));
         try {
             dialog.getDialogPane().setContent(fxmLoader.load());
         } catch (IOException e) {
@@ -165,7 +162,7 @@ public class ZipcodeServiceImpl implements ZipcodeService {
     }
 
     @Override
-    public void getAverageRentByZipcodeNumBedsAndBaths(TableView table, BorderPane borderPane) {
+    public void findAverageRentByZipcodeNumBedsAndBaths(TableView table, BorderPane borderPane) {
         final int numBeds = 0, numBaths = 1;
         int beds;
         double baths;
@@ -184,7 +181,7 @@ public class ZipcodeServiceImpl implements ZipcodeService {
         dialog.initOwner(borderPane.getScene().getWindow());
 
         FXMLLoader fxmLoader = new FXMLLoader();
-        fxmLoader.setLocation(App.class.getResource(GET_AVG_LIST_PRICE_BY_ZIPCODE_BEDS_BATHS_DIALOG_FXML));
+        fxmLoader.setLocation(App.class.getResource(GET_AVG_LIST_PRICE_BY_BEDS_BATHS_DIALOG_FXML));
         try {
             dialog.getDialogPane().setContent(fxmLoader.load());
         } catch (IOException e) {
@@ -231,8 +228,13 @@ public class ZipcodeServiceImpl implements ZipcodeService {
     }
 
     @Override
-    public void getListingByZipcodeAndUnderwrittenVal(TableView table, BorderPane borderPane,
-            HBox buttonsContainer) {
+    public List<ZipCode> findZipcodesByCityIdForTableView(int cityId) {
+        return zipcodeRepository.findZipcodesByCityIdForTableView(cityId);
+    }
+
+    @Override
+    public void findListingByZipcodeAndUnderwrittenVal(TableView table, BorderPane borderPane,
+                                                       HBox buttonsContainer) {
         int numBeds = 0, numBaths = 1, capRateData = 2, beds;
         double baths, capRate;
         boolean run = false;
@@ -253,7 +255,7 @@ public class ZipcodeServiceImpl implements ZipcodeService {
         dialog.initOwner(borderPane.getScene().getWindow());
 
         FXMLLoader fxmLoader = new FXMLLoader();
-        fxmLoader.setLocation(App.class.getResource(GET_LISTINGS_BY_ZIPCODE_AND_UNDERWRITTEN_VAL_DIALOG_FXML));
+        fxmLoader.setLocation(App.class.getResource(GET_LISTINGS_BY_UNDERWRITTEN_VAL_DIALOG_FXML));
         try {
             dialog.getDialogPane().setContent(fxmLoader.load());
         } catch (IOException e) {
@@ -264,7 +266,7 @@ public class ZipcodeServiceImpl implements ZipcodeService {
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             /* To use methods from Dialog Controller */
-            GetListingByZipcodeAndUnderwrittenValDialogController controller = fxmLoader.getController();
+            GetListingByUnderwrittenValDialogController controller = fxmLoader.getController();
             data = controller.getBedsBathsAndCapRate();
             beds = data.getNumBeds();
             baths = data.getNumBaths();
@@ -301,6 +303,11 @@ public class ZipcodeServiceImpl implements ZipcodeService {
         table.itemsProperty().bind(task.valueProperty());
         task.setOnSucceeded(e-> contextMenu = RedCalcContextMenu.getInstance().getContextMenuForListingTable(table, mc));
         new Thread(task).start();
+    }
+
+    @Override
+    public void deleteZipcodes() {
+        zipcodeRepository.deleteZipcodes();
     }
 
 }

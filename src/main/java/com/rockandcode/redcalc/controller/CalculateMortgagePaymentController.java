@@ -8,12 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 
-/**
- *
- * @author riost02
- */
 public class CalculateMortgagePaymentController {
-    private final String PRIMARY = "main_screen";
+    private final String CONTROLLER = "main_screen";
     @FXML
     private BorderPane calculateMortgagePaymentBorderPane;
     @FXML
@@ -41,8 +37,8 @@ public class CalculateMortgagePaymentController {
     }
     
     @FXML
-    private void switchToPrimary() throws IOException {
-        App.setRoot(PRIMARY);
+    private void switchToMainScreen() throws IOException {
+        App.setRoot(CONTROLLER);
     }
 
     @FXML

@@ -4,10 +4,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-/**
- *
- * @author riost02
- */
 public class TableViewEditor {
 
     private static final TableViewEditor instance = new TableViewEditor();

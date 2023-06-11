@@ -7,10 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 
-/**
- *
- * @author riost02
- */
 public class GetAllZipcodesForACityTask extends Task {
     private final int mCityId;
 

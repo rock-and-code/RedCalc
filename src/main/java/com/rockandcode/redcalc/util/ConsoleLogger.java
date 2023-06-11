@@ -1,10 +1,6 @@
 
 package com.rockandcode.redcalc.util;
 
-/**
- *
- * @author riost02
- */
 public class ConsoleLogger {
     private static final ConsoleLogger instance = new ConsoleLogger();
 

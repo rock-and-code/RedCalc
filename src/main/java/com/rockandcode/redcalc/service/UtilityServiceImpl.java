@@ -5,8 +5,6 @@ import com.rockandcode.redcalc.controller.MainScreenController;
 import com.rockandcode.redcalc.database.Datasource;
 import com.rockandcode.redcalc.model.City;
 import com.rockandcode.redcalc.model.ZipCode;
-import com.rockandcode.redcalc.repository.CityRepository;
-import com.rockandcode.redcalc.repository.ZipcodeRepository;
 import com.rockandcode.redcalc.util.Alerts;
 import com.rockandcode.redcalc.util.ButtonsModifier;
 import com.rockandcode.redcalc.util.RedCalcContextMenu;
@@ -22,22 +20,24 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Window;
 
-/**
- *
- * @author riost02
- */
 public class UtilityServiceImpl implements UtilityService{
     
     private final MainScreenController mc;
     private final StateService stateService;
-    private final CityRepository cityRepository;
-    private final ZipcodeRepository ZipcodeRepository;
+    private final CityService cityService;
+    private final ZipcodeService zipcodeService;
+    private final ListingService listingService;
+    private final RentService rentService;
+    private final FairRentService fairRentService;
 
     public UtilityServiceImpl(MainScreenController mc) {
         this.mc = mc;
         this.stateService = new StateServiceImpl(mc, mc.getContextMenu());
-        this.cityRepository = new CityRepository(Datasource.getInstance());
-        this.ZipcodeRepository = new ZipcodeRepository(Datasource.getInstance());
+        this.cityService = new CityServiceImpl(mc, mc.getContextMenu());
+        this.zipcodeService = new ZipcodeServiceImpl(mc, mc.getContextMenu());
+        this.listingService = new ListingServiceImpl(mc, mc.getContextMenu());
+        this.rentService = new RentServiceImpl(mc, mc.getContextMenu());
+        this.fairRentService = new FairRentServiceImpl();
     }
 
     @Override
@@ -49,13 +49,12 @@ public class UtilityServiceImpl implements UtilityService{
         a.initOwner(mainStage);
         a.showAndWait();
         if (a.getResult() == ButtonType.OK) {
-            Datasource.getInstance().deleteListingsTableData();
-            Datasource.getInstance().deleteZipcodesTableData();
-            Datasource.getInstance().deleteCitiesTableData();
-            Datasource.getInstance().deleteStatesTableData();
-            Datasource.getInstance().deleteMarketRentTableData();
-            Datasource.getInstance().deleteFairMarketRentTableData();
-            //Window mainStage = borderPane.getScene().getWindow();
+            listingService.deleteListings();
+            zipcodeService.deleteZipcodes();
+            cityService.deleteCities();
+            stateService.deleteStates();
+            rentService.deleteMarketRents();
+            fairRentService.deleteFairRents();
             //Refresh table
             stateService.listStates(table, progressBar, buttonsContainer);
             a = Alerts.getInstance().getInformationAlert("Database was successfully deleted");
@@ -80,7 +79,7 @@ public class UtilityServiceImpl implements UtilityService{
                 @Override
                 protected ObservableList<City> call() throws Exception {
                     return FXCollections.observableArrayList(
-                            cityRepository.findCitiesByStateIdForTableView(city.getStateId())
+                            cityService.findCitiesByStateIdForTableView(city.getStateId())
                     );
                 }
             };
@@ -98,7 +97,7 @@ public class UtilityServiceImpl implements UtilityService{
                 @Override
                 protected ObservableList<ZipCode> call() throws Exception {
                     return FXCollections.observableArrayList(
-                            ZipcodeRepository.findZipcodesByCityIdForTableView(Zipcode.getCityId())
+                            zipcodeService.findZipcodesByCityIdForTableView(Zipcode.getCityId())
                     );
                 }
             };

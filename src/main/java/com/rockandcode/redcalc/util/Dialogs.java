@@ -26,7 +26,6 @@ public class Dialogs {
         dialog = new Dialog<>();
     
         /* to change font to helvetica, this affects button's, title, and header text fonts */
-        //dialog.getDialogPane().setStyle("-fx-font-family: helvetica;");         //Check how to set the dialog stylesheet
         dialog.getDialogPane().setStyle(STYLE);
         dialog.setTitle("Insert New Listing");
         dialog.setHeaderText("Use this dialog to add a listing");

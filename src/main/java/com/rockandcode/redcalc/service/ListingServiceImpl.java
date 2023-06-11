@@ -66,7 +66,7 @@ public class ListingServiceImpl implements ListingService {
             try {
                 listingCity = controller.getNewListingInfo();
             } catch (NumberFormatException e) {
-                Alert a = Alerts.getInstance().getInsertListingDialogNumbericErrorAlert();
+                Alert a = Alerts.getInstance().getInsertListingDialogNumericErrorAlert();
                 a.initOwner(borderPane.getScene().getWindow());
                 a.show();
                 return;
@@ -129,6 +129,11 @@ public class ListingServiceImpl implements ListingService {
             /* CANCEL BUTTON PRESSED */
             //ConsoleLogger.getInstance().printMessage("Cancel pressed");
         }
+    }
+
+    @Override
+    public void deleteListings() {
+        listingRepository.deleteListings();
     }
 
 }

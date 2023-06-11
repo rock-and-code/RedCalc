@@ -6,10 +6,6 @@ import com.rockandcode.redcalc.model.BedsAndBathsDTO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Spinner;
 
-/**
- *
- * @author riost02
- */
 public class GetAverageListPriceByZipcodeBedsBathsDialogController {
     @FXML
     private Spinner<Integer> numBedsSpinner;

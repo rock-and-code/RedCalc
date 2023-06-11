@@ -5,10 +5,6 @@ import com.rockandcode.redcalc.controller.MainScreenController;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
-/**
- *
- * @author riost02
- */
 public class ButtonsModifier {
 
     private static final ButtonsModifier instance = new ButtonsModifier();
@@ -52,18 +48,18 @@ public class ButtonsModifier {
         return btn;
     }
     
-    private Button getListZimcodesButton(MainScreenController mc) {
-        Button btn = new Button("Show Zimcodes");
-        btn.setId("showZimcodesBtn");
+    private Button getListZipcodesButton(MainScreenController mc) {
+        Button btn = new Button("Show Zipcodes");
+        btn.setId("showZipcodesBtn");
         btn.setOnAction((e) -> {
             mc.listZipcodesForCity();
         });
         return btn;
     }
     
-    private Button getAvgListPricebyZimcodeButton(MainScreenController mc) {
+    private Button getAvgListPriceByZipcodeButton(MainScreenController mc) {
         Button btn = new Button("Average list price");
-        btn.setId("getAvgListPricebyZimcodeBtn");
+        btn.setId("getAvgListPriceByZipcodeBtn");
         btn.setOnAction((e) -> {
             mc.getAverageListPriceByZipcodeNumBedsAndBaths();
         });
@@ -79,7 +75,7 @@ public class ButtonsModifier {
         return btn;
     }
     
-    private Button getUpdateCityButtton(MainScreenController mc) {
+    private Button getUpdateCityButton(MainScreenController mc) {
         Button btn = new Button("Update City");
         btn.setId("updateCityBtn");
         btn.setOnAction((e) -> {
@@ -88,9 +84,9 @@ public class ButtonsModifier {
         return btn;
     }
     
-    private Button getAvgListPricebyCityButton(MainScreenController mc) {
+    private Button getAvgListPriceByCityButton(MainScreenController mc) {
         Button btn = new Button("Average list price");
-        btn.setId("getAvgListPricebyCityBtn");
+        btn.setId("getAvgListPriceByCityBtn");
         btn.setOnAction((e) -> {
             mc.getAverageListPriceByCityNumBedsAndBaths();
         });
@@ -114,18 +110,18 @@ public class ButtonsModifier {
         return btn;
     }
     
-    private Button getAvgRentByZimcodeButton(MainScreenController mc) {
+    private Button getAvgRentByZipcodeButton(MainScreenController mc) {
         Button btn = new Button("Average Rent Rate");
-        btn.setId("getAvgRentByZimcodeBtn");
+        btn.setId("getAvgRentByZipcodeBtn");
         btn.setOnAction((e) -> {
             mc.getAverageRentByZipcodeNumBedsAndBaths();
         });
         return btn;
     }
     
-    private Button getListingByZimcodeAndUnderwrittenValButton(MainScreenController mc) {
+    private Button getListingByZipcodeAndUnderwrittenValButton(MainScreenController mc) {
         Button btn = new Button("Listings by Underwritten value");
-        btn.setId("getListingByZimcodeAndUnderwrittenValBtn");
+        btn.setId("getListingByZipcodeAndUnderwrittenValBtn");
         btn.setOnAction((e) -> {
             mc.getListingByZipcodeAndUnderwrittenVal();
         });
@@ -157,9 +153,9 @@ public class ButtonsModifier {
         /* Removing some buttons not applicable at this point */
         Button listStatesBtn = getListStatesButton(mc);
         
-        Button showZimcodesBtn = getListZimcodesButton(mc);
-        Button updateCityBtn = getUpdateCityButtton(mc);
-        Button getAvgListPricebyCityBtn = getAvgListPricebyCityButton(mc);
+        Button showZimcodesBtn = getListZipcodesButton(mc);
+        Button updateCityBtn = getUpdateCityButton(mc);
+        Button getAvgListPricebyCityBtn = getAvgListPriceByCityButton(mc);
         Button getAvgRentByCityBtn = getAvgRentByCityButton(mc);
         Button getListingByCityAndUnderwrittenValBtn = getListingByCityAndUnderwrittenValButton(mc);
         hbox.getChildren().clear();
@@ -174,18 +170,18 @@ public class ButtonsModifier {
     public void setButtonsForZipcodesTable(MainScreenController mc, HBox hbox) {
         /* Removing some buttons not applicable at this point */
         Button listStatesBtn = getListStatesButton(mc);
-        Button getAvgListPricebyZimcodeBtn = getAvgListPricebyZimcodeButton(mc);
-        Button getAvgRentByZimcodeBtn = getAvgRentByZimcodeButton(mc);
+        Button getAvgListPriceByZipcodeBtn = getAvgListPriceByZipcodeButton(mc);
+        Button getAvgRentByZipcodeBtn = getAvgRentByZipcodeButton(mc);
         Button showListingsBtn = getShowListingsButton(mc);
         Button backBtn = getBackButton(mc);
-        Button getListingByZimcodeAndUnderwrittenValBtn = getListingByZimcodeAndUnderwrittenValButton(mc);
+        Button getListingByZipcodeAndUnderwrittenValBtn = getListingByZipcodeAndUnderwrittenValButton(mc);
         hbox.getChildren().clear();
         hbox.getChildren().clear();
         hbox.getChildren().add(backBtn);
         hbox.getChildren().add(listStatesBtn);
-        hbox.getChildren().add(getAvgListPricebyZimcodeBtn);
-        hbox.getChildren().add(getAvgRentByZimcodeBtn);
-        hbox.getChildren().add(getListingByZimcodeAndUnderwrittenValBtn);
+        hbox.getChildren().add(getAvgListPriceByZipcodeBtn);
+        hbox.getChildren().add(getAvgRentByZipcodeBtn);
+        hbox.getChildren().add(getListingByZipcodeAndUnderwrittenValBtn);
         hbox.getChildren().add(showListingsBtn);
     }
     

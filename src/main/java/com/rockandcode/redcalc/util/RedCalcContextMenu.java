@@ -25,10 +25,6 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Window;
 
-/**
- *
- * @author riost02
- */
 public class RedCalcContextMenu {
 
     private static final RedCalcContextMenu instance = new RedCalcContextMenu();

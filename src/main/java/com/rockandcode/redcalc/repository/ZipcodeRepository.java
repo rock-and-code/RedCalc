@@ -7,10 +7,6 @@ import com.rockandcode.redcalc.database.Datasource;
 import com.rockandcode.redcalc.model.Listing;
 import com.rockandcode.redcalc.model.ZipCode;
 
-/**
- *
- * @author riost02
- */
 public class ZipcodeRepository {
     public final Datasource source;
 

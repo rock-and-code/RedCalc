@@ -8,10 +8,6 @@ import java.net.URL;
 import javafx.concurrent.Task;
 import javax.net.ssl.HttpsURLConnection;
 
-/**
- *
- * @author riost02
- */
 public class GetRentData extends Task<Boolean> {
 
     private final String mBaseURL;
@@ -55,7 +51,6 @@ public class GetRentData extends Task<Boolean> {
 
         try {
             //Setting the destination URL, connection and the buffer reader
-            //destinationURL = new URL(createURI(mBaseURL, mCity, mState));
             destinationURL = new URL(createURI(mBaseURL, mCity, mState));
             connection = (HttpsURLConnection) destinationURL.openConnection();
             //Setting the URL headers

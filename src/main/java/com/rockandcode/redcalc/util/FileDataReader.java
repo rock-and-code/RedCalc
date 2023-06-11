@@ -8,10 +8,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.InputMismatchException;
 
-/**
- *
- * @author riost02
- */
 public class FileDataReader {
 
     private static final FileDataReader instance = new FileDataReader();
@@ -37,7 +33,7 @@ public class FileDataReader {
     }
 
     private Object[] extractDataFromRedfinCSVFileForDatabase(String fileLine) throws InputMismatchException {
-        //CSV's usefull column range 1-27
+        //CSV's useful column range 1-27
         String[] data = fileLine.split(",");
         String address = data[3].trim();                           //COLUMN D
         String propertyType = data[2].trim();                      //COLUMN C
@@ -112,9 +108,6 @@ public class FileDataReader {
             throw new NumberFormatException("Longitude is not a numberical values");
         }
 
-        //DEBUGGIN
-        //ConsoleLogger.getInstance().printMessage(address + ": " + listPrice + ": " + url + ": (" + latitude + "," + longitude +")");
-        //if(zipcode == 0) throw new InputMismatchException();
         StringBuilder listingAddress = new StringBuilder(address);
         listingAddress.append(" ").append(city).append(" ").append(state);
 

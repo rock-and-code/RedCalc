@@ -5,8 +5,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- *
- * @author riost02
+ * Util class to support a command-line version of the app
+ * Used only to test the Datasource class functionalities
  */
 public class InputValidator {
 

@@ -9,5 +9,6 @@ import javafx.scene.layout.BorderPane;
 public interface RentService {
     public void downloadRentListingByCityAndState(TableView table, BorderPane borderPane, 
             ProgressBar progressBar, TextField progressBarMessage);
-    public void clearMarketRents(TableView table, BorderPane borderPane);
+    public void deleteMarketRents(TableView table, BorderPane borderPane);
+    public void deleteMarketRents();
 }

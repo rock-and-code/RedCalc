@@ -1,10 +1,5 @@
 package com.rockandcode.redcalc.util;
 
-/**
- *
- * @author riost02
- */
-
 public class OsUtils {
 
     private static final OsUtils instance = new OsUtils();

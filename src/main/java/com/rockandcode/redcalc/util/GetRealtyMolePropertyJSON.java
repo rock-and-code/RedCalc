@@ -7,10 +7,6 @@ import java.util.List;
 import javafx.concurrent.Task;
 import org.json.*;
 
-/**
- *
- * @author riost02
- */
 public class GetRealtyMolePropertyJSON extends Task<Boolean> implements GetRentData.OnDownloadComplete {
 
     private final String mBaseUrl;
@@ -84,8 +80,7 @@ public class GetRealtyMolePropertyJSON extends Task<Boolean> implements GetRentD
      */
     @Override
     public void onDownloadComplete(String data) {
-        //TODO add progress bar
-        System.out.println("onDownloadComplete: starts");
+        //System.out.println("onDownloadComplete: starts");
 
         List<RentListing> rentListings = new ArrayList<>();
         JSONArray array = null;
@@ -150,7 +145,7 @@ public class GetRealtyMolePropertyJSON extends Task<Boolean> implements GetRentD
                 } catch (JSONException e) {
                     System.err.println("JSON Exception while processing data " + e.getMessage());
                 }
-                //Updatees the progress bar
+                //Updates the progress bar
                 updateProgress(mProgressCounter, mTotalRentListings);
                 ++mProgressCounter;
             }

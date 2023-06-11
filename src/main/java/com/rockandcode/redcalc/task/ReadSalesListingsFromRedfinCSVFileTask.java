@@ -11,7 +11,7 @@ import java.util.InputMismatchException;
 import javafx.concurrent.Task;
 
 /**
- * This class is responsible for reading sales listings data from a Redfin CSV
+ * This class is responsible for reading sales listing data from a Redfin CSV
  * file and inserting it into a database. It extends the Task class and returns
  * a Boolean value indicating whether the operation was successful.
  *
@@ -70,6 +70,9 @@ public class ReadSalesListingsFromRedfinCSVFileTask extends Task<Boolean> {
             updateProgress(progressCounter, numberOfListingsToRead); // Update the progress bar
             ++progressCounter; // Increment the progress counter
         }
+        // Close the CSV file.
+        dirFile.close();
+
         return true; // Return true indicating the operation was successful
     }
 
@@ -91,7 +94,8 @@ public class ReadSalesListingsFromRedfinCSVFileTask extends Task<Boolean> {
         while ((input = dirFile.readLine()) != null) {
             ++numberOfLines;
         }
-
+        // Close the CSV file.
+        dirFile.close();
         return numberOfLines;
     }
 

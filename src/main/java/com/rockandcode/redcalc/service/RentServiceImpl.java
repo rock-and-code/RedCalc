@@ -2,7 +2,9 @@ package com.rockandcode.redcalc.service;
 
 import com.rockandcode.redcalc.controller.DownloadRentListingDialogController;
 import com.rockandcode.redcalc.controller.MainScreenController;
+
 import static com.rockandcode.redcalc.controller.MainScreenController.GET_DOWNLOAD_RENT_LISTINGS_DIALOG_FXML;
+
 import com.rockandcode.redcalc.database.Datasource;
 import com.rockandcode.redcalc.model.RentListing;
 import com.rockandcode.redcalc.repository.MarketRentRepository;
@@ -11,10 +13,12 @@ import com.rockandcode.redcalc.util.Alerts;
 import com.rockandcode.redcalc.util.ConsoleLogger;
 import com.rockandcode.redcalc.util.Dialogs;
 import com.rockandcode.redcalc.util.GetRealtyMolePropertyJSON;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -26,15 +30,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Window;
 
-/**
- *
- * @author riost02
- */
 public class RentServiceImpl implements RentService, GetRealtyMolePropertyJSON.OnDataAvailable {
 
     private final MainScreenController mc;
-    private ContextMenu contextMenu;
     private final MarketRentRepository marketRentRepository;
+    private ContextMenu contextMenu;
 
     public RentServiceImpl(MainScreenController mc, ContextMenu contextMenu) {
         this.mc = mc;
@@ -44,7 +44,7 @@ public class RentServiceImpl implements RentService, GetRealtyMolePropertyJSON.O
 
     @Override
     public void downloadRentListingByCityAndState(TableView table, BorderPane borderPane,
-            ProgressBar progressBar, TextField progressBarMessage) {
+                                                  ProgressBar progressBar, TextField progressBarMessage) {
         /* Creating a new instance of the dialog class */
         Dialog<ButtonType> dialog = Dialogs.getInstance().getDownloadRentListingDialog();
         /* to select main windows and change it to dialog pane, instead of openning a new window */
@@ -127,7 +127,7 @@ public class RentServiceImpl implements RentService, GetRealtyMolePropertyJSON.O
     }
 
     @Override
-    public void clearMarketRents(TableView table, BorderPane borderPane) {
+    public void deleteMarketRents(TableView table, BorderPane borderPane) {
         Window mainStage = borderPane.getScene().getWindow();
         /* Creating a new instance of the dialog class */
         Alert a = Alerts.getInstance().getConfirmationAlert("Are you sure you want to clear the market rents database?");
@@ -145,6 +145,11 @@ public class RentServiceImpl implements RentService, GetRealtyMolePropertyJSON.O
             //CANCEL BUTTON PRESSED!
         }
 
+    }
+
+    @Override
+    public void deleteMarketRents() {
+        marketRentRepository.deleteMarketRents();
     }
 
 }

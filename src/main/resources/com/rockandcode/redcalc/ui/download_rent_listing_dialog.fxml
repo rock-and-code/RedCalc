@@ -18,11 +18,15 @@
         Use this dialog to add a Rent listing
     </headerText>
     <content>
+        <!-- A GridPane with a combo box for Two state US states and territories, and input text for the city name
+         to feed a helper function that downloads the rent listing using the Realty Mole API
+         you can find the API documentation in the following link: https://rapidapi.com/realtymole/api/realty-mole-property-api-->
         <GridPane fx:id="insertListingGridPane" hgap="10" vgap="10">
             <Label text="State" GridPane.rowIndex="0" />    
             <Label text="City" GridPane.rowIndex="1" />    
             <ComboBox fx:id="stateComboBox" prefHeight="26.0" prefWidth="159.0" promptText="State..." GridPane.columnIndex="1" GridPane.rowIndex="0">
                 <items>
+                    <!-- Adding a list of the two-letters US states and territories-->
                     <FXCollections fx:factory="observableArrayList">
                         <String fx:value="AK"/>
                         <String fx:value="AL"/>

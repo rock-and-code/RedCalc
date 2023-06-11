@@ -10,7 +10,9 @@ import com.rockandcode.redcalc.model.Listing;
 import com.rockandcode.redcalc.model.ListingCity;
 import com.rockandcode.redcalc.model.RealEstateState;
 
-
+/**
+ * Util classes for a command line version of the app
+ */
 public class DatabaseInquerier {
 
     private static DatabaseInquerier instance = new DatabaseInquerier();

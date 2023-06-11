@@ -5,10 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextField;
 
-/**
- *
- * @author riost02
- */
 public class UpdateCityDialogController {
     @FXML
     private DialogPane updateCityDialogPane;

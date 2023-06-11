@@ -1,10 +1,6 @@
 
 package com.rockandcode.redcalc.ui;
 
-/**
- *
- * @author riost02
- */
 public class AppLauncher {
 
     /**

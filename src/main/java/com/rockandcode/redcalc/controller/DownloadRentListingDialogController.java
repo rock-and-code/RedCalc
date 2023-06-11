@@ -7,10 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
-/**
- *
- * @author riost02
- */
 public class DownloadRentListingDialogController {
 
     @FXML

@@ -7,10 +7,6 @@ import com.rockandcode.redcalc.database.Datasource;
 import com.rockandcode.redcalc.model.City;
 import com.rockandcode.redcalc.model.Listing;
 
-/**
- *
- * @author riost02
- */
 public class CityRepository {
     private final Datasource source;
 

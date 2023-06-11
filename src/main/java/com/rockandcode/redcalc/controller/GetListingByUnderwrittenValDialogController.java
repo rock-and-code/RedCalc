@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
  *
  * @author riost02
  */
-public class GetListingByZipcodeAndUnderwrittenValDialogController {
+public class GetListingByUnderwrittenValDialogController {
     @FXML
     private Spinner<Integer> numBedsSpinner;
     @FXML

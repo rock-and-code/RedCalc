@@ -20,7 +20,6 @@ import com.rockandcode.redcalc.service.UtilityServiceImpl;
 import com.rockandcode.redcalc.service.ZipcodeService;
 import com.rockandcode.redcalc.service.ZipcodeServiceImpl;
 import com.rockandcode.redcalc.ui.App;
-import com.rockandcode.redcalc.util.ConsoleLogger;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -35,9 +34,8 @@ public class MainScreenController {
 
     public static final String UPDATE_CITY_DIALOG_FXML = "update_city_dialog.fxml";
     public static final String INSERT_LISTING_DIALOG_FXML = "insert_sales_listing_dialog.fxml";
-    public static final String GET_AVG_LIST_PRICE_BY_ZIPCODE_BEDS_BATHS_DIALOG_FXML = "get_average_list_price_by_zipcode_beds_baths_dialog.fxml";
-    public static final String GET_AVG_LIST_PRICE_BY_CITY_BEDS_BATHS_DIALOG_FXML = "get_average_list_price_by_city_beds_baths_dialog.fxml";
-    public static final String GET_LISTINGS_BY_ZIPCODE_AND_UNDERWRITTEN_VAL_DIALOG_FXML = "get_listings_by_zipcode_and_underwritten_val.fxml";
+    public static final String GET_AVG_LIST_PRICE_BY_BEDS_BATHS_DIALOG_FXML = "get_average_list_price_by_beds_baths_dialog.fxml";
+    public static final String GET_LISTINGS_BY_UNDERWRITTEN_VAL_DIALOG_FXML = "get_listings_by_underwritten_val.fxml";
     public static final String GET_FAIR_RENT_BY_ZIPCODE_DIALOG_FXML = "get_fair_rent_rate_by_zipcode.fxml";
     public static final String GET_DOWNLOAD_RENT_LISTINGS_DIALOG_FXML = "download_rent_listing_dialog.fxml";
     public static final String CALCULATE_PROPERTY_NOI_AND_DEBT_SERVICE = "calculate_property_noi_and_debt_service";
@@ -60,15 +58,6 @@ public class MainScreenController {
 
     @FXML
     public ContextMenu contextMenu;
-    
-    private final StateService stateService = new StateServiceImpl(this, contextMenu);
-    private final CityService cityService = new CityServiceImpl(this, contextMenu);
-    private final ZipcodeService zipcodeService = new ZipcodeServiceImpl(this, contextMenu);
-    private final ListingService listingService = new ListingServiceImpl(this, contextMenu);
-    private final FairRentService fairRentService = new FairRentServiceImpl();
-    private final RentService rentService = new RentServiceImpl(this, contextMenu);
-    private final ImportDataFromCSVService importDataFromCSVService = new ImportDataFromCSVServiceImpl(this, contextMenu);
-    private final UtilityService clearDataService = new UtilityServiceImpl(this);
 
     public void setPrevious(Object obj) {
         previous = obj;
@@ -93,6 +82,15 @@ public class MainScreenController {
     public BorderPane getPrimaryBorderPane() {
         return borderPane;
     }
+
+    private final StateService stateService = new StateServiceImpl(this, contextMenu);
+    private final CityService cityService = new CityServiceImpl(this, contextMenu);
+    private final ZipcodeService zipcodeService = new ZipcodeServiceImpl(this, contextMenu);
+    private final ListingService listingService = new ListingServiceImpl(this, contextMenu);
+    private final FairRentService fairRentService = new FairRentServiceImpl();
+    private final RentService rentService = new RentServiceImpl(this, contextMenu);
+    private final ImportDataFromCSVService importDataFromCSVService = new ImportDataFromCSVServiceImpl(this, contextMenu);
+    private final UtilityService clearDataService = new UtilityServiceImpl(this);
 
     @FXML
     public void listStates() {
@@ -167,7 +165,7 @@ public class MainScreenController {
 
     @FXML
     public void readFairRentsFromCSV() {
-        ConsoleLogger.getInstance().printMessage("readFairRentsFROMSCV called");
+        //ConsoleLogger.getInstance().printMessage("readFairRentsFROMSCV called");
         importDataFromCSVService.readFairRentsFromCSV(table, borderPane, progressBar, progressBarMessage);
     }
 
@@ -178,23 +176,23 @@ public class MainScreenController {
 
     @FXML
     public void clearFairRents() {
-        fairRentService.clearFairRents(table, borderPane);
+        fairRentService.deleteFairRents(table, borderPane);
     }
     
     @FXML
     public void clearMarketRents() {
-        rentService.clearMarketRents(table, borderPane);
+        rentService.deleteMarketRents(table, borderPane);
     }
 
     @FXML
     public void getAverageListPriceByZipcodeNumBedsAndBaths() {
-        zipcodeService.getAverageListPriceByZipcodeNumBedsAndBaths(table, borderPane);
+        zipcodeService.findAverageListPriceByZipcodeNumBedsAndBaths(table, borderPane);
 
     }
 
     @FXML
     public void getAverageListPriceByCityNumBedsAndBaths() {
-        cityService.getAverageListPriceByCityNumBedsAndBaths(table, borderPane);
+        cityService.findAverageListPriceByCityNumBedsAndBaths(table, borderPane);
     }
 
     @FXML
@@ -214,22 +212,22 @@ public class MainScreenController {
 
     @FXML
     public void getAverageRentByCityNumBedsAndBaths() {
-        cityService.getAverageRentByCityNumBedsAndBaths(table, borderPane);
+        cityService.findAverageRentByCityNumBedsAndBaths(table, borderPane);
     }
 
     @FXML
     public void getAverageRentByZipcodeNumBedsAndBaths() {
-        zipcodeService.getAverageRentByZipcodeNumBedsAndBaths(table, borderPane);
+        zipcodeService.findAverageRentByZipcodeNumBedsAndBaths(table, borderPane);
     }
 
     @FXML
     public void getListingByZipcodeAndUnderwrittenVal() {
-        zipcodeService.getListingByZipcodeAndUnderwrittenVal(table, borderPane, buttonsContainer);
+        zipcodeService.findListingByZipcodeAndUnderwrittenVal(table, borderPane, buttonsContainer);
     }
 
     @FXML
     public void getListingByCityAndUnderwrittenVal() {
-        cityService.getListingByCityAndUnderwrittenVal(table, borderPane, buttonsContainer);
+        cityService.findListingByCityAndUnderwrittenVal(table, borderPane, buttonsContainer);
     }
 
     @FXML

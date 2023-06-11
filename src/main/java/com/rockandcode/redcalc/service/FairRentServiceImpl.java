@@ -1,4 +1,3 @@
-
 package com.rockandcode.redcalc.service;
 
 import java.io.IOException;
@@ -25,18 +24,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Window;
 
-/**
- *
- * @author riost02
- */
 public class FairRentServiceImpl implements FairRentService {
-    
+
     private final FairMarketRentRepository fairMarketRentRepository;
 
     public FairRentServiceImpl() {
         this.fairMarketRentRepository = new FairMarketRentRepository(Datasource.getInstance());
     }
-    
+
 
     @Override
     public void getFairRentRateByZipcodeAndBed(BorderPane borderPane) {
@@ -90,7 +85,7 @@ public class FairRentServiceImpl implements FairRentService {
     }
 
     @Override
-    public void clearFairRents(TableView table, BorderPane borderPane) {
+    public void deleteFairRents(TableView table, BorderPane borderPane) {
         Window mainStage = borderPane.getScene().getWindow();
         /* Creating a new instance of the dialog class */
         Alert a = Alerts.getInstance().getConfirmationAlert("Are you sure you want to clear the fair rents database?");
@@ -107,5 +102,10 @@ public class FairRentServiceImpl implements FairRentService {
         } else {
             //CANCEL BUTTON PRESSED!
         }
+    }
+
+    @Override
+    public void deleteFairRents() {
+        fairMarketRentRepository.deleteFairMarketRent();
     }
 }

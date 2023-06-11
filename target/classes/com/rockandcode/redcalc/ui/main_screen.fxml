@@ -46,13 +46,13 @@
                 </Menu>
                 <Menu text="Statistics">
                     <items>
-                        <MenuItem onAction="#getAverageListPriceByCityNumBedsAndBaths" text="Average List Price (City)" />
+                        <MenuItem onAction="#getAverageListPriceByCityNumBedsBaths" text="Average List Price (City)" />
                         <SeparatorMenuItem />
-                        <MenuItem onAction="#getAverageListPriceByZipcodeNumBedsAndBaths" text="Average List Price (Zipcode)" />
+                        <MenuItem onAction="#getAverageListPriceByZipcodeNumBedsBaths" text="Average List Price (Zipcode)" />
                         <SeparatorMenuItem />
-                        <MenuItem onAction="#getAverageRentByCityNumBedsAndBaths" text="Average Rent (City)" />
+                        <MenuItem onAction="#getAverageRentByCityNumBedsBaths" text="Average Rent (City)" />
                         <SeparatorMenuItem />
-                        <MenuItem onAction="#getAverageRentByZipcodeNumBedsAndBaths" text="Average Rent (Zipcode)" />
+                        <MenuItem onAction="#getAverageRentByZipcodeNumBedsBaths" text="Average Rent (Zipcode)" />
                         <SeparatorMenuItem />
                         <MenuItem onAction="#getFairRentRateByZipcodeAndBed" text="Fair Market Rent" />
                     </items>

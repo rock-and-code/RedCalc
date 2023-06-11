@@ -13,10 +13,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-/**
- *
- * @author riost02
- */
 public class CalculatePropertyNOIAndDebtServiceController {
 
     private final String PRIMARY = "main_screen";
