@@ -149,7 +149,7 @@ public class ImportDataFromCSVServiceImpl implements ImportDataFromCSVService {
     @Override
     public void readFairRentsFromCSV(TableView table, BorderPane borderPane, 
             ProgressBar progressBar, TextField progressBarMessage) {
-                ConsoleLogger.getInstance().printMessage("readFairRentsFromCSV called");
+                //ConsoleLogger.getInstance().printMessage("readFairRentsFromCSV called");
         Window mainStage = borderPane.getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
@@ -168,7 +168,7 @@ public class ImportDataFromCSVServiceImpl implements ImportDataFromCSVService {
             task.setOnSucceeded(e -> {
                 progressBar.setVisible(false);
                 progressBarMessage.setVisible(false);
-                Alert a = Alerts.getInstance().getConfirmationAlert("Listings successfully added to the database");
+                Alert a = Alerts.getInstance().getConfirmationAlert("Fair rentals successfully added to the database");
                 a.initOwner(mainStage);
                 a.show();
                 //REFRESH TABLE
@@ -177,7 +177,7 @@ public class ImportDataFromCSVServiceImpl implements ImportDataFromCSVService {
             task.setOnFailed(e -> {
                 progressBar.setVisible(false);
                 progressBarMessage.setVisible(false);
-                Alert a = Alerts.getInstance().getErrorAlert("Unable to add listings to the database");
+                Alert a = Alerts.getInstance().getErrorAlert("Unable to add fair rentals to the database");
                 a.initOwner(mainStage);
                 a.show();
             });

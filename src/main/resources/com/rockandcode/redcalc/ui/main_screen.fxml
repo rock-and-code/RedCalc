@@ -46,8 +46,8 @@
                 </Menu>
                 <!-- TODO: Add queries in datasource to get average price by state, city, or zipcode based on num of beds and baths
                 this will require a new dialog with a text input for state or city name -->
-<!--                <Menu text="Statistics">-->
-<!--                    <items>-->
+                <Menu text="Statistics">
+                    <items>
 <!--                        <MenuItem onAction="#getAverageListPriceByCityNumBedsAndBaths" text="Average List Price (City)" />-->
 <!--                        <SeparatorMenuItem />-->
 <!--                        <MenuItem onAction="#getAverageListPriceByZipcodeNumBedsAndBaths" text="Average List Price (Zipcode)" />-->
@@ -56,9 +56,9 @@
 <!--                        <SeparatorMenuItem />-->
 <!--                        <MenuItem onAction="#getAverageRentByZipcodeNumBedsAndBaths" text="Average Rent (Zipcode)" />-->
 <!--                        <SeparatorMenuItem />-->
-<!--                        <MenuItem onAction="#getFairRentRateByZipcodeAndBed" text="Fair Market Rent" />-->
-<!--                    </items>-->
-<!--                </Menu>-->
+                        <MenuItem onAction="#getFairRentRateByZipcodeAndBed" text="Fair Market Rent" />
+                    </items>
+                </Menu>
                 <Menu text="Tool">
                     <items>
                         <MenuItem onAction="#switchToCalculatePropertyNOIAndDebtServiceController" text="Calculate Property NOI And Debt Service" />

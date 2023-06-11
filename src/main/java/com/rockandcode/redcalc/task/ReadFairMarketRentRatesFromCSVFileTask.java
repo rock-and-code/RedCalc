@@ -55,15 +55,19 @@ public class ReadFairMarketRentRatesFromCSVFileTask extends Task<Boolean> {
          }
         // Iterate over the lines in the file, reading each fair market rent rate and inserting it into the database.
         while ((input = dirFile.readLine()) != null) {
+            //ConsoleLogger.getInstance().printMessage("inside While input=dirFile.readLine() != null");
             FairRentRates data = null;
             try {
                 data = extractDataFromFmrCSVFileForDatabase(input);
             } catch (InputMismatchException e) {
                 ConsoleLogger.getInstance().printErrorMessage("Error while reading a csv file line: ", e);
+            } catch (Exception e) {
+                ConsoleLogger.getInstance().printErrorMessage("Error while reading a csv file line: ", e);
             }
             // If the fair market rent rate is not null, insert it into the database.
             if (data != null) {
                 //INSERT IN DATABASE
+                //ConsoleLogger.getInstance().printMessage("inside data != null");
                 try {
                     insertFairRentRate(data);
                     StringBuilder buffer = new StringBuilder();
@@ -78,7 +82,7 @@ public class ReadFairMarketRentRatesFromCSVFileTask extends Task<Boolean> {
             updateProgress(progressCounter, numberOfFairRentRatesToRead);
             ++progressCounter;
         }
-
+        //ConsoleLogger.getInstance().printMessage("inside While input=dirFile.readLine() != null ends");
         // Close the CSV file.
         dirFile.close();
         return true;
@@ -103,6 +107,7 @@ public class ReadFairMarketRentRatesFromCSVFileTask extends Task<Boolean> {
      * @throws Exception If an error occurs while reading the file.
      */
     public int getNumberOfLinesFromFMRCSVFile(String filePath) throws Exception {
+        //ConsoleLogger.getInstance().printMessage("getNumberOfLinesFromFMRCSVFile called");
         int numberOfLines = 0;
 
         // Open the file and read each line.
@@ -125,7 +130,8 @@ public class ReadFairMarketRentRatesFromCSVFileTask extends Task<Boolean> {
      * @param fileLine The line from the CSV file.
      * @return The fair market rent rate.
      **/
-    private FairRentRates extractDataFromFmrCSVFileForDatabase(String fileLine) throws InputMismatchException {
+    private FairRentRates extractDataFromFmrCSVFileForDatabase(String fileLine) throws InputMismatchException, Exception {
+        //ConsoleLogger.getInstance().printMessage("extractDataFromFmrCSVFileForDatabase called");
         //CSV's useful column range 1-8
         String[] data = fileLine.split(",");
         // Indexes for the different columns
@@ -184,6 +190,7 @@ public class ReadFairMarketRentRatesFromCSVFileTask extends Task<Boolean> {
      * @throws Exception
      */
     private void insertFairRentRate(FairRentRates data) throws Exception {
+        //ConsoleLogger.getInstance().printMessage("insertFairRentRate called");
         // Insert the data into the database
         Datasource.getInstance().insertFairRentRate(
                 data.getZipcode(),

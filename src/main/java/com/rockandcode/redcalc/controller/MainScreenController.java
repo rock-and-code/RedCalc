@@ -165,7 +165,6 @@ public class MainScreenController {
 
     @FXML
     public void readFairRentsFromCSV() {
-        //ConsoleLogger.getInstance().printMessage("readFairRentsFROMSCV called");
         importDataFromCSVService.readFairRentsFromCSV(table, borderPane, progressBar, progressBarMessage);
     }
 
