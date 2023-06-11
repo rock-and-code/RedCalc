@@ -1,7 +1,7 @@
 
 package com.rockandcode.redcalc.service;
 
-import static com.rockandcode.redcalc.controller.MainScreenController.GET_AVG_LIST_PRICE_BY_BEDS_BATHS_DIALOG_FXML;
+import static com.rockandcode.redcalc.controller.MainScreenController.GET_NUM_OF_BEDS_AND_BATHS_DIALOG_FXML;
 import static com.rockandcode.redcalc.controller.MainScreenController.GET_LISTINGS_BY_UNDERWRITTEN_VAL_DIALOG_FXML;
 
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
 
-import com.rockandcode.redcalc.controller.GetAverageListPriceByZipcodeBedsBathsDialogController;
+import com.rockandcode.redcalc.controller.GetNumOfBedsAndBathsDialogController;
 import com.rockandcode.redcalc.controller.GetListingByUnderwrittenValDialogController;
 import com.rockandcode.redcalc.controller.MainScreenController;
 import com.rockandcode.redcalc.database.Datasource;
@@ -99,7 +99,6 @@ public class ZipcodeServiceImpl implements ZipcodeService {
 
     @Override
     public void findAverageListPriceByZipcodeNumBedsAndBaths(TableView table, BorderPane borderPane) {
-        final int numBeds = 0, numBaths = 1;
         int beds;
         double baths;
         final ZipCode zipcode = (ZipCode) table.getSelectionModel().getSelectedItem();
@@ -112,12 +111,12 @@ public class ZipcodeServiceImpl implements ZipcodeService {
 
         BedsAndBathsDTO data = null;
         /* Creating a new instance of the dialog class */
-        Dialog<ButtonType> dialog = Dialogs.getInstance().getAvgListPriceByZipcodeBedsBathsDialog();
+        Dialog<ButtonType> dialog = Dialogs.getInstance().getAvgListPriceByBedsBathsDialog();
         /* to select main windows and change it to dialog pane, instead of openning a new window */
         dialog.initOwner(borderPane.getScene().getWindow());
 
         FXMLLoader fxmLoader = new FXMLLoader();
-        fxmLoader.setLocation(App.class.getResource(GET_AVG_LIST_PRICE_BY_BEDS_BATHS_DIALOG_FXML));
+        fxmLoader.setLocation(App.class.getResource(GET_NUM_OF_BEDS_AND_BATHS_DIALOG_FXML));
         try {
             dialog.getDialogPane().setContent(fxmLoader.load());
         } catch (IOException e) {
@@ -128,7 +127,7 @@ public class ZipcodeServiceImpl implements ZipcodeService {
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             /* To use methods from Dialog Controller */
-            GetAverageListPriceByZipcodeBedsBathsDialogController controller = fxmLoader.getController();
+            GetNumOfBedsAndBathsDialogController controller = fxmLoader.getController();
             data = controller.getBedsAndBaths();
         } else {
             ConsoleLogger.getInstance().printMessage("Cancel pressed");
@@ -176,12 +175,12 @@ public class ZipcodeServiceImpl implements ZipcodeService {
 
         BedsAndBathsDTO data = null;
         /* Creating a new instance of the dialog class */
-        Dialog<ButtonType> dialog = Dialogs.getInstance().getAvgRentByZipcodeBedsBathsDialog();
+        Dialog<ButtonType> dialog = Dialogs.getInstance().getAvgRentByBedsBathsDialog();
         /* to select main windows and change it to dialog pane, instead of openning a new window */
         dialog.initOwner(borderPane.getScene().getWindow());
 
         FXMLLoader fxmLoader = new FXMLLoader();
-        fxmLoader.setLocation(App.class.getResource(GET_AVG_LIST_PRICE_BY_BEDS_BATHS_DIALOG_FXML));
+        fxmLoader.setLocation(App.class.getResource(GET_NUM_OF_BEDS_AND_BATHS_DIALOG_FXML));
         try {
             dialog.getDialogPane().setContent(fxmLoader.load());
         } catch (IOException e) {
@@ -192,7 +191,7 @@ public class ZipcodeServiceImpl implements ZipcodeService {
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             /* To use methods from Dialog Controller */
-            GetAverageListPriceByZipcodeBedsBathsDialogController controller = fxmLoader.getController();
+            GetNumOfBedsAndBathsDialogController controller = fxmLoader.getController();
             data = controller.getBedsAndBaths();
             //ConsoleLogger.getInstance().printMessage("OK pressed" + " : numBeds= " + data[numBeds].toString());
         } else {
@@ -250,7 +249,7 @@ public class ZipcodeServiceImpl implements ZipcodeService {
         //Getting parameters for db quer
         BedsBathsAndCapRateDTO data = null;
         /* Creating a new instance of the dialog class */
-        Dialog<ButtonType> dialog = Dialogs.getInstance().getListingsByZipcodeandUnderwrittenValDialog();
+        Dialog<ButtonType> dialog = Dialogs.getInstance().getListingsByUnderwrittenValDialog();
         /* to select main windows and change it to dialog pane, instead of openning a new window */
         dialog.initOwner(borderPane.getScene().getWindow());
 

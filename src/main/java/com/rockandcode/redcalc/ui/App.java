@@ -19,12 +19,12 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
-    private static final String PRIMARY_FXML = "main_screen";
+    private static final String MAIN_SCREEN_FXML = "main_screen";
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML(PRIMARY_FXML), 940, 580);
+        scene = new Scene(loadFXML(MAIN_SCREEN_FXML), 940, 580);
         //Creating the scroll pane
         stage.setTitle("Real Estate Listings Database");
         stage.setScene(scene);
@@ -37,7 +37,7 @@ public class App extends Application {
 
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        if (fxml.equalsIgnoreCase(PRIMARY_FXML)) {
+        if (fxml.equalsIgnoreCase(MAIN_SCREEN_FXML)) {
             //to populate table from database query
             Parent root = fxmlLoader.load();
             MainScreenController controller = fxmlLoader.getController();

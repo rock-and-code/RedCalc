@@ -1,10 +1,7 @@
 
 
 #borderPane, #updateCityDialogPane, #insertListingDialogPane, #calculateNOIAndDebtServiceBorderPane,
-#calculateMortgagePaymentBorderPane{
-    -fx-font-family: helvetica;
-}
-
-.dialogs, .alerts {
+#calculateMortgagePaymentBorderPane, #getNumOfBedsBathsDialogPane, #getListingsByUnderwrittenValue,
+#getFairRentRateByZipcodeDialog, #downloadRentListingDialogPane{
     -fx-font-family: helvetica;
 }

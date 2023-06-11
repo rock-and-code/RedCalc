@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Optional;
 
-import com.rockandcode.redcalc.controller.GetAvgListPriceByBedsBathsDialogController;
+import com.rockandcode.redcalc.controller.GetNumOfBedsAndBathsDialogController;
 import com.rockandcode.redcalc.controller.MainScreenController;
 import com.rockandcode.redcalc.database.Datasource;
 import com.rockandcode.redcalc.model.BedsAndBathsDTO;
@@ -134,13 +134,13 @@ public class StateServiceImpl implements StateService {
 
         BedsAndBathsDTO data = null;
         /* Creating a new instance of the dialog class */
-        Dialog<ButtonType> dialog = Dialogs.getInstance().getAvgListPriceByStateBedsBathsDialog();
+        Dialog<ButtonType> dialog = Dialogs.getInstance().getAvgListPriceByBedsBathsDialog();
         /* to select main windows and change it to dialog pane, instead of openning a new window */
         dialog.initOwner(borderPane.getScene().getWindow());
 
         FXMLLoader fxmLoader = new FXMLLoader();
         //System.out.println("getClass=" + getClass());
-        fxmLoader.setLocation(App.class.getResource(MainScreenController.GET_AVG_LIST_PRICE_BY_BEDS_BATHS_DIALOG_FXML));
+        fxmLoader.setLocation(App.class.getResource(MainScreenController.GET_NUM_OF_BEDS_AND_BATHS_DIALOG_FXML));
         try {
             /* SETTING DIALOG CONTENT FROM DIALOG FXML */
             dialog.getDialogPane().setContent(fxmLoader.load());
@@ -151,7 +151,7 @@ public class StateServiceImpl implements StateService {
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             /* To use methods from Dialog Controller */
-            GetAvgListPriceByBedsBathsDialogController controller = fxmLoader.getController();
+            GetNumOfBedsAndBathsDialogController controller = fxmLoader.getController();
             data = controller.getBedsAndBaths();
             //ConsoleLogger.getInstance().printMessage("OK pressed" + " : numBeds= " + data[numBeds].toString());
         } else {
@@ -200,12 +200,12 @@ public class StateServiceImpl implements StateService {
 
         BedsAndBathsDTO data = null;
         /* Creating a new instance of the dialog class */
-        Dialog<ButtonType> dialog = Dialogs.getInstance().getAvgRentByStateBedsBathsDialog();
+        Dialog<ButtonType> dialog = Dialogs.getInstance().getAvgRentByBedsBathsDialog();
         /* to select main windows and change it to dialog pane, instead of openning a new window */
         dialog.initOwner(borderPane.getScene().getWindow());
 
         FXMLLoader fxmLoader = new FXMLLoader();
-        fxmLoader.setLocation(App.class.getResource(MainScreenController.GET_AVG_LIST_PRICE_BY_BEDS_BATHS_DIALOG_FXML));
+        fxmLoader.setLocation(App.class.getResource(MainScreenController.GET_NUM_OF_BEDS_AND_BATHS_DIALOG_FXML));
         try {
             /* SETTING DIALOG CONTENT FROM DIALOG FXML */
             dialog.getDialogPane().setContent(fxmLoader.load());
@@ -217,7 +217,7 @@ public class StateServiceImpl implements StateService {
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             /* To use methods from Dialog Controller */
-            GetAvgListPriceByBedsBathsDialogController controller = fxmLoader.getController();
+            GetNumOfBedsAndBathsDialogController controller = fxmLoader.getController();
             data = controller.getBedsAndBaths();
             //ConsoleLogger.getInstance().printMessage("OK pressed" + " : numBeds= " + data[numBeds].toString());
         } else {

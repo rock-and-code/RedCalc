@@ -1,11 +1,15 @@
 package com.rockandcode.redcalc.controller;
 
-import com.rockandcode.redcalc.util.Alerts;
-import com.rockandcode.redcalc.ui.App;
 import java.io.IOException;
 import java.text.DecimalFormat;
+
+import com.rockandcode.redcalc.ui.App;
+import com.rockandcode.redcalc.util.Alerts;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
 public class CalculateMortgagePaymentController {

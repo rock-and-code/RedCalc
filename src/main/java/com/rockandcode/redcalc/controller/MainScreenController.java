@@ -34,7 +34,7 @@ public class MainScreenController {
 
     public static final String UPDATE_CITY_DIALOG_FXML = "update_city_dialog.fxml";
     public static final String INSERT_LISTING_DIALOG_FXML = "insert_sales_listing_dialog.fxml";
-    public static final String GET_AVG_LIST_PRICE_BY_BEDS_BATHS_DIALOG_FXML = "get_average_list_price_by_beds_baths_dialog.fxml";
+    public static final String GET_NUM_OF_BEDS_AND_BATHS_DIALOG_FXML = "get_num_of_beds_and_baths_dialog.fxml";
     public static final String GET_LISTINGS_BY_UNDERWRITTEN_VAL_DIALOG_FXML = "get_listings_by_underwritten_val.fxml";
     public static final String GET_FAIR_RENT_BY_ZIPCODE_DIALOG_FXML = "get_fair_rent_rate_by_zipcode.fxml";
     public static final String GET_DOWNLOAD_RENT_LISTINGS_DIALOG_FXML = "download_rent_listing_dialog.fxml";
@@ -117,7 +117,7 @@ public class MainScreenController {
     }
     
     @FXML
-    private void handleExit() throws IOException {
+    private void handleExit() {
         Platform.exit();
     }
 
