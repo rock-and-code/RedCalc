@@ -1560,7 +1560,7 @@ public class Datasource {
         }
     }
 
-    public List<Listing> findListingsForZipCodeNumber(int zipcode) {
+    public List<Listing> findListingsByZipCodeNumber(int zipcode) {
         try {
             List<Listing> listings = new ArrayList<>();
             queryListingsByZipCodeNumber.setInt(1, zipcode);

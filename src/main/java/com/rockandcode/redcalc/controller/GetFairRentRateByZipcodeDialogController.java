@@ -13,7 +13,12 @@ public class GetFairRentRateByZipcodeDialogController {
     
     @FXML
     public BedsAndZipcodeDTO getBedsAndZipcode() {
-        return new BedsAndZipcodeDTO(numBedsSpinner.getValue(), zipcodeTextField.getText());
+        // Gets the number of beds and zip code from the controls.
+        int numBeds = numBedsSpinner.getValue();
+        String zipcode = zipcodeTextField.getText();
+
+        // Creates a new BedsAndZipcodeDTO object and returns it.
+        return new BedsAndZipcodeDTO(numBeds, zipcode);
     }
 
 }

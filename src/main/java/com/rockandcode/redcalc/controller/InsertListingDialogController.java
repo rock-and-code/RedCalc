@@ -50,13 +50,15 @@ public class InsertListingDialogController {
                 }
             }
         }
-
+        //Creates a new ListingCity object
         ListingCity listingCity = new ListingCity();
+        //Sets the state, city, address, property type, and URL of the listing
         listingCity.setState(stateComboBox.getValue().toString().trim());
         listingCity.setCityName(cityTextField.getText().trim());
         listingCity.setAddress(addressTextField.getText().trim());
         listingCity.setPropertyType(propertyTypeComboBox.getValue().toString().trim());
         listingCity.setUrl(urlTextField.getText().trim());
+        //Try-catch blocks to validate the input values
         try {
             listingCity.setZipcode(Integer.parseInt(zipcodeTextField.getText()));
         } catch (NumberFormatException e) {
@@ -97,6 +99,7 @@ public class InsertListingDialogController {
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Longitude field must contains a numeric value");
         }
+        //Returns the ListingCity object
         return listingCity;
 
     }

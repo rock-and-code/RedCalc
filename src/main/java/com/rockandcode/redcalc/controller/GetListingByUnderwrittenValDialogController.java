@@ -4,14 +4,13 @@ package com.rockandcode.redcalc.controller;
 
 import com.rockandcode.redcalc.model.BedsBathsAndCapRateDTO;
 import javafx.fxml.FXML;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 
-/**
- *
- * @author riost02
- */
 public class GetListingByUnderwrittenValDialogController {
+    @FXML
+    public DialogPane getListingsByUnderwrittenValueDialogPane;
     @FXML
     private Spinner<Integer> numBedsSpinner;
     @FXML
@@ -21,6 +20,12 @@ public class GetListingByUnderwrittenValDialogController {
     
     @FXML
     public BedsBathsAndCapRateDTO getBedsBathsAndCapRate() {
-        return new BedsBathsAndCapRateDTO(numBedsSpinner.getValue(), numBathsSpinner.getValue(), capRateTextField.getText());
+        // Gets the number of beds, baths, and cap rate from the controls.
+        int numBeds = numBedsSpinner.getValue();
+        double numBaths = numBathsSpinner.getValue();
+        String capRate = capRateTextField.getText();
+
+        // Creates a new BedsBathsAndCapRateDTO object and returns it.
+        return new BedsBathsAndCapRateDTO(numBeds, numBaths, capRate);
     }
 }

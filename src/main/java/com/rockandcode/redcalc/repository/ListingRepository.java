@@ -6,8 +6,7 @@ import com.rockandcode.redcalc.model.ListingCity;
 import java.util.List;
 
 /**
- *
- * @author riost02
+ * A repository for storing and retrieving Listing information.
  */
 public class ListingRepository {
 
@@ -17,38 +16,98 @@ public class ListingRepository {
         this.source = source;
     }
 
-    public List<Listing> findListingsByZipcodeAndUnderwrittenValue(int zipcode, int numBeds, double numBaths, double capRate) throws Exception {
-        return source.findListingsByZipcodeAndUnderwrittenValue(zipcode, numBeds, numBaths, capRate);
+    /**
+     * Finds all listings that meet the specified criteria.
+     *
+     * @param zipcodeNumber the zipcode of the listings to find
+     * @param numBeds the number of bedrooms
+     * @param numBaths the number of bathrooms
+     * @param capRate the desired cap rate
+     * @return a list of listings
+     * @throws Exception if an error occurs during the retrieval
+     */
+    public List<Listing> findListingsByZipcodeAndUnderwrittenValue(int zipcodeNumber, int numBeds, double numBaths, double capRate) throws Exception {
+        return source.findListingsByZipcodeAndUnderwrittenValue(zipcodeNumber, numBeds, numBaths, capRate);
+    }
+    /**
+     * Retrieves a list of listings in a city that meet the specified underwritten value criteria.
+     *
+     * @param cityName the name of the city
+     * @param numBeds the number of bedrooms
+     * @param numBaths the number of bathrooms
+     * @param capRate the desired cap rate
+     * @return a list of listings
+     * @throws Exception if an error occurs during the retrieval
+     */
+    public List<Listing> findListingsByCityAndTheUnderwrittenValue(String cityName, int numBeds, double numBaths, double capRate) throws Exception {
+        return source.findListingsByCityAndTheUnderwrittenValue(cityName, numBeds, numBaths, capRate);
     }
 
-    public List<Listing> findListingsByCityAndTheUnderwrittenValue(String city, int numBeds, double numBaths, double capRate) throws Exception {
-        return source.findListingsByCityAndTheUnderwrittenValue(city, numBeds, numBaths, capRate);
+    /**
+     * Retrieves a list of listings that meet the specified underwritten value criteria.
+     *
+     * @param zipcodeNumber the zipcode number of a city
+     * @return a list of listings
+     * @throws Exception if an error occurs during the retrieval
+     */
+    public List<Listing> findListingsByZipcodeNumber(int zipcodeNumber) {
+        return source.findListingsByZipCodeNumber(zipcodeNumber);
     }
 
-    public List<Listing> findListingsForZipCodeId(int id) {
-        return source.findListingsForZipCodeId(id);
-    }
-
-    public List<Listing> findListingsForZipCodeNumber(int zipcode) {
-        return source.findListingsForZipCodeNumber(zipcode);
-    }
-
+    /**
+     * Finds all listings that meet the specified criteria.
+     *
+     * @param id the ID of the listings to find
+     * @return a list of listings
+     */
     public List<Listing> findListingsByZipcodeId(int id) {
         return source.findListingsByZipcodeId(id);
     }
 
+    /**
+     * Finds all listings that meet the specified criteria.
+     *
+     * @param cityName the name of the city of the listings to find
+     * @return a list of listings
+     */
     public List<Listing> findListingsByCityName(String cityName) {
         return source.findListingsByCityName(cityName);
     }
 
+    /**
+     * Finds the city for a given listing.
+     *
+     * @param listingAddress the address of the listing
+     * @return the city of the listing
+     */
     public List<ListingCity> findCityForListing(String listingAddress) {
         return source.findCityForListing(listingAddress);
     }
-
+    /**
+     * Retrieves the metadata for all listings.
+     */
     public void findListingsMetadata() {
         source.findListingsMetadata();
     }
 
+    /**
+     * Saves a new listing to the database.
+     *
+     * @param state the state of the listing
+     * @param city the city of the listing
+     * @param address the address of the listing
+     * @param propertyType the type of the listing
+     * @param zipCode the zipcode of the listing
+     * @param listPrice the list price of the listing
+     * @param numBed the number of bedrooms of the listing
+     * @param numBath the number of bathrooms of the listing
+     * @param sqft the square footage of the listing
+     * @param yearBuilt the year on which the property listed was built
+     * @param latitude the latitude of the listing
+     * @param longitude the longitude of the listing
+     * @param url the url of the listing
+     * @return true if the listing was saved successfully, false otherwise
+     */
     public boolean saveListing(
             String state, //1
             String city, //2
@@ -65,15 +124,27 @@ public class ListingRepository {
             String url) {
         return source.insertListing(state, city, address, propertyType, zipCode, listPrice, numBed, numBath, sqft, yearBuilt, latitude, longitude, url);
     }
-
+    /**
+     * Updates the price of a listing by its address.
+     *
+     * @param newListPrice the new list price of the listing
+     * @param address the address of the listing
+     * @return true if the price was updated successfully, false otherwise
+     */
     public boolean updateListingPriceByAddress(double newListPrice, String address) {
         return source.updateListingPriceByAddress(newListPrice, address);
     }
-
+    /**
+     * Deletes a listing by its ID.
+     *
+     * @param listingID the ID of the listing to delete
+     */
     public void deleteListingById(int listingID) {
         source.deleteListingById(listingID);
     }
-
+    /**
+     * Deletes all listings from the database.
+     */
     public void deleteListings() {
         source.deleteListingsTableData();
     }

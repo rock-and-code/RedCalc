@@ -26,7 +26,7 @@ public class DownloadRentListingDialogController {
         if (stateValue.isBlank()) {
             throw new RuntimeException("State field is required");
         }
-        //Selecting all Nodes from the UI GridPane
+        // Creates a new HashMap and adds the city and state values to it.
         return new HashMap<>() {{
             put("city", cityValue);
             put("state", stateValue);

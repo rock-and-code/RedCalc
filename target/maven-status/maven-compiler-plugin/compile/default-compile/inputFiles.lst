@@ -6,11 +6,12 @@
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/util/InputValidator.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/task/ReadFairMarketRentRatesFromCSVFileTask.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/controller/CalculateMortgagePaymentController.java
+/Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/controller/GetListingByUnderwrittenValDialogController.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/controller/DownloadRentListingDialogController.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/repository/CityRepository.java
+/Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/controller/GetNumOfBedsAndBathsDialogController.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/ui/AppLauncher.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/database/Datasource.java
-/Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/controller/GetAverageListPriceByZipcodeBedsBathsDialogController.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/service/ZipcodeService.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/service/UtilityServiceImpl.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/controller/UpdateCityDialogController.java
@@ -28,6 +29,7 @@
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/service/ImportDataFromCSVServiceImpl.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/task/GetFairRentsTask.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/model/Listing.java
+/Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/controller/GetAvgListPriceByBedsBathsDialogController.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/task/ReadMarketRentRatesFromSQLITECSVFileTask.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/model/BedsBathsAndCapRateDTO.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/model/SaleListing.java
@@ -39,7 +41,6 @@
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/util/GetRentData.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/service/FairRentService.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/task/GetListingFromRedfinCSVFileTask.java
-/Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/controller/GetListingByZipcodeAndUnderwrittenValDialogController.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/service/CityService.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/task/GetListingsForAZipcodeTask.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/util/GetRealtyMolePropertyJSON.java
@@ -57,7 +58,6 @@
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/service/ImportDataFromCSVService.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/util/ButtonsModifier.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/model/RealEstateState.java
-/Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/controller/GetAvgListPriceByCityBedsBathsDialogController.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/controller/CalculatePropertyNOIAndDebtServiceController.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/service/ListingServiceImpl.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/util/Alerts.java

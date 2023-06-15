@@ -13,8 +13,10 @@ public class UpdateCityDialogController {
     
     @FXML
     public String getNewCityName(){
-        //Return new artist name
+        // Gets the new city name from the text field.
+        //
+        // Returns:
+        // The new city name, trimmed of any leading or trailing whitespace.
         return newCityName.getText().trim();
-        
     }
 }

@@ -2,7 +2,6 @@
 package com.rockandcode.redcalc.service;
 
 import com.rockandcode.redcalc.controller.MainScreenController;
-import com.rockandcode.redcalc.database.Datasource;
 import com.rockandcode.redcalc.model.City;
 import com.rockandcode.redcalc.model.ZipCode;
 import com.rockandcode.redcalc.util.Alerts;
@@ -34,7 +33,7 @@ public class UtilityServiceImpl implements UtilityService{
         this.mc = mc;
         this.stateService = new StateServiceImpl(mc, mc.getContextMenu());
         this.cityService = new CityServiceImpl(mc, mc.getContextMenu());
-        this.zipcodeService = new ZipcodeServiceImpl(mc, mc.getContextMenu());
+        this.zipcodeService = new ZipcodeServiceImpl(mc);
         this.listingService = new ListingServiceImpl(mc, mc.getContextMenu());
         this.rentService = new RentServiceImpl(mc, mc.getContextMenu());
         this.fairRentService = new FairRentServiceImpl();

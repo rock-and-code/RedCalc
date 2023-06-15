@@ -1,25 +1,17 @@
 
 package com.rockandcode.redcalc.model;
 
-/**
- *
- * @author riost02
- */
 public class BedsAndBathsDTO {
     private int numBeds;
     private double numBaths;
 
     public BedsAndBathsDTO() {
     }
-    
-    
-    
+
     public BedsAndBathsDTO(int numBeds, double numBaths) {
         this.numBeds = numBeds;
         this.numBaths = numBaths;
     }
-    
-    
 
     public int getNumBeds() {
         return numBeds;

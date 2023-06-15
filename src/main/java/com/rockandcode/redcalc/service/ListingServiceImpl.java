@@ -36,7 +36,7 @@ public class ListingServiceImpl implements ListingService {
     public ListingServiceImpl(MainScreenController mc, ContextMenu contextMenu) {
         this.mc = mc;
         this.contextMenu = contextMenu;
-        this.zipcodeService = new ZipcodeServiceImpl(mc, contextMenu);
+        this.zipcodeService = new ZipcodeServiceImpl(mc);
         this.listingRepository = new ListingRepository(Datasource.getInstance());
         this.ZipcodeRepository = new ZipcodeRepository(Datasource.getInstance());
         this.cityRepository = new CityRepository(Datasource.getInstance());

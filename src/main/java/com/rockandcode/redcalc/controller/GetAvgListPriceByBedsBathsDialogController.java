@@ -14,6 +14,11 @@ public class GetAvgListPriceByBedsBathsDialogController {
     
     @FXML
     public BedsAndBathsDTO getBedsAndBaths() {
-        return new BedsAndBathsDTO(numBedsSpinner.getValue(), numBathsSpinner.getValue());
+        // Gets the number of beds and baths from the spinners.
+        int numBeds = numBedsSpinner.getValue();
+        double numBaths = numBathsSpinner.getValue();
+
+        // Creates a new BedsAndBathsDTO object and returns it.
+        return new BedsAndBathsDTO(numBeds, numBaths);
     }
 }

@@ -4,9 +4,12 @@ package com.rockandcode.redcalc.controller;
 import com.rockandcode.redcalc.model.BedsAndBathsDTO;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Spinner;
 
 public class GetNumOfBedsAndBathsDialogController {
+    @FXML
+    public DialogPane getNumOfBedsBathsDialogPane;
     @FXML
     private Spinner<Integer> numBedsSpinner;
     @FXML
@@ -14,6 +17,11 @@ public class GetNumOfBedsAndBathsDialogController {
     
     @FXML
     public BedsAndBathsDTO getBedsAndBaths() {
-        return new BedsAndBathsDTO(numBedsSpinner.getValue(), numBathsSpinner.getValue());
+        // Gets the number of beds and baths from the spinners.
+        int numBeds = numBedsSpinner.getValue();
+        double numBaths = numBathsSpinner.getValue();
+
+        // Creates a new BedsAndBathsDTO object and returns it.
+        return new BedsAndBathsDTO(numBeds, numBaths);
     }
 }

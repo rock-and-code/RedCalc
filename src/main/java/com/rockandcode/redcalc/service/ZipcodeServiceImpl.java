@@ -17,6 +17,7 @@ import com.rockandcode.redcalc.model.BedsAndBathsDTO;
 import com.rockandcode.redcalc.model.BedsBathsAndCapRateDTO;
 import com.rockandcode.redcalc.model.Listing;
 import com.rockandcode.redcalc.model.ZipCode;
+import com.rockandcode.redcalc.repository.ListingRepository;
 import com.rockandcode.redcalc.repository.ZipcodeRepository;
 import com.rockandcode.redcalc.ui.App;
 import com.rockandcode.redcalc.util.Alerts;
@@ -32,7 +33,6 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
@@ -41,17 +41,17 @@ import javafx.scene.layout.HBox;
 public class ZipcodeServiceImpl implements ZipcodeService {
     
     private final MainScreenController mc;
-    private ContextMenu contextMenu;
     private final ZipcodeRepository zipcodeRepository;
+    private final ListingRepository listingRepository;
 
-    public ZipcodeServiceImpl(MainScreenController mc, ContextMenu contextMenu) {
+    public ZipcodeServiceImpl(MainScreenController mc) {
         this.mc = mc;
-        this.contextMenu = contextMenu;
         this.zipcodeRepository = new ZipcodeRepository(Datasource.getInstance());
+        this.listingRepository = new ListingRepository(Datasource.getInstance());
     }
 
     @Override
-    public void listListingsForZipCodeId(TableView table, BorderPane borderPane, HBox buttonsContainer) {
+    public void findListingsByZipCodeId(TableView table, BorderPane borderPane, HBox buttonsContainer) {
         final ZipCode zipcode = (ZipCode) table.getSelectionModel().getSelectedItem();
         if (zipcode == null) {
             Alert a = Alerts.getInstance().getErrorAlert("No Zipcode Selected");
@@ -62,19 +62,19 @@ public class ZipcodeServiceImpl implements ZipcodeService {
         mc.setPrevious(zipcode);
         /* Removing some buttons not applicable at this point */
         ButtonsModifier.getInstance().setButtonsForListingsTable(mc, buttonsContainer);
-        //Changing the columsn displayed dynamically
+        //Changing the columns displayed dynamically
         TableViewEditor.getInstance().setColumnsForListingsTable(table);
         //System.out.println("DEBUGGING listSongsForAlbum: album=" + album.getName() + " : id=" + album.getId());
         Task<ObservableList<Listing>> task = new Task<ObservableList<Listing>>() {
             @Override
             protected ObservableList<Listing> call() throws Exception {
                 return FXCollections.observableArrayList(
-                        zipcodeRepository.findListingsForZipcodeId(zipcode.getId())
+                        listingRepository.findListingsByZipcodeId(zipcode.getId())
                 );
             }
         };
         table.itemsProperty().bind(task.valueProperty());
-        task.setOnSucceeded(e->contextMenu = RedCalcContextMenu.getInstance().getContextMenuForListingTable(table, mc));
+        task.setOnSucceeded(e-> RedCalcContextMenu.getInstance().getContextMenuForListingTable(table, mc));
         new Thread(task).start();
     }
 
@@ -88,12 +88,12 @@ public class ZipcodeServiceImpl implements ZipcodeService {
             @Override
             protected ObservableList<Listing> call() throws Exception {
                 return FXCollections.observableArrayList(
-                        zipcodeRepository.findListingsForZipcodeNumber(zipcode)
+                        listingRepository.findListingsByZipcodeNumber(zipcode)
                 );
             }
         };
         table.itemsProperty().bind(task.valueProperty());
-        task.setOnSucceeded(e->contextMenu = RedCalcContextMenu.getInstance().getContextMenuForListingTable(table, mc));
+        task.setOnSucceeded(e-> RedCalcContextMenu.getInstance().getContextMenuForListingTable(table, mc));
         new Thread(task).start();
     }
 
@@ -274,7 +274,7 @@ public class ZipcodeServiceImpl implements ZipcodeService {
                 capRate = capR / 100;
                 run = true;
             } catch (NumberFormatException e) {
-                Alert a = Alerts.getInstance().getErrorAlert("Cap rate must be a numberic value!");
+                Alert a = Alerts.getInstance().getErrorAlert("Cap rate must be a numeric value!");
                 a.initOwner(borderPane.getScene().getWindow());
                 a.show();
                 return;
@@ -295,12 +295,12 @@ public class ZipcodeServiceImpl implements ZipcodeService {
             @Override
             protected ObservableList<Listing> call() throws Exception {
                 return FXCollections.observableArrayList(
-                        zipcodeRepository.findListingsByZipcodeAndUnderwrittenValue(zipcode.getZipcode(), beds, baths, capRate)
+                        listingRepository.findListingsByZipcodeAndUnderwrittenValue(zipcode.getZipcode(), beds, baths, capRate)
                 );
             }
         };
         table.itemsProperty().bind(task.valueProperty());
-        task.setOnSucceeded(e-> contextMenu = RedCalcContextMenu.getInstance().getContextMenuForListingTable(table, mc));
+        task.setOnSucceeded(e-> RedCalcContextMenu.getInstance().getContextMenuForListingTable(table, mc));
         new Thread(task).start();
     }
 

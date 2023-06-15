@@ -20,6 +20,7 @@ import com.rockandcode.redcalc.model.City;
 import com.rockandcode.redcalc.model.Listing;
 import com.rockandcode.redcalc.model.ZipCode;
 import com.rockandcode.redcalc.repository.CityRepository;
+import com.rockandcode.redcalc.repository.ListingRepository;
 import com.rockandcode.redcalc.repository.ZipcodeRepository;
 import com.rockandcode.redcalc.ui.App;
 import com.rockandcode.redcalc.util.Alerts;
@@ -48,12 +49,14 @@ public class CityServiceImpl implements CityService {
     private ContextMenu contextMenu;
     private CityRepository cityRepository;
     private ZipcodeRepository zipcodeRepository;
+    private ListingRepository listingRepository;
 
     public CityServiceImpl(MainScreenController mc, ContextMenu contextMenu) {
         this.mc = mc;
         this.contextMenu = contextMenu;
         this.cityRepository = new CityRepository(Datasource.getInstance());
         this.zipcodeRepository = new ZipcodeRepository(Datasource.getInstance());
+        this.listingRepository = new ListingRepository(Datasource.getInstance());
     }
 
     @Override
@@ -223,7 +226,7 @@ public class CityServiceImpl implements CityService {
     
     @Override
     public void findListingByCityAndUnderwrittenVal(TableView table, BorderPane borderPane, HBox buttonsContainer) {
-        int numBeds = 0, numBaths = 1, capRateData = 2, beds;
+        int beds;
         double baths, capRate;
         boolean run = false;
         final City city = (City) table.getSelectionModel().getSelectedItem();
@@ -277,7 +280,7 @@ public class CityServiceImpl implements CityService {
         /* Removing some buttons not applicable at this point */
         ButtonsModifier.getInstance().setButtonsForListingsTable(mc, buttonsContainer);
 
-        //Changing the columsn displayed dynamically
+        //Changing the columns displayed dynamically
         TableViewEditor.getInstance().setColumnsForListingsTable(table);
 
         //Getting listings from DB
@@ -285,7 +288,7 @@ public class CityServiceImpl implements CityService {
             @Override
             protected ObservableList<Listing> call() throws Exception {
                 return FXCollections.observableArrayList(
-                        cityRepository.findListingsByCityAndTheUnderwrittenValue(city.getName(), beds, baths, capRate)
+                        listingRepository.findListingsByCityAndTheUnderwrittenValue(city.getName(), beds, baths, capRate)
                 );
             }
         };
