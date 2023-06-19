@@ -21,6 +21,7 @@
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/util/ConsoleLogger.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/util/OsUtils.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/controller/MainScreenController.java
+/Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/util/TextFieldInputChecker.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/controller/GetFairRentRateByZipcodeDialogController.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/repository/ListingRepository.java
 /Users/riost02/Documents/NetBeansProjects/RedCalc/src/main/java/com/rockandcode/redcalc/service/StateService.java

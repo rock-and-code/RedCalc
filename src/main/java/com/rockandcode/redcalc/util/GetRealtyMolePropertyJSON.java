@@ -139,7 +139,7 @@ public class GetRealtyMolePropertyJSON extends Task<Boolean> implements GetRentD
                     } catch (JSONException e) {
                         state = mState;
                     }
-                    //TODO add listedDate field to the market_rents table
+
                     rentListings.add(new RentListing(address, propertyType, listedDate, zipcode, rent, bedrooms, bathrooms, squareFootage, city, state));
                     updateMessage(address);
                 } catch (JSONException e) {

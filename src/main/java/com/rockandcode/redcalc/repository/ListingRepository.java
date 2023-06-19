@@ -48,7 +48,6 @@ public class ListingRepository {
      *
      * @param zipcodeNumber the zipcode number of a city
      * @return a list of listings
-     * @throws Exception if an error occurs during the retrieval
      */
     public List<Listing> findListingsByZipcodeNumber(int zipcodeNumber) {
         return source.findListingsByZipCodeNumber(zipcodeNumber);

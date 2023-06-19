@@ -1,0 +1,7 @@
+
+
+#borderPane, #updateCityDialogPane, #insertListingDialogPane, #calculateNOIAndDebtServiceBorderPane,
+#calculateMortgagePaymentBorderPane, #getNumOfBedsBathsDialogPane, #getListingsByUnderwrittenValueDialogPane,
+#getFairRentRateByZipcodeDialog, #downloadRentListingDialogPane{
+    -fx-font-family: helvetica;
+}

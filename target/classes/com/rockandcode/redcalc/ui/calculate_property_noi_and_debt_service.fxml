@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane fx:id="calculateNOIAndDebtServiceBorderPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.rockandcode.redcalc.controller.CalculatePropertyNOIAndDebtServiceController" stylesheets="@style.css">
+    <top>
+        <VBox>
+            <MenuBar >
+                <Menu text="File">
+                    <items>
+                        <MenuItem text="Home Page" onAction="#switchToPrimary" /> 
+                    </items>
+                </Menu> 
+            </MenuBar>
+            <ToolBar>
+                <HBox>
+                    <Button text="Home Page" onAction="#switchToPrimary" />
+                </HBox>
+            </ToolBar>
+        </VBox>
+    </top>
+    
+    <center>
+        <ScrollPane>
+            <!-- GridPane to provide text inputs necessary to calculate the property's Net Operating Income, and
+            optimal list price (for a target Cap Rate), and the cap rate after the debt service-->
+            <GridPane alignment="TOP_LEFT" vgap="10" hgap="10">
+                <!--Row 1-->   
+                <Label GridPane.rowIndex="0" GridPane.columnIndex="0"  text="Monthly rent amount" />
+                <TextField GridPane.rowIndex="0" GridPane.columnIndex="1" editable="true" fx:id="monthlyRent" promptText="..." onKeyReleased="#handleKeyReleased" />
+                <!--Row 2-->  
+                <Label GridPane.rowIndex="1" GridPane.columnIndex="0"  text="Vacancy Rate"/>
+                <TextField GridPane.rowIndex="1" GridPane.columnIndex="1" editable="true" fx:id="vacancyRate" promptText="7.0%" onKeyReleased="#handleKeyReleased" />
+                <!--Row 3-->  
+                <Label GridPane.rowIndex="2" GridPane.columnIndex="0"  text="Credit Loss Rate"/>
+                <TextField GridPane.rowIndex="2" GridPane.columnIndex="1" editable="true" fx:id="creditLossRate" promptText="4.0%" onKeyReleased="#handleKeyReleased" />
+                <!--Row 4-->
+                <Label GridPane.rowIndex="3" GridPane.columnIndex="0"  text="Operating Expense Ratio"/>
+                <TextField GridPane.rowIndex="3" GridPane.columnIndex="1" editable="true" fx:id="operatingExpRatio" promptText="35.0-44.0%" onKeyReleased="#handleKeyReleased" />
+                <!--Row 5-->
+                <Label GridPane.rowIndex="4" GridPane.columnIndex="0"  text="Cap Rate (Before debt service)"/>
+                <TextField GridPane.rowIndex="4" GridPane.columnIndex="1" editable="true" fx:id="capRateBDS" promptText="8.0%" onKeyReleased="#handleKeyReleased" onAction="#calculatePropertyNOI"/>
+                <!--Row 6-->
+                <Button fx:id="calcBtnOne" GridPane.rowIndex="5" GridPane.columnIndex="0" text="Calculate EGI And NOI" onAction="#calculatePropertyNOI" />
+                <Button fx:id="resetBtnOne" GridPane.rowIndex="5" GridPane.columnIndex="1" text="Reset" onAction="#resetFields" />
+                <!--Row 7-->
+                <Label GridPane.rowIndex="6" GridPane.columnIndex="0"  text="Effective Gross Income (EGI)"  fx:id="effectiveGrossIncomeLabel" visible="false" />
+                <Label GridPane.rowIndex="6" GridPane.columnIndex="1" fx:id="effectiveGrossIncome"  visible="false"/>
+                <!--Row 8-->
+                <Label GridPane.rowIndex="7" GridPane.columnIndex="0"  text="Net Operating Income (NOI)" fx:id="netOperatingIncomeLabel" visible="false"/>
+                <Label GridPane.rowIndex="7" GridPane.columnIndex="1" fx:id="netOperatingIncome"  visible="false"/>
+                <!--Row 9-->
+                <Label GridPane.rowIndex="8" GridPane.columnIndex="0"  text="Optimal List Price" fx:id="optimalListPriceLabel" visible="false"/>
+                <Label GridPane.rowIndex="8" GridPane.columnIndex="1" fx:id="optimalListPrice" visible="false"/>
+                <!--Row 10-->
+                <Label GridPane.rowIndex="9" GridPane.columnIndex="0"  text="List Price" />
+                <TextField GridPane.rowIndex="9" GridPane.columnIndex="1" editable="true" fx:id="listPrice" promptText="..." onKeyReleased="#handleKeyReleasedTwo" />
+                <!--Row 11-->
+                <Label GridPane.rowIndex="10" GridPane.columnIndex="0"  text="Down payment percentage"/>
+                <TextField GridPane.rowIndex="10" GridPane.columnIndex="1" editable="true" fx:id="downPaymentPercentage" promptText="20.0%" onKeyReleased="#handleKeyReleasedTwo" />
+                <!--Row 12-->
+                <Label GridPane.rowIndex="11" GridPane.columnIndex="0"  text="Mortgage Interest Rate"/>
+                <TextField GridPane.rowIndex="11" GridPane.columnIndex="1" editable="true" fx:id="mortgageInterestRate" promptText="5.35%" onKeyReleased="#handleKeyReleasedTwo" />
+                <Label GridPane.rowIndex="11" GridPane.columnIndex="2"  text="percentage per year" />
+                <!--Row 13-->
+                <Label GridPane.rowIndex="12" GridPane.columnIndex="0"  text="Mortgage Terms"/>
+                <TextField GridPane.rowIndex="12" GridPane.columnIndex="1" editable="true" fx:id="mortgageTerms" promptText="30" onKeyReleased="#handleKeyReleasedTwo"/>
+                <Label GridPane.rowIndex="12" GridPane.columnIndex="2"  text="Years" />
+                <!--Row 14-->
+                <Label GridPane.rowIndex="13" GridPane.columnIndex="0"  text="Property NOI"/>
+                <TextField GridPane.rowIndex="13" GridPane.columnIndex="1" editable="true" fx:id="propertyNOI" promptText="..." onKeyReleased="#handleKeyReleasedTwo" onAction="#calculatePIExp" />
+                <!--Row 15-->
+                <Button fx:id="calcBtnTwo" GridPane.rowIndex="14" GridPane.columnIndex="0" text="Calculate PI Expense" onAction="#calculatePIExp" />
+                <Button fx:id="resetBtnTwo" GridPane.rowIndex="14" GridPane.columnIndex="1" text="Reset" onAction="#resetFieldsTwo" />
+                
+                <!--Hidden Labels and Fields-->
+                <!--Row 16-->
+                <Label GridPane.rowIndex="15" GridPane.columnIndex="0"  text="Annual Principal and Interest Expense"  fx:id="principalAndInterestExpLabel" visible="false" />
+                <Label GridPane.rowIndex="15" GridPane.columnIndex="1" fx:id="principalAndInterestExp"  visible="false"/>
+                <!--Row 17-->
+                <Label GridPane.rowIndex="16" GridPane.columnIndex="0"  text="NOI after debt service"  fx:id="noiAfterDebtServiceLabel" visible="false" />
+                <Label GridPane.rowIndex="16" GridPane.columnIndex="1" fx:id="noiAfterDebtService"  visible="false"/>
+                <!--Row 18-->
+                <Label GridPane.rowIndex="17" GridPane.columnIndex="0"  text="Capital Rate (After debt service)" fx:id="capitalRateADSLabel" visible="false"/>
+                <Label GridPane.rowIndex="17" GridPane.columnIndex="1" fx:id="capitalRateADS"  visible="false"/>
+
+                <padding>
+                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                </padding>
+            </GridPane>
+        </ScrollPane>
+    </center>
+</BorderPane>

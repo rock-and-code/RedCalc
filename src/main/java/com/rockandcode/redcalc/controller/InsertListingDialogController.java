@@ -58,7 +58,8 @@ public class InsertListingDialogController {
         listingCity.setAddress(addressTextField.getText().trim());
         listingCity.setPropertyType(propertyTypeComboBox.getValue().toString().trim());
         listingCity.setUrl(urlTextField.getText().trim());
-        //Try-catch blocks to validate the input values
+        //Try-catch blocks to validate the input values and managed error more graciously to user
+        // by displaying more meaningful error messages
         try {
             listingCity.setZipcode(Integer.parseInt(zipcodeTextField.getText()));
         } catch (NumberFormatException e) {

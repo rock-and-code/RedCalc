@@ -67,6 +67,7 @@ com/rockandcode/redcalc/database/Datasource$Cities.class
 com/rockandcode/redcalc/service/ZipcodeServiceImpl$3.class
 com/rockandcode/redcalc/service/ZipcodeService.class
 com/rockandcode/redcalc/database/Datasource$Listings.class
+com/rockandcode/redcalc/util/TextFieldInputChecker.class
 com/rockandcode/redcalc/service/ListingServiceImpl$1.class
 com/rockandcode/redcalc/util/FileDataReader.class
 com/rockandcode/redcalc/service/ImportDataFromCSVServiceImpl.class

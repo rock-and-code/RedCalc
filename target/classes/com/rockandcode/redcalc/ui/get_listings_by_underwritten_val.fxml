@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+
+<DialogPane fx:id="getListingsByUnderwrittenValueDialogPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.rockandcode.redcalc.controller.GetListingByUnderwrittenValDialogController">
+    <content>
+        <!-- A GridPane with text fields input for the num of beds, baths, and cap rate to feed a SQL statement to
+        find listings that meets the underwritten value criteria -->
+        <GridPane hgap="10" vgap="10">
+            <Label text="Beds" GridPane.rowIndex="0" />    
+            <Label text="Baths" GridPane.rowIndex="1" /> 
+            <Label text="Cap Rate" GridPane.rowIndex="2" /> 
+            <Spinner fx:id="numBedsSpinner" GridPane.columnIndex="1" GridPane.rowIndex="0" min="0" max="50" initialValue="3"><editable>false</editable></Spinner>
+            <Spinner fx:id="numBathsSpinner" GridPane.columnIndex="1" GridPane.rowIndex="1" min="0.0" max="50.0" initialValue="2.0" amountToStepBy="0.5"><editable>false</editable></Spinner>
+            <TextField fx:id="capRateTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="Cap Rate%..."  />
+            
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+        </GridPane>
+    </content>    
+</DialogPane>

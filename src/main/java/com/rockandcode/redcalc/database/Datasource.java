@@ -1762,7 +1762,7 @@ public class Datasource {
             deleteListingByStateName.setString(1, stateName);
             /* DELETE ZIPCODE BY STATE NAME */
             deleteZipcodesByStateName.setString(1, stateName);
-            /* DELTE CITY BY STATE NAME */
+            /* DELETE CITY BY STATE NAME */
             deleteCityByStateName.setString(1, stateName);
             deleteStateByName.setString(1, stateName);
             deleteListingByStateName.execute();
@@ -1798,15 +1798,16 @@ public class Datasource {
             ResultSet results = queryListingsByZipCodeId.executeQuery();
             while (results.next()) {
                 Listing listing = new Listing();
-                listing.setId(results.getInt(1));
-                listing.setAddress(results.getString(2));
-                listing.setPropertyType(results.getString(3));
-                listing.setZipcode(results.getInt(4));
-                listing.setListPrice(results.getInt(5));
-                listing.setNumBeds(results.getInt(6));
-                listing.setNumBaths(results.getDouble(7));
-                listing.setSquareFootage(results.getInt(8));
-                listing.setYeartBuilt(results.getInt(9));
+                listing.setId(results.getInt(Listings.INDEX_ID));
+                listing.setAddress(results.getString(Listings.INDEX_ADDRESS));
+                listing.setPropertyType(results.getString(Listings.INDEX_PROPERTY_TYPE));
+                listing.setZipcode(results.getInt(Listings.INDEX_ZIP_CODE));
+                listing.setListPrice(results.getInt(Listings.INDEX_LIST_PRICE));
+                listing.setNumBeds(results.getInt(Listings.INDEX_NUM_BED));
+                listing.setNumBaths(results.getDouble(Listings.INDEX_NUM_BATH));
+                listing.setSquareFootage(results.getInt(Listings.INDEX_SQFT));
+                listing.setYeartBuilt(results.getInt(Listings.INDEX_YEAR_BUILT));
+                listing.setUrl(results.getString(Listings.INDEX_URL));
                 listings.add(listing);
             }
             return listings;

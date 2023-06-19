@@ -21,14 +21,23 @@ public class FileDataReader {
     }
 
     public int getNumberOfLinesFromRedfinCSVFile(String filePath) throws Exception {
-        int numberOfLines = 0;
-        BufferedReader dirFile = openFile(filePath);
-        String input;
+        // Get the number of lines in the given CSV file.
 
+        // Declare a variable to store the number of lines.
+        int numberOfLines = 0;
+        // Open the file for reading.
+        BufferedReader dirFile = openFile(filePath);
+
+        // Read each line from the file.
+        String input;
         while ((input = dirFile.readLine()) != null) {
             ++numberOfLines;
         }
 
+        // Close the file.
+        dirFile.close();
+
+        // Return the number of lines.
         return numberOfLines;
     }
 
@@ -179,7 +188,6 @@ public class FileDataReader {
         while ((input = dirFile.readLine()) != null) {
             Object[] data = null;
             try {
-                //data = extractDataFromRedfinCSVFile(input);                   //Data to create Listings Objects
                 data = extractDataFromRedfinCSVFileForDatabase(input);          //Data to be inserted in the db  
             } catch (InputMismatchException e) {
                 ConsoleLogger.getInstance().printErrorMessage("InputMissmatch Error while reading csv file ", e);
@@ -188,6 +196,8 @@ public class FileDataReader {
                 insertListing(data);
             }
         }
+        // Close the file. To release the file
+        dirFile.close();
     }
 
     /**
@@ -306,10 +316,10 @@ public class FileDataReader {
                 } catch (Exception e) {
                     ConsoleLogger.getInstance().printErrorMessage(input, e);
                 }
-
             }
-
         }
+        //Closing the file to avoid resource exhaustion
+        dirFile.close();
     }
 
     /**
@@ -348,8 +358,9 @@ public class FileDataReader {
                 }
 
             }
-
         }
+        //Closing the file to avoid resource exhaustion
+        dirFile.close();
     }
 
     /**
@@ -491,8 +502,9 @@ public class FileDataReader {
             if (data != null) {
                 frr = createFairRentRates(data);
             }
-
         }
+        //Closing file
+        dirFile.close();
     }
 
     /**
@@ -529,9 +541,10 @@ public class FileDataReader {
                 } catch (Exception e) {
                     ConsoleLogger.getInstance().printErrorMessage(input, e);
                 }
-
             }
         }
+        //closing file
+        dirFile.close();
     }
 
     private FairRentRates extractDataFromFmrCSVFileForDatabase(String fileLine) throws InputMismatchException {

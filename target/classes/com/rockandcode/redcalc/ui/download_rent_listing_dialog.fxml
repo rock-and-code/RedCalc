@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<DialogPane fx:id="downloadRentListingDialogPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.rockandcode.redcalc.controller.DownloadRentListingDialogController">
+    <headerText>
+        Use this dialog to add a Rent listing
+    </headerText>
+    <content>
+        <!-- A GridPane with a combo box for Two state US states and territories, and input text for the city name
+         to feed a helper function that downloads the rent listing using the Realty Mole API
+         you can find the API documentation in the following link: https://rapidapi.com/realtymole/api/realty-mole-property-api-->
+        <GridPane fx:id="insertListingGridPane" hgap="10" vgap="10">
+            <Label text="State" GridPane.rowIndex="0" />    
+            <Label text="City" GridPane.rowIndex="1" />    
+            <ComboBox fx:id="stateComboBox" prefHeight="26.0" prefWidth="159.0" promptText="State..." GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <items>
+                    <!-- Adding a list of the two-letters US states and territories-->
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="AK"/>
+                        <String fx:value="AL"/>
+                        <String fx:value="AR"/>
+                        <String fx:value="AZ"/>
+                        <String fx:value="CA"/>
+                        <String fx:value="CO"/>
+                        <String fx:value="CT"/>
+                        <String fx:value="DC"/>
+                        <String fx:value="DE"/>
+                        <String fx:value="FL"/>
+                        <String fx:value="GA"/>
+                        <String fx:value="HI"/>
+                        <String fx:value="IA"/>
+                        <String fx:value="ID"/>
+                        <String fx:value="IL"/>
+                        <String fx:value="IN"/>
+                        <String fx:value="KS"/>
+                        <String fx:value="KY"/>
+                        <String fx:value="LA"/>
+                        <String fx:value="MA"/>
+                        <String fx:value="MD"/>
+                        <String fx:value="ME"/>
+                        <String fx:value="MI"/>
+                        <String fx:value="MN"/>
+                        <String fx:value="MO"/>
+                        <String fx:value="MS"/>
+                        <String fx:value="MT"/>
+                        <String fx:value="NC"/>
+                        <String fx:value="ND"/>
+                        <String fx:value="NE"/>
+                        <String fx:value="NH"/>
+                        <String fx:value="NJ"/>
+                        <String fx:value="NM"/>
+                        <String fx:value="NV"/>
+                        <String fx:value="NY"/>
+                        <String fx:value="OH"/>
+                        <String fx:value="OK"/>
+                        <String fx:value="OR"/>
+                        <String fx:value="PA"/>
+                        <String fx:value="PR"/>
+                        <String fx:value="RI"/>
+                        <String fx:value="SC"/>
+                        <String fx:value="SD"/>
+                        <String fx:value="TN"/>
+                        <String fx:value="TX"/>
+                        <String fx:value="UT"/>
+                        <String fx:value="VA"/>
+                        <String fx:value="VT"/>
+                        <String fx:value="WA"/>
+                        <String fx:value="WI"/>
+                        <String fx:value="WV"/>
+                        <String fx:value="WY"/>
+                    </FXCollections>
+                </items>
+                <value>
+                    <String fx:value="FL" />
+                </value>
+            </ComboBox>
+            <TextField fx:id="cityTextField" promptText="City..." GridPane.columnIndex="1" GridPane.rowIndex="1" />        
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+        </GridPane>
+    </content>    
+</DialogPane>
+

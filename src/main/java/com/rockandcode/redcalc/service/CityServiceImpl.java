@@ -1,16 +1,16 @@
 
 package com.rockandcode.redcalc.service;
 
-import static com.rockandcode.redcalc.controller.MainScreenController.GET_NUM_OF_BEDS_AND_BATHS_DIALOG_FXML;
 import static com.rockandcode.redcalc.controller.MainScreenController.GET_LISTINGS_BY_UNDERWRITTEN_VAL_DIALOG_FXML;
+import static com.rockandcode.redcalc.controller.MainScreenController.GET_NUM_OF_BEDS_AND_BATHS_DIALOG_FXML;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
 
-import com.rockandcode.redcalc.controller.GetNumOfBedsAndBathsDialogController;
 import com.rockandcode.redcalc.controller.GetListingByUnderwrittenValDialogController;
+import com.rockandcode.redcalc.controller.GetNumOfBedsAndBathsDialogController;
 import com.rockandcode.redcalc.controller.MainScreenController;
 import com.rockandcode.redcalc.controller.UpdateCityDialogController;
 import com.rockandcode.redcalc.database.Datasource;

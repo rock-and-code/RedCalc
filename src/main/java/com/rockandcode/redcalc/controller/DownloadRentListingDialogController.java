@@ -3,6 +3,7 @@ package com.rockandcode.redcalc.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;

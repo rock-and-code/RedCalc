@@ -17,7 +17,6 @@ import javafx.scene.layout.BorderPane;
 
 public class CalculatePropertyNOIAndDebtServiceController {
 
-    private final String PRIMARY = "main_screen";
     private final DecimalFormat decimalFormat = new DecimalFormat("$###,###.##");
     @FXML
     private final Alert errorAlert = new Alert(Alert.AlertType.ERROR);
@@ -76,18 +75,18 @@ public class CalculatePropertyNOIAndDebtServiceController {
 
     @FXML
     private void switchToPrimary() throws IOException {
+        String PRIMARY = "main_screen";
         App.setRoot(PRIMARY);
     }
 
     /*
-     * Rounds a double to the specified number of digits.
+     * Rounds a double to two decimal points.
      *
      * @param num A double.
-     * @param numDigits The number of digits to round the double value.
      * @return The rounded double.
      */
-    private double roundDouble(double num, int numDigits) {
-        return BigDecimal.valueOf(num).setScale(numDigits, RoundingMode.HALF_UP).doubleValue();
+    private double roundDouble(double num) {
+        return BigDecimal.valueOf(num).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 
     /*
@@ -162,11 +161,11 @@ public class CalculatePropertyNOIAndDebtServiceController {
     /*
      * Calculates the monthly interest rate.
      *
-     * @param mortgageInterestRate The text field for the mortgage annual interest rate.
+     * @param mortgageInterestRate A double that represents the mortgage annual interest rate.
      * @return The monthly interest rate for the mortgage.
      */
-    private double calculateMonthlyInterestRate(TextField mortgageInterestRate) {
-        return (Double.parseDouble(mortgageInterestRate.getText()) / 100) / 12;
+    private double calculateMonthlyInterestRate(double mortgageInterestRate) {
+        return ((mortgageInterestRate) / 100) / 12;
     }
 
     /*
@@ -261,12 +260,12 @@ public class CalculatePropertyNOIAndDebtServiceController {
         double noi = validateDoubleInputValue(propertyNOI.getText(),
                 errorAlert, "NOI");
 
-        // Check if any of the users was a positive numeric value, otherwise return
+        // Check if any of the user input was a positive numeric value, otherwise return
         if (listPrice < 0 || downPaymentPercentage < 0 || mortgageInterestRate < 0||
                 mortgageTerms < 0 || noi < 0)
             return;
 
-        mortgageInterestRate = ((mortgageInterestRate / 100) /12); //To convert first integer to decimal and then annual interest rate to a monthly basis
+        mortgageInterestRate = calculateMonthlyInterestRate(mortgageInterestRate);//To convert first integer to decimal and then annual interest rate to a monthly basis
         mortgageTerms *= 12; //To convert the terms from year to months
 
         downPaymentPercentage /= 100; //To convert an integer to a decimal
@@ -288,7 +287,7 @@ public class CalculatePropertyNOIAndDebtServiceController {
         cads *= 100;
 
         // Formats cap rate after debt to two decimal points
-        double formattedCads = roundDouble(cads, 2);
+        double formattedCads = roundDouble(cads);
 
         /* Populating EFI and NOI text fields */
         principalAndInterestExp.setText(decimalFormat.format(principalAndInterestExpenses));
