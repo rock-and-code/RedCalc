@@ -2,6 +2,7 @@ package com.rockandcode.redcalc.util;
 
 import com.rockandcode.redcalc.database.Datasource;
 import com.rockandcode.redcalc.model.FairRentRates;
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -30,7 +31,7 @@ public class FileDataReader {
 
         // Read each line from the file.
         String input;
-        while ((input = dirFile.readLine()) != null) {
+        while ((input = BoundedLineReader.readLine(dirFile, 5_000_000)) != null) {
             ++numberOfLines;
         }
 
@@ -179,13 +180,13 @@ public class FileDataReader {
         int numberOfListingsToRead = getNumberOfLinesFromRedfinCSVFile(filePath);
         String input;
         //Reading headers columns
-        int columnsInCSVFile = dirFile.readLine().split(",").length;
+        int columnsInCSVFile = BoundedLineReader.readLine(dirFile, 5_000_000).split(",").length;
         if (columnsInCSVFile != NUM_COLUMNS_EXPECTED_IN_CSV_FILE) {
             ConsoleLogger.getInstance().printMessage("Error: Entered CSV file does not follows expected format");
             return;
         }
 
-        while ((input = dirFile.readLine()) != null) {
+        while ((input = BoundedLineReader.readLine(dirFile, 5_000_000)) != null) {
             Object[] data = null;
             try {
                 data = extractDataFromRedfinCSVFileForDatabase(input);          //Data to be inserted in the db  
@@ -295,12 +296,12 @@ public class FileDataReader {
         BufferedReader dirFile = openFile(filePath);
         String input;
         //Reading headers columns
-        int columnsInCSVFile = dirFile.readLine().split(",").length;
+        int columnsInCSVFile = BoundedLineReader.readLine(dirFile, 5_000_000).split(",").length;
         if (columnsInCSVFile != NUM_COLUMNS_EXPECTED_IN_CSV_FILE) {
             ConsoleLogger.getInstance().printMessage("Error: Entered CSV file does not follows expected format");
             return;
         }
-        while ((input = dirFile.readLine()) != null) {
+        while ((input = BoundedLineReader.readLine(dirFile, 5_000_000)) != null) {
             Object[] data;
             try {
                 data = extractRentDataFromACSVFile(input);
@@ -335,12 +336,12 @@ public class FileDataReader {
         BufferedReader dirFile = openFile(filePath);
         String input;
         //Reading headers columns
-        int columnsInCSVFile = dirFile.readLine().split(",").length;
+        int columnsInCSVFile = BoundedLineReader.readLine(dirFile, 5_000_000).split(",").length;
         if (columnsInCSVFile != NUM_COLUMNS_EXPECTED_IN_CSV_FILE) {
             ConsoleLogger.getInstance().printMessage("Error: Entered CSV file does not follows expected format");
             return;
         }
-        while ((input = dirFile.readLine()) != null) {
+        while ((input = BoundedLineReader.readLine(dirFile, 5_000_000)) != null) {
             Object[] data = null;
             try {
                 data = extractRentDataFromASQLCSVFile(input);
@@ -484,13 +485,13 @@ public class FileDataReader {
         BufferedReader dirFile = openFile(filePath);
         String input;
         //Reading headers columns
-        int columnsInCSVFile = dirFile.readLine().split(",").length;
+        int columnsInCSVFile = BoundedLineReader.readLine(dirFile, 5_000_000).split(",").length;
         if (columnsInCSVFile != NUM_COLUMNS_EXPECTED_IN_CSV_FILE) {
             ConsoleLogger.getInstance().printMessage("Error: Entered CSV file does not follows expected format");
             return;
         }
 
-        while ((input = dirFile.readLine()) != null) {
+        while ((input = BoundedLineReader.readLine(dirFile, 5_000_000)) != null) {
             Object[] data;
             try {
                 data = extractDataFromFairMarketRentCSVFile(input);
@@ -520,12 +521,12 @@ public class FileDataReader {
         BufferedReader dirFile = openFile(filePath);
         String input;
         //Reading headers columns
-        int columnsInCSVFile = dirFile.readLine().split(",").length;
+        int columnsInCSVFile = BoundedLineReader.readLine(dirFile, 5_000_000).split(",").length;
         if (columnsInCSVFile != NUM_COLUMNS_EXPECTED_IN_CSV_FILE) {
             ConsoleLogger.getInstance().printMessage("Error: Entered CSV file does not follows expected format");
             return;
         }
-        while ((input = dirFile.readLine()) != null) {
+        while ((input = BoundedLineReader.readLine(dirFile, 5_000_000)) != null) {
             FairRentRates data = null;
             try {
                 data = extractDataFromFmrCSVFileForDatabase(input);

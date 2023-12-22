@@ -3,6 +3,7 @@ package com.rockandcode.redcalc.task;
 import com.rockandcode.redcalc.database.Datasource;
 import com.rockandcode.redcalc.model.SaleListing;
 import com.rockandcode.redcalc.util.ConsoleLogger;
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -46,7 +47,7 @@ public class ReadSalesListingsFromRedfinCSVFileTask extends Task<Boolean> {
         int numberOfListingsToRead = getNumberOfLinesFromRedfinCSVFile(file.getPath()); // Get the number of lines in the file
         String input;
         // Reading headers columns
-        int columnsInCSVFile = dirFile.readLine().split(",").length; // Get the number of columns in the CSV file
+        int columnsInCSVFile = BoundedLineReader.readLine(dirFile, 5_000_000).split(",").length; // Get the number of columns in the CSV file
         // Checking if the number of columns in the file matches the expected number of columns
         if (columnsInCSVFile != NUM_COLUMNS_EXPECTED_IN_CSV_FILE) {
             ConsoleLogger.getInstance().printMessage("Error: Entered CSV file does not follows expected format"); // Display an error message
@@ -54,7 +55,7 @@ public class ReadSalesListingsFromRedfinCSVFileTask extends Task<Boolean> {
         }
         int progressCounter = 1; // A counter to keep track of progress
         // Reading each line of the file and extracting data to insert into the database
-        while ((input = dirFile.readLine()) != null) {
+        while ((input = BoundedLineReader.readLine(dirFile, 5_000_000)) != null) {
             SaleListing saleListing = null; // Initialize the SaleListing object to null
             try {
                 saleListing = extractDataFromRedfinCSVFileForDatabase(input); // Extract data from the CSV line to insert into the database
@@ -91,7 +92,7 @@ public class ReadSalesListingsFromRedfinCSVFileTask extends Task<Boolean> {
         BufferedReader dirFile = openFile(filePath);
         String input;
 
-        while ((input = dirFile.readLine()) != null) {
+        while ((input = BoundedLineReader.readLine(dirFile, 5_000_000)) != null) {
             ++numberOfLines;
         }
         // Close the CSV file.

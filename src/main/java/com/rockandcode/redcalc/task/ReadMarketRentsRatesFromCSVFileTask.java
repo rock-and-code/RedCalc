@@ -8,6 +8,7 @@ package com.rockandcode.redcalc.task;
 import com.rockandcode.redcalc.database.Datasource;
 import com.rockandcode.redcalc.model.RentListing;
 import com.rockandcode.redcalc.util.ConsoleLogger;
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -47,14 +48,14 @@ public class ReadMarketRentsRatesFromCSVFileTask extends Task<Boolean> {
         String input;
 
         // Reading headers columns
-        int columnsInCSVFile = dirFile.readLine().split(",").length;
+        int columnsInCSVFile = BoundedLineReader.readLine(dirFile, 5_000_000).split(",").length;
         if (columnsInCSVFile != NUM_COLUMNS_EXPECTED_IN_CSV_FILE) {
             ConsoleLogger.getInstance().printMessage("Error: Entered CSV file does not follow expected format");
             return false;
         }
 
         int progressCounter = 1;
-        while ((input = dirFile.readLine()) != null) {
+        while ((input = BoundedLineReader.readLine(dirFile, 5_000_000)) != null) {
             RentListing rentListing = null;
             try {
                 rentListing = extractRentDataFromACSVFile(input);
@@ -100,7 +101,7 @@ public class ReadMarketRentsRatesFromCSVFileTask extends Task<Boolean> {
         BufferedReader dirFile = openFile(filePath);
         String input;
 
-        while ((input = dirFile.readLine()) != null) {
+        while ((input = BoundedLineReader.readLine(dirFile, 5_000_000)) != null) {
             ++numberOfLines;
         }
         // Close the CSV file.
