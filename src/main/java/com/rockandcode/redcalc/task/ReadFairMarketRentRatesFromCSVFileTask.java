@@ -1,5 +1,6 @@
 package com.rockandcode.redcalc.task;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -48,13 +49,13 @@ public class ReadFairMarketRentRatesFromCSVFileTask extends Task<Boolean> {
         int progressCounter = 1;
         String input;
         //Reading headers columns
-        int columnsInCSVFile = dirFile.readLine().split(",").length;
+        int columnsInCSVFile = BoundedLineReader.readLine(dirFile, 5_000_000).split(",").length;
          if (columnsInCSVFile != NUM_COLUMNS_EXPECTED_IN_CSV_FILE) {
              ConsoleLogger.getInstance().printMessage("Error: Entered CSV file does not follows expected format");
              return false;
          }
         // Iterate over the lines in the file, reading each fair market rent rate and inserting it into the database.
-        while ((input = dirFile.readLine()) != null) {
+        while ((input = BoundedLineReader.readLine(dirFile, 5_000_000)) != null) {
             //ConsoleLogger.getInstance().printMessage("inside While input=dirFile.readLine() != null");
             FairRentRates data = null;
             try {
@@ -114,7 +115,7 @@ public class ReadFairMarketRentRatesFromCSVFileTask extends Task<Boolean> {
         BufferedReader dirFile = openFile(filePath);
         String input;
 
-        while ((input = dirFile.readLine()) != null) {
+        while ((input = BoundedLineReader.readLine(dirFile, 5_000_000)) != null) {
             ++numberOfLines;
         }
 

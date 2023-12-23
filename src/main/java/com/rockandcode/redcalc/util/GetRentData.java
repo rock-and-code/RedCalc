@@ -1,5 +1,6 @@
 package com.rockandcode.redcalc.util;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -70,7 +71,7 @@ public class GetRentData extends Task<Boolean> {
             //String builder to append the data downloaded from internet
             StringBuilder result = new StringBuilder();
             //Appends data from internet to the string builder
-            for (String line = reader.readLine(); line != null; line = reader.readLine()) {
+            for (String line = BoundedLineReader.readLine(reader, 5_000_000); line != null; line = BoundedLineReader.readLine(reader, 5_000_000)) {
                 result.append(line).append("\n");
             }
             //Print downloaded data
