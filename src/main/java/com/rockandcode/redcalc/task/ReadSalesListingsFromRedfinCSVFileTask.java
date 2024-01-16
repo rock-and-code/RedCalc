@@ -130,8 +130,8 @@ public class ReadSalesListingsFromRedfinCSVFileTask extends Task<Boolean> {
         }
 
         // Validate that the property type is not vacant land, other, or unknown
-        if (propertyType.equalsIgnoreCase("vacant land") || propertyType.equalsIgnoreCase("Other")
-                || propertyType.equalsIgnoreCase("Unknown")) {
+        if ("vacant land".equalsIgnoreCase(propertyType) || "Other".equalsIgnoreCase(propertyType)
+                || "Unknown".equalsIgnoreCase(propertyType)) {
             throw new Exception("Listing's property type is vacant land, other or unknown");
         }
 
