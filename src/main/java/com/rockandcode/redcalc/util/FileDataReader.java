@@ -60,13 +60,13 @@ public class FileDataReader {
         if (state.isEmpty() || state.isBlank()) {
             throw new InputMismatchException("State field is empty");
         }
-        if (propertyType.equalsIgnoreCase("Vacant Land")) {
+        if ("Vacant Land".equalsIgnoreCase(propertyType)) {
             throw new InputMismatchException("Property type is Vacant Land");
         }
-        if (propertyType.equalsIgnoreCase("Other")) {
+        if ("Other".equalsIgnoreCase(propertyType)) {
             throw new InputMismatchException("Property type is Other");
         }
-        if (propertyType.equalsIgnoreCase("Unknown")) {
+        if ("Unknown".equalsIgnoreCase(propertyType)) {
             throw new InputMismatchException("Property type is Uknown");
         }
 
