@@ -1,6 +1,8 @@
 package com.rockandcode.redcalc.util;
 
 import io.github.pixee.security.BoundedLineReader;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -52,7 +54,7 @@ public class GetRentData extends Task<Boolean> {
 
         try {
             //Setting the destination URL, connection and the buffer reader
-            destinationURL = new URL(createURI(mBaseURL, mCity, mState));
+            destinationURL = Urls.create(createURI(mBaseURL, mCity, mState), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             connection = (HttpsURLConnection) destinationURL.openConnection();
             //Setting the URL headers
             //TODO -> UPDATE BELOW HEADER WITH YOUR REALTY MOLE PROPERTY API KEY
